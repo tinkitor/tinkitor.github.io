@@ -24,7 +24,7 @@
 <meta property="og:description" content="简化版概述一、void 的含义  void 即“无类型”，void *则为“无类型指针”，可以指向任何数据类型。  二、void 指针使用规范①void 指针可以指向任意类型的数据，亦即可用任意数据类型的指针对 void 指针赋值。 例如：  123int *pint;void *pvoid; pvoid &#x3D; pint;  &#x2F;&#x2F;不过不能 pint &#x3D; pvoid;   如果要将 pvoid 赋给其">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-29T09:03:44.000Z">
-<meta property="article:modified_time" content="2022-03-29T12:18:16.147Z">
+<meta property="article:modified_time" content="2022-03-29T12:20:55.748Z">
 <meta property="article:author" content="putik-663">
 <meta property="article:tag" content="-未知来源转载">
 <meta property="article:tag" content="-C语言">
@@ -267,7 +267,7 @@
 <p> 如果要将 pvoid 赋给其他类型指针，则需要强制类型转换如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C">pint = (<span class="hljs-type">int</span> *)pvoid;<br></code></pre></td></tr></table></figure>
 
-<p>**②在 ANSI C 标准中，不允许对 void 指针进行算术运算如 pvoid++或 pvoid+&#x3D;1 等，而在 GNU 中则允许，因为在缺省情况下，GNU 认为 void *与 char *一样。 sizeof( *pvoid )&#x3D;&#x3D; sizeof( char )。 **</p>
+<p>**②在 ANSI C 标准中，不允许对 void 指针进行算术运算如 pvoid++或 pvoid+&#x3D;1 等，而在 GNU 中则允许，因为在缺省情况下，GNU 认为 void *与 char <em>一样。 sizeof( <em>pvoid )&#x3D;&#x3D; sizeof( char )。</em></em></p>
 <h3 id="三、void-的作用"><a href="#三、void-的作用" class="headerlink" title="三、void 的作用"></a>三、void 的作用</h3><p><strong>①对函数返回的限定。</strong></p>
 <p><strong>②对函数参数的限定。</strong> </p>
 <p>当函数不需要返回值时，必须使用 void 限定。例如： </p>
