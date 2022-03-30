@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>003_vc6.0添加插件时error解决方案</title>
+    <link href="/2022/03/29/003_vc6.0%E6%B7%BB%E5%8A%A0%E6%8F%92%E4%BB%B6%E6%97%B6error%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <url>/2022/03/29/003_vc6.0%E6%B7%BB%E5%8A%A0%E6%8F%92%E4%BB%B6%E6%97%B6error%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Unable-to-register-this-add-in-because-its-DllRegisterServer-returns-an-error-解决方案"><a href="#Unable-to-register-this-add-in-because-its-DllRegisterServer-returns-an-error-解决方案" class="headerlink" title="Unable to register this add-in because its DllRegisterServer returns an error 解决方案"></a>Unable to register this add-in because its DllRegisterServer returns an error 解决方案</h3><p>详细步骤：</p><p><strong>1、</strong>以管理员身份重新启动VC6.0</p><p><strong>2、</strong>windows下使用administrator(管理员)身份登录，在”开始”菜单的搜索框中输入cmd回车，就可以看到该控制台程序了，然后右键单击，选择”以管理员身份运行”，此时就获得了管理员权限。或者进C:\Windows\System32 找到 cmd.exe 右键–管理员身份运行</p><p><strong>3、</strong>在弹出的命令窗口中使用注册命令</p><figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs C">regsvr32.exe <span class="hljs-string">&quot;add-in.dll&quot;</span><br></code></pre></td></tr></table></figure><p>例如：如果安装目录在c盘，只输入引号内的命令，进入c盘目录下然后输入命令：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C">c:\&gt;regsvr32.exe <span class="hljs-string">&quot;c:\VC6CN\COMMON\MSDEV98\ADDINS\FileTool.dll&quot;</span><br></code></pre></td></tr></table></figure><p>成功后，此时VC界面中会出现一个上面只有两个图标的工具栏，可以将其拖放到自己认为合适的位置，然后关闭VC6.0并重新启动程序</p><h6 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h6><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="http://www.docin.com/">www.docin.com</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>注：由于该笔记历史久远，是当时学习C语言时使用VC6.0遇到的问题，由于没把笔记写好，我自己也看不懂了，故本经验参考性不大<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>-原创 -VC6.0 -IDE环境配置</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>002_void及void指针含义的深刻解析</title>
     <link href="/2022/03/29/002_void%E5%8F%8Avoid%E6%8C%87%E9%92%88%E5%90%AB%E4%B9%89%E7%9A%84%E6%B7%B1%E5%88%BB%E8%A7%A3%E6%9E%90/"/>
     <url>/2022/03/29/002_void%E5%8F%8Avoid%E6%8C%87%E9%92%88%E5%90%AB%E4%B9%89%E7%9A%84%E6%B7%B1%E5%88%BB%E8%A7%A3%E6%9E%90/</url>
