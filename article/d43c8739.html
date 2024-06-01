@@ -18,20 +18,21 @@
   <meta name="author" content="putik-666">
   <meta name="keywords" content="putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
-    <meta name="description" content="本文主要为我在学习Linux基本使用时做的一些笔记，当然内容也主要是一些基本的命令使用。">
+    <meta name="description" content="该文章无摘要">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux学习笔记">
-<meta property="og:url" content="http://blog.brutik.com/article/b30ceb9f.html">
+<meta property="og:title" content="远程连接mysql遇到的问题">
+<meta property="og:url" content="http://blog.brutik.com/article/d43c8739.html">
 <meta property="og:site_name" content="putik-666的博客">
-<meta property="og:description" content="本文主要为我在学习Linux基本使用时做的一些笔记，当然内容也主要是一些基本的命令使用。">
+<meta property="og:description" content="该文章无摘要">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blog.brutik.com/img/default/post_example.svg">
-<meta property="article:published_time" content="2024-06-01T13:05:39.000Z">
-<meta property="article:modified_time" content="2024-06-01T14:09:13.160Z">
+<meta property="article:published_time" content="2024-06-01T14:22:40.000Z">
+<meta property="article:modified_time" content="2024-06-01T14:51:52.931Z">
 <meta property="article:author" content="putik-666">
 <meta property="article:tag" content="原创">
-<meta property="article:tag" content="Linux基础">
-<meta property="article:tag" content="Linux命令">
+<meta property="article:tag" content="待完成">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="mysql远程连接">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://blog.brutik.com/img/default/post_example.svg">
   
@@ -39,7 +40,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Linux学习笔记 - putik-666的博客</title>
+  <title>远程连接mysql遇到的问题 - putik-666的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Linux学习笔记</span>
+            <span id="subtitle">远程连接mysql遇到的问题</span>
           
         </div>
 
@@ -220,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-01 21:05" pubdate>
-          2024年06月01日, 星期六 ,晚上 9:05
+        <time datetime="2024-06-01 22:22" pubdate>
+          2024年06月01日, 星期六 ,晚上 10:22
         </time>
       </span>
     
@@ -232,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          599 字
         
       </span>
     
@@ -243,7 +244,7 @@
         
         
         
-          12 分钟
+          3 分钟
         
       </span>
     
@@ -280,176 +281,37 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Linux学习笔记</h1>
+            <h1 id="seo-header">远程连接mysql遇到的问题</h1>
             
             
               <div class="markdown-body">
                 
-                <div class="note note-success">
+                <div class="note note-info">
+            <p>未完成文章</p>
+          </div>
+<div class="note note-success">
             <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
           </div>
-<h1 id="linux分类">1. Linux分类</h1>
-<p>大概有：RedHat和DeBian两大类以及其他类。RedHat下的CentOS稳定，更新少，yum安装管理，安装软件包为<code>.rpm</code>；DeBian下的Ubuntu更新快，apt安装管理，图形界面友好，新手友好，安装软件包为<code>.deb</code>。</p>
-<p>注：Shell是用户与操作系统内核的接口(命令行接口，除此之外还有编程接口API)，Linux一般默认使用Bash
-Shell。</p>
-<h1 id="目录结构规范">2. 目录结构规范</h1>
-<p><strong>①系统启动必须：</strong></p>
-<ul>
-<li><strong>/boot：</strong>存放的启动Linux
-时使用的内核文件，包括连接文件以及镜像文件。</li>
-<li><strong>/etc：</strong>存放<strong>所有</strong>的系统需要的<strong>配置文件</strong>和<strong>子目录列表，</strong>更改目录下的文件可能会导致系统不能启动。</li>
-<li><strong>/lib</strong>：存放基本代码库（比如c++库），其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库。</li>
-<li><strong>/sys</strong>：
-这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统
-sysfs
-。sysfs文件系统集成了下面3种文件系统的信息：针对进程信息的proc文件系统、针对设备的devfs文件系统以及针对伪终端的devpts文件系统。该文件系统是内核设备树的一个直观反映。当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中</li>
-</ul>
-<p><strong>②指令集合：</strong></p>
-<ul>
-<li><strong>/bin：</strong>存放着最常用的程序和指令</li>
-<li><strong>/sbin：</strong>只有系统管理员能使用的程序和指令。</li>
-</ul>
-<p><strong>③外部文件管理：</strong></p>
-<ul>
-<li><strong>/dev ：</strong>Device(设备)的缩写,
-存放的是Linux的外部设备。<strong>注意：</strong>在Linux中访问设备和访问文件的方式是相同的。</li>
-<li><strong>/media</strong>：类windows的<strong>其他设备，</strong>例如U盘、光驱等等，识别后linux会把设备放到这个目录下。</li>
-<li><strong>/mnt</strong>：临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</li>
-</ul>
-<p><strong>④临时文件：</strong></p>
-<ul>
-<li><strong>/run</strong>：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有
-/var/run 目录，应该让它指向 run。</li>
-<li><strong>/lost+found</strong>：一般情况下为空的，系统非法关机后，这里就存放一些文件。</li>
-<li><strong>/tmp</strong>：这个目录是用来存放一些临时文件的。</li>
-</ul>
-<p><strong>⑤账户：</strong></p>
-<ul>
-<li><strong>/root</strong>：系统管理员的用户主目录。</li>
-<li><strong>/home</strong>：用户的主目录，以用户的账号命名的。</li>
-<li><strong>/usr</strong>：用户的很多应用程序和文件都放在这个目录下，类似于windows下的program
-files目录。</li>
-<li><strong>/usr/bin：</strong>系统用户使用的应用程序与指令。</li>
-<li><strong>/usr/sbin：</strong>超级用户使用的比较高级的管理程序和系统守护程序。</li>
-<li><strong>/usr/src：</strong>内核源代码默认的放置目录。</li>
-</ul>
-<p><strong>⑥运行过程中要用：</strong></p>
-<ul>
-<li><strong>/var</strong>：存放经常修改的数据，比如程序运行的日志文件（/var/log
-目录下）。</li>
-<li><strong>/proc</strong>：管理<strong>内存空间！</strong>虚拟的目录，是系统内存的映射，我们可以直接访问这个目录来，获取系统信息。这个目录的内容不在硬盘上而是在内存里，我们也可以直接修改里面的某些文件来做修改。</li>
-</ul>
-<p><strong>⑦扩展用的：</strong></p>
-<ul>
-<li><strong>/opt</strong>：默认是空的，我们安装额外软件可以放在这个里面。</li>
-<li><strong>/srv</strong>：存放服务启动后需要提取的数据<strong>（不用服务器就是空）</strong></li>
-</ul>
-<h1 id="常用文件管理命令">3. 常用文件管理命令</h1>
-<ul>
-<li>通配符
-<ul>
-<li><code>*</code>：0个或任意字符</li>
-<li><code>?</code>：一个字符</li>
-<li><code>[]</code>：匹配一组单个字符，示例<code>[0-9]</code>、<code>[a-z]</code>，似乎只能这么勇</li>
-</ul></li>
-<li><code>ls</code>，查看文件信息
-<ul>
-<li><code>ls -R</code>：递归列出子文夹</li>
-<li><code>ls -m</code>：逗号分隔显示的内容列表</li>
-<li><code>ls -a</code>：显示所有的文件内容，包括隐藏文件</li>
-<li><code>ls -F</code>：显示文件类型</li>
-<li><code>ls -l</code>：显示文件的权限、所有者等等详细信息</li>
-</ul></li>
-<li><code>pwd</code>：print working
-directory，显示当前工作目录的完整路径</li>
-<li><code>cd -</code>：返回以前的目录</li>
-<li><code>mkdir [*filename]</code>：创建一个空文件夹，默认是所有者读、写、以及执行的权限，而其他任何人则只有读、执行的权限</li>
-<li><code>cp [*a_file_uri] [*b_file_uri]</code>：复制文件到指定位置，并指定名称
-<ul>
-<li><code>cp -i</code>：复制文件时遇到重复文件给予确认警告</li>
-<li><code>cp -R</code>：（递归）复制目录</li>
-<li><code>cp -a</code>：完全复制(archive
-mode)，会复制文件的所有属性，同时不会复制软链接里真的得文件内容，加快复制速度</li>
-</ul></li>
-<li><code>mv [*a_file_uri] [*b_file_uri]</code>：移动文件到另一个指定位置，并使用特定文件名</li>
-<li><code>rm</code>：删除文件，可以使用空格隔开多个或者直接使用通配符，若删除带有空格的文件，可使用双引号括住
-<ul>
-<li><code>rm -i</code>：在每次删除文件时都给与警告提示</li>
-<li><code>rm -Rf</code>：R为递归操作，f为force强制的意思，即强制递归删除一个文件，可用于删除文件夹</li>
-</ul></li>
-<li><code>su -l [username]</code>：切换用户，包括环境变量。注意默认是切换到root用户</li>
-<li><code>man -f [*command_name]</code>：显示一个命令的使用描述</li>
-<li><code>cat</code>：链接多个文件的内容并输出到终端【还有个tac，作用是反向拼接，把猫倒过来了】，这是一次性输出完到最后一行，没有分页功能
-<ul>
-<li><code>cat -n</code>：给输出加上行号</li>
-</ul></li>
-<li><code>less</code>：进入less模式分页查看文本文件，类似<code>vim</code>编辑器，可以使用<code>/</code>搜索文本，支持正则表达式</li>
-<li><code>head</code>与<code>tail</code>：查看文件前n行或后n行内容，默认10行
-<ul>
-<li><code>head -n [*一个数字x]</code>：查看前x行</li>
-<li><code>tail -n [*一个数字x] -f</code>：查看后x行，且不断更新内容，f即follow</li>
-</ul></li>
-<li><code>chgrp [*用户组的名称或者数字] 文件</code>：修改文件所属用户组，加个<code>-R</code>就是递归修改目录</li>
-<li><code>chmod [ugo][+-=][rwx]</code>：修改各个控制列表的权限。==（注意：linux中有三个控制列表，分别是user、group、others。）==，<code>+</code>、<code>-</code>、<code>=</code>分别表示增加权限，减少权限和直接修改权限为指定权限。示例：<code>chmod go=r</code>，修改组和其他用户的权限为可读。</li>
-<li><code>chmod [0-7] [0-7] [0-7]</code>：以八进制形式实现修改各个控制列表的权限的功能。三个数字分别代表三个组的rwx权限情况。示例：<code>chmod 744</code>，修改组和其他用户的权限为可读，但是如果不想动user的权限怎么办？chatgpt说先看然后再改成一样的</li>
-<li><code>zip</code>与<code>gzip</code>：压缩文件
-<ul>
-<li><code>unzip</code>与<code>gunzip</code>：解压文件</li>
-</ul></li>
-<li><code>locate [*文件关键字]</code>：从文件名数据库中搜索相关文件，嘎嘎快，但是搜不到新建的文件，必须得刷新</li>
-<li><code>grep [*正则表达式] [*文件名]</code>：从文本文件中搜索关键字并输出</li>
-<li><code>find [*文件路径] -name [关键字]</code>：根据关键字来搜索文件或文件夹，即时搜索（默认递归搜索），不依赖文件名数据库</li>
-<li><code>dpkg</code>：Debian的包管理工具
-<ul>
-<li><code>dpkg -i</code>：安装</li>
-<li><code>dpkg -r</code>：卸载</li>
-</ul></li>
-<li><code>apt</code>：牛逼的包管理工具
-<ul>
-<li><code>apt update</code>：更新安装包数据库，需要root</li>
-<li><code>apt upgrade</code>：更新所有软件，需要root</li>
-<li><code>apt install [*package_name]</code>：安装指定包，需要root</li>
-</ul></li>
-</ul>
-<h2 id="总结">3.1 总结</h2>
-<p>增：<code>mkdir</code>
-、<code>vim</code>、<code>cp</code>、<code>zip与gzip</code></p>
-<p>删：<code>rm</code>、<code>mv</code></p>
-<p>改：<code>chgrp</code>、<code>chmod</code>、<code>cp</code></p>
-<p>查：<code>locate</code>、<code>grep</code>、<code>find</code></p>
-<p>看：<code>cat</code>、<code>head</code>、<code>tail</code></p>
-<h1 id="常用系统资源管理命令">4. 常用系统资源管理命令</h1>
-<ul>
-<li><code>ps</code>：显示进程信息
-<ul>
-<li><code>ps aux</code>：显示所有用户(a)的进程信息</li>
-<li><code>ps U [*username]</code>：显示指定用户的进程信息</li>
-</ul></li>
-<li><code>ss -a</code>：查看所有状态链接的套接字状态(套接字就是端口后面的东西)</li>
-</ul>
-<h1 id="常用网络管理命令">5. 常用网络管理命令</h1>
-<ul>
-<li><code>ifconfig</code>：查看网络接口配置</li>
-<li><code>route</code>：查看路由表</li>
-<li><code>ssh [*username]@[*ip_address]</code>：远程连接到另一台计算机。ssh：secure
-shell</li>
-<li><code>sftp [*username]@[*ip_address]</code>：连接到另一台计算机，并与本地计算机相互传输文件</li>
-</ul>
-<h1 id="命令进阶">6. 命令进阶</h1>
-<ul>
-<li>组合命令
-<ul>
-<li><code>;</code>：命令栈方式，用分号隔开命令，依顺序运行，不论前一个命令是否执行成功</li>
-<li><code>&amp;&amp;</code>、<code>||</code>：逻辑判断链方式，<code>&amp;&amp;</code>表示前一个命令执行成功后一个才能执行，<code>||</code>表示前一个命令执行失败后一个才能执行</li>
-</ul></li>
-<li><code>stdin</code>、<code>stdout</code>、<code>stderr</code>，三种标准输入输出
-<ul>
-<li><code>|</code>：把前一个命令的<code>stdout</code>从默认终端重定向至下一个命令的<code>stdin</code>，这是一个管道控制命令。注意：vim不能使用这个命令，因为vim会接管整个shell。示例：<code>ps -Al | grep vim</code></li>
-<li><code>&gt;</code>：把前一个命令的<code>stdout</code>从默认终端重定向输出到指定文件的<code>stdin</code>，如果文件不存在则创建，如果已经存在则会覆盖原有文件内容。示例：<code>ls -l &gt; niubi.txt</code></li>
-<li><code>&gt;&gt;</code>：把前一个命令的<code>stdout</code>从默认终端输出重定向到指定文件的<code>stdin</code>，如果文件不存在则创建文件，若存在则以追加的形式输出到文件中</li>
-<li><code>&lt;</code>：把一个文件的<code>stdout</code>重定向到前一个命令的<code>stdin</code>中。示例：<code>echo &lt; niubi.txt</code>，终端会打印niubi.txt的内容</li>
-</ul></li>
-</ul>
+<h1 id="前言">前言</h1>
+<p>今天心血来潮，想着自己那没前途的工作就感到十分绝望，可是看如今java大势已去，加上自己0经验，早就是属于凉透了那一批“计算机科班”，不过自己还是想挣扎一下，又捡起这该死的java，且狠狠地花了199￥买了个云服务器，准备完善之前学的API项目。</p>
+<p>显然，这边文章能出来，就是说明我遇到了问题。我本来想远程连接服务器那边的mysql，但是死活连不上，然后呢就是排查问题，也花了我好几个小时才搞定，这能忍？必须把这个问题给记录下来！</p>
+<p>本文主要涉及我在远程连接mysql上遇到的两个问题以及对应的解决办法。</p>
+<h1 id="正文">正文</h1>
+<h2 id="连接超时">1.连接超时</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Failed<br>DBMS: MySQL (ver. <span class="hljs-number">8.0</span><span class="hljs-number">.36</span>-0ubuntu0<span class="hljs-number">.22</span><span class="hljs-number">.04</span><span class="hljs-number">.1</span>)  Case sensitivity: plain=exact, delimited=exact Driver: MySQL Connector/J (ver. mysql-connector-j-<span class="hljs-number">8.2</span><span class="hljs-number">.0</span> (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c), JDBC4<span class="hljs-number">.2</span>)<br><br>Connection timed out: connect.<br></code></pre></td></tr></table></figure>
+<p>遇到这个，可能是网络被挡了：</p>
+<p>①检查自己网络是否通畅</p>
+<p>②检查自己远程连接的ip或者域名是否正确</p>
+<p>③以上均无误，则最大可能是自己服务器的防火墙开了，把端口给挡了，需要打开端口访问</p>
+<h2 id="连接被拒绝">2.连接被拒绝</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Failed<br>DBMS: MySQL (ver. <span class="hljs-number">8.0</span><span class="hljs-number">.36</span>-0ubuntu0<span class="hljs-number">.22</span><span class="hljs-number">.04</span><span class="hljs-number">.1</span>)  Case sensitivity: plain=exact, delimited=exact Driver: MySQL Connector/J (ver. mysql-connector-j-<span class="hljs-number">8.2</span><span class="hljs-number">.0</span> (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c), JDBC4<span class="hljs-number">.2</span>)<br><br>Connection refused: connect. <br></code></pre></td></tr></table></figure>
+<p>这种就是远程的mysql数据库拒绝了你的连接请求，那就可能是：</p>
+<p>①服务器mysql没有授予其他ip访问的权限，此时登录服务器数据库，手动授予：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 先看看啥情况<br>select host, user from user; <br></code></pre></td></tr></table></figure>
+<p>如过对应的用户的host里面没有包括自己的ip（一般默认是locahost，那肯定不行）那需要改一下，一般改成<code>%</code>，意为允许所有ip访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 授予访问权限<br>update user set host=&#x27;%&#x27; where user=&#x27;对应的用户名&#x27;<br></code></pre></td></tr></table></figure>
+<p>②如果是linux服务器，那还要设置一个配置文件：</p>
+<p>一般Mysql默认安装的话那个文件的路径为<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>，然后进<code>mysqld.cnf</code>把<code>bind-address=127.0.0.1</code>注释掉，或者改成<code>0.0.0.0</code>就OK，注意得用root权限才改得了，然后重启mysql就OK。</p>
 
                 
               </div>
@@ -473,7 +335,7 @@ shell</li>
   
     <span>></span>
     
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E9%A1%B9/Linux%E5%9F%BA%E7%A1%80/" class="category-chain-item">Linux基础</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E9%A1%B9/%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E6%88%96%E4%BD%BF%E7%94%A8/" class="category-chain-item">工具的安装、配置或使用</a>
   
   
 
@@ -492,9 +354,11 @@ shell</li>
       
         <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
       
-        <a href="/tags/Linux%E5%9F%BA%E7%A1%80/" class="print-no-link">#Linux基础</a>
+        <a href="/tags/%E5%BE%85%E5%AE%8C%E6%88%90/" class="print-no-link">#待完成</a>
       
-        <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" class="print-no-link">#Linux命令</a>
+        <a href="/tags/mysql/" class="print-no-link">#mysql</a>
+      
+        <a href="/tags/mysql%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" class="print-no-link">#mysql远程连接</a>
       
     </div>
   
@@ -508,18 +372,12 @@ shell</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/article/d43c8739.html" title="远程连接mysql遇到的问题">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">远程连接mysql遇到的问题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/article/609338f3.html" title="MySQL中列级约束与表级约束的区别以及两者存在的意义">
-                        <span class="hidden-mobile">MySQL中列级约束与表级约束的区别以及两者存在的意义</span>
+                      <a href="/article/b30ceb9f.html" title="Linux学习笔记">
+                        <span class="hidden-mobile">Linux学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
