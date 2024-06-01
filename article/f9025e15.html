@@ -1,0 +1,743 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start --><meta name="baidu-site-verification" content="codeva-2b6GcVIJvN" /><meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8" /><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/default/write_blogs.svg">
+  <link rel="icon" href="/img/default/write_blogs.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="putik-666">
+  <meta name="keywords" content="putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  
+    <meta name="description" content="本文总结了笔者的SpringBoot源码阅读的经验方法，本文经验总结可以给没有相关经验的读者一个粗略的方向参考，帮助读者理清源码阅读的一些障碍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阅读SpringBoot源码的心得记录">
+<meta property="og:url" content="http://blog.brutik.com/article/f9025e15.html">
+<meta property="og:site_name" content="putik-666的博客">
+<meta property="og:description" content="本文总结了笔者的SpringBoot源码阅读的经验方法，本文经验总结可以给没有相关经验的读者一个粗略的方向参考，帮助读者理清源码阅读的一些障碍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.brutik.com/img/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BBSpringBoot%E6%BA%90%E7%A0%81%E7%9A%84%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0/spring-boot-logo.png">
+<meta property="article:published_time" content="2024-02-10T15:09:29.000Z">
+<meta property="article:modified_time" content="2024-06-01T12:53:13.717Z">
+<meta property="article:author" content="putik-666">
+<meta property="article:tag" content="原创">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="源码阅读">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://blog.brutik.com/img/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BBSpringBoot%E6%BA%90%E7%A0%81%E7%9A%84%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0/spring-boot-logo.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>阅读SpringBoot源码的心得记录 - putik-666的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom_global.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.brutik.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>putik的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default/post_banner_example.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">阅读SpringBoot源码的心得记录</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-10 23:09" pubdate>
+          2024年02月10日, 星期六 ,晚上 11:09
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">阅读SpringBoot源码的心得记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-success">
+            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
+          </div>
+<h1 id="前言">前言</h1>
+<p>前几天在写SpringBoot启动类的时候，本来是要在启动类上加<code>@MapperScan</code>注解的，结果写成了<code>@ComponentScan</code>注解，随后在启动SpringBoot项目的时候发现所有的Bean都没有加载到容器里，当时也是纳闷了一小会儿才发现是注解写错了，导致<code>@ComponentScan</code>注解与<code>@SpringBootApplication</code>注解冲突了，导致<code>@SpringBootApplication</code>默认的包扫描全部失效了，所以容器才没法加载Bean。</p>
+<p>之后我也是好奇为啥会这样，想知道<code>@ComponentScan</code>与<code>@SpringBootApplication</code>的关系以及<code>@SpringBootApplication</code>默认的包扫描到底是啥样的，于是我便看了看注解的相关源码，一下子就想明白了，一边感慨规范的代码看起来确实爽(比吃完泻药都畅通)，一边也觉得学会阅读他人的源码或者文档是一件很重要的事，特别是一些小众的项目，网上相关前辈的经验寥寥无几，只能依靠自己去一点一点阅读官方文档甚至源码，所以在此记录一下我解决问题的过程。</p>
+<p>本文将以<code>@ComponentScan</code>与<code>@SpringBootApplication</code>冲突的问题为基础，详细记录一个小白应该如何通过源码阅读来理清这个问题的根本原因。</p>
+<p>(其实我现在相关的阅读能力也很弱，特别是英文文档，虽然一直在训练自己英文文档阅读能力，但是仍然还是无法像阅读中文文档那样有”回到家“的感觉，有的时候读一个长难句就像便秘一样难受，服了。)</p>
+<h1 id="正文">正文</h1>
+<h2 id="问题引出">1. 问题引出</h2>
+<h3 id="问题描述">1.1 问题描述</h3>
+<p>源码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ComponentScan(&quot;com.brutik.mapper&quot;)</span><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(Main.class,args);<br>    &#125;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>项目目录结构如下：</p>
+<figure>
+<img
+src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213144734852.png" srcset="/img/loading.gif" lazyload
+alt="项目目录结构" />
+<figcaption aria-hidden="true">项目目录结构</figcaption>
+</figure>
+<p>随后启动SpringBoot项目，但是通过规定地址访问项目内容时却均返回<code>404 not found</code>。</p>
+<figure>
+<img
+src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213145300958.png" srcset="/img/loading.gif" lazyload
+alt="返回未找到资源错误" />
+<figcaption aria-hidden="true">返回未找到资源错误</figcaption>
+</figure>
+<h3 id="问题排查与解决">1.2 问题排查与解决</h3>
+<p>经过反复确认访问地址没有问题后，再查看SpringBoot自己的日志打印，发现啥也没有，也就是说明代码和环境也没有问题，那么就可能是自己的逻辑写错了。而返回404的内容又是<code>This application has no explicit mapping for /error</code>，遂推断可能是Controller的Bean根本就没有被加载到容器里，才导致地址没有映射，故开始验证猜测。使用idea自带的工具查看Spring容器里的Bean对象：</p>
+<figure>
+<img
+src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213150449774.png" srcset="/img/loading.gif" lazyload
+alt="已加载的Bean对象列表" />
+<figcaption aria-hidden="true">已加载的Bean对象列表</figcaption>
+</figure>
+<p>发现只有一个自己写Main被加载了，所以猜测是对的。而Bean没被加载一般都是包没有扫描的问题，而我只在Main类上写了扫描包的注解，最后问题解决：<strong><code>@MapperScan</code>注解错写成了<code>@ComponentScan</code>注解</strong>。</p>
+<h2 id="问题深究">2. 问题深究</h2>
+<p>所以为什么加了<code>@ComponentScan</code>会使得<code>@SpringBootApplication</code>扫描包的功能失效呢？只能猜测可能<code>@SpringBootApplication</code>优先级更低，有了<code>@ComponentScan</code>后<code>@SpringBootApplication</code>就被覆盖掉了，而为了验证这个猜想可以通过阅读官方文档或者源码搞懂<code>@SpringBootApplication</code>注解到底干了啥来解决这个疑问。</p>
+<h3 id="源码阅读">2.1 源码阅读</h3>
+<p>首先得强调一点，许多问题其实根本不需要我们去阅读源码特别是像SpringBoot这种体量大、社区活跃度高、使用量也是多得离谱的项目。因为第一，SpringBoot也算是比较复杂的项目了，有的部分靠自己去看源码可能得花大量时间；第二，这种很活跃的项目其实有很多的讲解教程，看大佬们的讲解比我们自己搁那慢慢研究效率会快很多且能学得更深刻。所以看这种类型项目的源码更多其实也是为了学习源码的规范或者是强化自己的代码阅读能力又或者是为了面试(doge)。下面开始进入正文。</p>
+<p>既然是阅读源码，肯定需要一个阅读源码的工具（如果现在还有狠人用记事本看代码敲代码的，那确实是牛逼），而idea无疑是一个很强大的源码阅读工具，各种继承关系、调用关系都可以通过idea看得很清楚。本文也是使用的idea。</p>
+<p><code>Ctrl+鼠标左键</code>查看<code>@SpringBootApplication</code>的注解源码声明（为节省篇幅，部分代码不重要的内容会省略后同）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Indicates a &#123;<span class="hljs-doctag">@link</span> Configuration configuration&#125; class that declares one or more</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> Bean <span class="hljs-doctag">@Bean</span>&#125; methods and also triggers &#123;<span class="hljs-doctag">@link</span> EnableAutoConfiguration</span><br><span class="hljs-comment"> * auto-configuration&#125; and &#123;<span class="hljs-doctag">@link</span> ComponentScan component scanning&#125;. This is a convenience</span><br><span class="hljs-comment"> * annotation that is equivalent to declaring &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@Configuration</span>&#125;,</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@EnableAutoConfiguration</span>&#125; and &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@ComponentScan</span>&#125;.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Phillip Webb</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Stephane Nicoll</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Andy Wilkinson</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 1.2.0</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Target(ElementType.TYPE)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-meta">@Documented</span><br><span class="hljs-meta">@Inherited</span><br><span class="hljs-meta">@SpringBootConfiguration</span><br><span class="hljs-meta">@EnableAutoConfiguration</span><br><span class="hljs-meta">@ComponentScan(excludeFilters = &#123; @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span><br><span class="hljs-meta">		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> SpringBootApplication &#123;<br>    <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>注释翻译：指明一个配置类，该类声明一个或多个<code>@Bean</code>方法并触发自动配置和组件扫描。这是一个方便的注释，相当于声明<code>@Configuration</code>、<code>@EnableAutoConfiguration</code>和<code>@ComponentScan</code>。</p>
+<p>当然，从代码中可以看出，实现<code>@SpringBootApplication</code>功能的关键注解是<code>@ComponentScan</code>、<code>@SpringBootConfiguration</code>、<code>@EnableAutoConfiguration</code>。而这里的<code>@ComponentScan</code>就只是为了让两个重要的类不被扫描，故只考虑另外两个到底是干嘛的。</p>
+<p>先看<code>@SpringBootConfiguration</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Indicates that a class provides Spring Boot application</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> Configuration <span class="hljs-doctag">@Configuration</span>&#125;. Can be used as an alternative to the Spring&#x27;s</span><br><span class="hljs-comment"> * standard &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@Configuration</span>&#125; annotation so that configuration can be found</span><br><span class="hljs-comment"> * automatically (for example in tests).</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * Application should only ever include &lt;em&gt;one&lt;/em&gt; &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@SpringBootConfiguration</span>&#125; and</span><br><span class="hljs-comment"> * most idiomatic Spring Boot applications will inherit it from</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@SpringBootApplication</span>&#125;.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Phillip Webb</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Andy Wilkinson</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 1.4.0</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Target(ElementType.TYPE)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-meta">@Documented</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@Indexed</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> SpringBootConfiguration &#123;<br>    <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以从注释中看出，这个注解其实就是用来代替<code>@Configuration</code>注解，套了这么多层娃，结果其实就是为了改一个名字，虽然可读性变好了，但是捏，不好说。</p>
+<p>再来看<code>@EnableAutoConfiguration</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Enable auto-configuration of the Spring Application Context, attempting to guess and</span><br><span class="hljs-comment"> * configure beans that you are likely to need. Auto-configuration classes are usually</span><br><span class="hljs-comment"> * applied based on your classpath and what beans you have defined. For example, if you</span><br><span class="hljs-comment"> * have &#123;<span class="hljs-doctag">@code</span> tomcat-embedded.jar&#125; on your classpath you are likely to want a</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> TomcatServletWebServerFactory&#125; (unless you have defined your own</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> ServletWebServerFactory&#125; bean).</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * When using &#123;<span class="hljs-doctag">@link</span> SpringBootApplication <span class="hljs-doctag">@SpringBootApplication</span>&#125;, the auto-configuration</span><br><span class="hljs-comment"> * of the context is automatically enabled and adding this annotation has therefore no</span><br><span class="hljs-comment"> * additional effect.</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * Auto-configuration tries to be as intelligent as possible and will back-away as you</span><br><span class="hljs-comment"> * define more of your own configuration. You can always manually &#123;<span class="hljs-doctag">@link</span> #exclude()&#125; any</span><br><span class="hljs-comment"> * configuration that you never want to apply (use &#123;<span class="hljs-doctag">@link</span> #excludeName()&#125; if you don&#x27;t</span><br><span class="hljs-comment"> * have access to them). You can also exclude them via the</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@code</span> spring.autoconfigure.exclude&#125; property. Auto-configuration is always applied</span><br><span class="hljs-comment"> * after user-defined beans have been registered.</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * The package of the class that is annotated with &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@EnableAutoConfiguration</span>&#125;,</span><br><span class="hljs-comment"> * usually via &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@SpringBootApplication</span>&#125;, has specific significance and is often used</span><br><span class="hljs-comment"> * as a &#x27;default&#x27;. For example, it will be used when scanning for &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@Entity</span>&#125; classes.</span><br><span class="hljs-comment"> * It is generally recommended that you place &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@EnableAutoConfiguration</span>&#125; (if you&#x27;re</span><br><span class="hljs-comment"> * not using &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@SpringBootApplication</span>&#125;) in a root package so that all sub-packages</span><br><span class="hljs-comment"> * and classes can be searched.</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * Auto-configuration classes are regular Spring &#123;<span class="hljs-doctag">@link</span> Configuration <span class="hljs-doctag">@Configuration</span>&#125;</span><br><span class="hljs-comment"> * beans. They are located using &#123;<span class="hljs-doctag">@link</span> ImportCandidates&#125; and the</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> SpringFactoriesLoader&#125; mechanism (keyed against this class). Generally</span><br><span class="hljs-comment"> * auto-configuration beans are &#123;<span class="hljs-doctag">@link</span> Conditional <span class="hljs-doctag">@Conditional</span>&#125; beans (most often using</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> ConditionalOnClass <span class="hljs-doctag">@ConditionalOnClass</span>&#125; and</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> ConditionalOnMissingBean <span class="hljs-doctag">@ConditionalOnMissingBean</span>&#125; annotations).</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Phillip Webb</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Stephane Nicoll</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 1.0.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@see</span> ConditionalOnBean</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@see</span> ConditionalOnMissingBean</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@see</span> ConditionalOnClass</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@see</span> AutoConfigureAfter</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@see</span> SpringBootApplication</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Target(ElementType.TYPE)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-meta">@Documented</span><br><span class="hljs-meta">@Inherited</span><br><span class="hljs-meta">@AutoConfigurationPackage</span><br><span class="hljs-meta">@Import(AutoConfigurationImportSelector.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> EnableAutoConfiguration &#123;<br>    <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>一来就看到个关键字：<code>@AutoConfigurationPackage</code>里面的package，到这一步也基本上就确定这个注解就是用来自动配置包扫描的注解了。但是从注释的这句话：<code>It is generally recommended that you place @EnableAutoConfiguration (if you're not using @SpringBootApplication) in a root package so that all sub-packages and classes can be searched.</code>意为：通常建议您将<code>@EnableAutoConfiguration</code>（如果您没有使用<code>@SpringBootApplication</code>）放在根包中，以便可以搜索所有子包和类。可以看出这个注解可以让配置类所在包下的子包以及类加入被扫描的队列。</p>
+<p>再看<code>@AutoConfigurationPackage</code>这个注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Registers packages with &#123;<span class="hljs-doctag">@link</span> AutoConfigurationPackages&#125;. When no &#123;<span class="hljs-doctag">@link</span> #basePackages</span><br><span class="hljs-comment"> * base packages&#125; or &#123;<span class="hljs-doctag">@link</span> #basePackageClasses base package classes&#125; are specified, the</span><br><span class="hljs-comment"> * package of the annotated class is registered.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Phillip Webb</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 1.3.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@see</span> AutoConfigurationPackages</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Target(ElementType.TYPE)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-meta">@Documented</span><br><span class="hljs-meta">@Inherited</span><br><span class="hljs-meta">@Import(AutoConfigurationPackages.Registrar.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> AutoConfigurationPackage &#123;<br>    <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>注释中的一句话：<code>When no base packages or base package classes are specified, the package of the annotated class is registered.</code>，翻译出来就是：当基包或者基类没有被指定时，包中被用此注解的类就会被注册生效。基包或者基类就是指要被容器扫描注册的包或者类。</p>
+<p>所以总算找到了答案：只要使用了<code>@ComponentScan</code>注解并加上参数，则就指定了基包或基类，这样会导致<code>@AutoConfigurationPackage</code>不会生效，也就是优先级问题。不过还是好奇是怎么实现包扫描的，从上面可以看出最终的功能实现是靠<code>AutoConfigurationPackages.Registrar.class</code>这个类。</p>
+<p>再看<code>AutoConfigurationPackages.Registrar.class</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* &#123;<span class="hljs-doctag">@link</span> ImportBeanDefinitionRegistrar&#125; to store the base package from the importing</span><br><span class="hljs-comment">* configuration.</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Registrar</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ImportBeanDefinitionRegistrar</span>, DeterminableImports &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">registerBeanDefinitions</span><span class="hljs-params">(AnnotationMetadata metadata, BeanDefinitionRegistry registry)</span> &#123;<br>        register(registry, <span class="hljs-keyword">new</span> <span class="hljs-title class_">PackageImports</span>(metadata).getPackageNames().toArray(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">0</span>]));<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Set&lt;Object&gt; <span class="hljs-title function_">determineImports</span><span class="hljs-params">(AnnotationMetadata metadata)</span> &#123;<br>        <span class="hljs-keyword">return</span> Collections.singleton(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PackageImports</span>(metadata));<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>注释写得很明白：该类用于存导入配置中的基包值。而从类中的方法里可以看到实际是<code>PackageImports</code>这个类负责获取基包名。</p>
+<p>再看<code>PackageImports</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* Wrapper for a package import.</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PackageImports</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> List&lt;String&gt; packageNames;<br><br>    PackageImports(AnnotationMetadata metadata) &#123;<br>        <span class="hljs-type">AnnotationAttributes</span> <span class="hljs-variable">attributes</span> <span class="hljs-operator">=</span> AnnotationAttributes<br>            .fromMap(metadata.getAnnotationAttributes(AutoConfigurationPackage.class.getName(), <span class="hljs-literal">false</span>));<br>        List&lt;String&gt; packageNames = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(Arrays.asList(attributes.getStringArray(<span class="hljs-string">&quot;basePackages&quot;</span>)));<br>        <span class="hljs-keyword">for</span> (Class&lt;?&gt; basePackageClass : attributes.getClassArray(<span class="hljs-string">&quot;basePackageClasses&quot;</span>)) &#123;<br>            packageNames.add(basePackageClass.getPackage().getName());<br>        &#125;<br>        <span class="hljs-keyword">if</span> (packageNames.isEmpty()) &#123;<br>            packageNames.add(ClassUtils.getPackageName(metadata.getClassName()));<br>        &#125;<br>        <span class="hljs-built_in">this</span>.packageNames = Collections.unmodifiableList(packageNames);<br>    &#125;<br><br>    List&lt;String&gt; <span class="hljs-title function_">getPackageNames</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.packageNames;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span> &#123;<br>        <span class="hljs-keyword">if</span> (obj == <span class="hljs-literal">null</span> || getClass() != obj.getClass()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.packageNames.equals(((PackageImports) obj).packageNames);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.packageNames.hashCode();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Package Imports &quot;</span> + <span class="hljs-built_in">this</span>.packageNames;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>重点关注其构造方法，可以看到构造方法里先是尝试从<code>@AutoConfigurationPackage</code>注解的元信息中获取基包值，并作了个判断，如果没有获取到就使用注解所在包作为基包。至于怎么判断<code>@ComponentScan</code>是否存在的具体方法，经过查找应该是在<code>AutoConfigurationImportSelector</code>类中定义的，不过我也不想看了，因为各种类名、方法名太长了，看得我眼睛疼，意思意思就行了。</p>
+<h2 id="总结">3. 总结</h2>
+<p>从以上可以看出，如果你头铁直接去读源码，其实也没多少技巧，就是靠注释再结合各种类名、方法名去理解甚至去猜测源码的具体意思，如果遇到一些写得烂的代码，这个时候估计得开始咒作者全家了，因为基本上只能去嗯猜，全靠自己的经验。其实SpringBoot的源码在我的角度也只是一些关键的地方注释写得非常清楚明白，但是在一些不重要的方法或者类上也是看得人脑壳疼，一些类名或者方法名真的是又臭又长，比如：<code>getAutoConfigurationImportListeners</code>这种，来一两个还好，但是满屏都是这种是真的英语非母语者不友好，看得人眼睛是真的疼，虽然表达的意思清晰明了，但是信息密度太低了，来张图感受一下：</p>
+<figure>
+<img
+src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213212844741.png" srcset="/img/loading.gif" lazyload
+alt="眼睛疼" />
+<figcaption aria-hidden="true">眼睛疼</figcaption>
+</figure>
+<p>以上缺点我感觉也无解，要么就用缩写，更让人崩溃。不过好在每个方法代码长度都很短，很符合<code>Robert C. Martin</code>那老计说的“代码整洁艺术”，只要代码长度短，写得再烂也容易读懂。</p>
+<p>所以，放弃头铁，不要动不动就去读源码，有这精力去研究官方文档或者各路为爱发电的大神出的各种博客文章，早出师了，比读源码强一万倍，除非要去学习代码的各种命名规范、继承关系的逻辑等等，否则源码？狗都不看！</p>
+<p>好困，写不动了，睡觉。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" class="category-chain-item">编程实践</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/%E5%90%8E%E7%AB%AF%E7%BB%BC%E5%90%88/" class="category-chain-item">后端综合</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+        <a href="/tags/SpringBoot/" class="print-no-link">#SpringBoot</a>
+      
+        <a href="/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" class="print-no-link">#源码阅读</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/609338f3.html" title="MySQL中列级约束与表级约束的区别以及两者存在的意义">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL中列级约束与表级约束的区别以及两者存在的意义</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/bffca486.html" title="贝赛尔曲线的数学原理与工程运用">
+                        <span class="hidden-mobile">贝赛尔曲线的数学原理与工程运用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","appKey":"WCb6A9dSGZOFK659XOfsze0e","path":"window.location.pathname","placeholder":"在这里发表你的看法！(默认匿名与无邮箱地址)","avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom_global.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

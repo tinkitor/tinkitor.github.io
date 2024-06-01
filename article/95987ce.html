@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start --><meta name="baidu-site-verification" content="codeva-2b6GcVIJvN" /><meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8" /><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/default/write_blogs.svg">
+  <link rel="icon" href="/img/default/write_blogs.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="putik-666">
+  <meta name="keywords" content="putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  
+    <meta name="description" content="该文章无摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="005_不理解缓冲区导致数据输出异常">
+<meta property="og:url" content="http://blog.brutik.com/article/95987ce.html">
+<meta property="og:site_name" content="putik-666的博客">
+<meta property="og:description" content="该文章无摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.brutik.com/img/default/post_example.svg">
+<meta property="article:published_time" content="2022-03-30T06:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-01T09:34:44.307Z">
+<meta property="article:author" content="putik-666">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="编程基础">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://blog.brutik.com/img/default/post_example.svg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>005_不理解缓冲区导致数据输出异常 - putik-666的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom_global.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.brutik.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>putik的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default/post_banner_example.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">005_不理解缓冲区导致数据输出异常</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-30 14:00" pubdate>
+          2022年03月30日, 星期三 ,下午 2:00
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">005_不理解缓冲区导致数据输出异常</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-success">
+            <p>转载或微调文章，源地址见文末参考资料</p>
+          </div>
+<h2 id="一前言">一、前言</h2>
+<p>作为一个以C语言作为编程启蒙的初学者，在学习C语言时也是遇到了许多问题，例如接下来要说到的”<strong>缓冲区理解问题</strong>“，有的时候如果<strong>把gets函数和scanf函数连用</strong>总会发生奇葩的错误，而如果不理解缓冲区这个概念的话，是很难明白为什么会发生这样或那样的错误的。在解决问题的过程中，搜索到了一篇写得很好的文章，在这里记录一下。</p>
+<h2 id="二正文">二、正文</h2>
+<h3 id="引入">1.引入</h3>
+<p>从一个简单的例子开始：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">char</span> a[<span class="hljs-number">20</span>] ;<br>    <span class="hljs-type">char</span> str[<span class="hljs-number">20</span>] ;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入文件名:&quot;</span>) ;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span> , a ) ;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入关键字:&quot;</span>) ;<br>    <span class="hljs-comment">//getchar() ;//fflush(stdin);</span><br>    gets(str) ;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span> , str);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> ;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure>
+<img src="../img/005-不理解缓冲区导致数据输出异常/clip_image001.jpg" srcset="/img/loading.gif" lazyload
+alt="输入jj后回车程序就结束了" />
+<figcaption aria-hidden="true">输入jj后回车程序就结束了</figcaption>
+</figure>
+<p>可以看到没等第二次的关键字的输入程序就运行结束了，这是为什么呢？要充分理解这个问题我们需要理解C语言中对缓冲区的概念。</p>
+<p>在这之前我们初步分析一下，scanf函数输入字符串的的情况下空白字符（空格，回车，Tab）都只是被视为分隔符，关于这一点可以参考
+<a
+href="/2022/03/31/006_C语言中scanf与分隔符-空格、回车、tab/">C语言中scanf与分隔符（空格回车Tab)</a>
+这篇博文，当我们输入字符串jj后按回车的时候就会把jj连同换行符送入缓冲区，然而scanf只会接收字符串jj，并把这个字符串送入到以a为首地址的地址空间中，同时在字符串后面自动加上一个
+\0
+，那么如今缓冲区内就只有一个换行符了。当执行到gets()函数的时候，因为缓冲区内非空，那么gets直接会读取缓冲区中的换行符复制到str为首地址的内存空间，同时在字符串后面自动加上一个
+\0，所以输出的str的结果就是一个换行罢了。</p>
+<p>当我们取消程序中注释语句getchar()的时候，getchar()会接收缓冲区中的而第一个字符，那么缓冲区便空了。当执行到gets()的时候，由于缓冲区为空，那么程序便会停在gets()位置处的等待输入。然后我们输入字符串并且按回车将字符串送入缓冲区后，因为gets()的功能是获取缓冲区中的字符串，遇到换行符或者EOF后停止，所以gets()取出缓冲区内所有的字符串以及换行符，所以输出的结果如下图示：</p>
+<p><img src="../img/005-不理解缓冲区导致数据输出异常/clip_image002.jpg" srcset="/img/loading.gif" lazyload
+alt="使用getchar()读取缓冲区剩余内容" />
+可以看到连同换行符也一起输出来了。</p>
+<p>当然除了使用getchar()来消除换行符的影响，也可以使用fflush(stdin)来刷新缓冲区，同样可以起到消除换行符的效果。因为fflush(stdin)的作用是清除标准输入缓冲区中的内容。</p>
+<h3 id="缓冲区介绍">2.缓冲区介绍</h3>
+<p>有了一些感性的认识，我们来看看缓冲区的概念和它的机制。</p>
+<h4 id="什么是缓冲区">（1）什么是缓冲区</h4>
+<p>缓冲区又称为缓存，它是内存空间的一部分。也就是说，在内存空间中预留了一定的存储空间，这些存储空间用来缓冲输入或输出的数据，这部分预留的空间就叫做缓冲区。</p>
+<p>缓冲区根据其对应的是输入设备还是输出设备，分为输入缓冲区和输出缓冲区。</p>
+<h4 id="为什么要引入缓冲区">（2）为什么要引入缓冲区</h4>
+<p>我们为什么要引入缓冲区呢？</p>
+<p>比如我们从磁盘里取信息，我们先把读出的数据放在缓冲区，计算机再直接从缓冲区中取数据，等缓冲区的数据取完后再去磁盘中读取，这样就可以减少磁盘的读写次数，再加上计算机对缓冲区的操作大大快于对磁盘的操作，故应用缓冲区可大大提高计算机的运行速度。</p>
+<p>又比如，我们使用打印机打印文档，由于打印机的打印速度相对较慢，我们先把文档输出到打印机相应的缓冲区，打印机再自行逐步打印，这时我们的CPU可以处理别的事情。</p>
+<p>现在您基本明白了吧，缓冲区就是一块内存区，它用在输入输出设备和CPU之间，用来缓存数据。它使得低速的输入输出设备和高速的CPU能够协调工作，避免低速的输入输出设备占用CPU，解放出CPU，使其能够高效率工作。</p>
+<h4 id="缓冲区的类型">（3）缓冲区的类型</h4>
+<p>缓冲区 分为三种类型：全缓冲、行缓冲和不带缓冲。</p>
+<p><strong>①全缓冲：</strong>在这种情况下，当填满标准I/O缓存后才进行实际I/O操作。全缓冲的典型代表是对磁盘文件的读写。</p>
+<p><strong>②行缓冲：</strong>在这种情况下，当在输入和输出中遇到换行符时，执行真正的I/O操作。这时，我们输入的字符先存放在缓冲区，等按下回车键换行时才进行实际的I/O操作。典型代表是键盘输入数据。</p>
+<p><strong>③不带缓冲：</strong>也就是不进行缓冲，标准出错情况stderr是典型代表，这使得出错信息可以直接尽快地显示出来。</p>
+<h4 id="缓冲区的刷新">（4）缓冲区的刷新</h4>
+<p>下列情况会引发缓冲区的刷新:</p>
+<ul>
+<li>缓冲区满时;</li>
+<li>执行flush语句;</li>
+<li>执行endl语句;</li>
+<li>关闭文件。</li>
+</ul>
+<p>可见，缓冲区满或关闭文件时都会刷新缓冲区，进行真正的I/O操作。另外，在C++中，我们可以使用flush函数来刷新缓冲区(执行I/O操作并清空缓冲区)键盘操作演示行缓冲。</p>
+<p>先介绍getchar()函数：</p>
+<p>函数原型：int getchar(void);</p>
+<p>说明：当程序调用getchar()函数时，程序就等着用户按键，用户输入的字符被存放在键盘缓冲区中，直到用户按回车为止(回车字符也放在缓冲区中)。当用户键入回车之后，getchar()函数才开始从键盘缓冲区中每次读入一个字符。也就是说，后续的getchar()函数调用不会等待用户按键，而直接读取缓冲区中的字符，直到缓冲区中的字符读完后，才重新等待用户按键。</p>
+<p>不知道您明白了没有，再通俗一点讲，当程序调用getchar()函数时，程序就等着用户按键，并等用户按下回车键返回。期间按下的字符存放在缓冲区，第一个字符作为函数返回值。继续调用getchar()函数，将不再等用户按键，而是返回您刚才输入的第2个字符;继续调用，返回第3个字符，直到缓冲区中的字符读完后，才等待用户按键。</p>
+<p>getchar()函数的执行就是采用了行缓冲。第一次调用getchar()函数，会让程序使用者(用户)输入一行字符并直至按下回车键
+函数才返回。此时用户输入的字符和回车符都存放在行缓冲区。再次调用getchar()函数，会逐步输出行缓冲区的内容。</p>
+<p>运行一段代码体会一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">char</span> c ;<br>    c = getchar() ;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;c = %c\n&quot;</span> , c ) ;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> ;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure>
+<img src="../img/005-不理解缓冲区导致数据输出异常/clip_image004.jpg" srcset="/img/loading.gif" lazyload
+alt="s后面的输入由于缓冲区已满而被无视" />
+<figcaption
+aria-hidden="true">s后面的输入由于缓冲区已满而被无视</figcaption>
+</figure>
+<p>不断输入数据，当不能再输入数据的时候说明缓冲区已满，输入的字符的数目为4096，即4k。那么就可以知道缓冲区的大小为4k。</p>
+<h6 id="参考资料">参考资料:</h6>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1"
+class="footnote-text"><span>https://www.csdndoc.com/article/4341477
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" class="category-chain-item">编程实践</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/C/" class="category-chain-item">C</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AC%E8%BD%BD/" class="print-no-link">#转载</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C</a>
+      
+        <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="print-no-link">#编程基础</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/9ce751d.html" title="006_C语言中scanf与分隔符(空格、回车、tab)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">006_C语言中scanf与分隔符(空格、回车、tab)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/17c800ec.html" title="004_vc6.0出现_oax1错误">
+                        <span class="hidden-mobile">004_vc6.0出现_oax1错误</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","appKey":"WCb6A9dSGZOFK659XOfsze0e","path":"window.location.pathname","placeholder":"在这里发表你的看法！(默认匿名与无邮箱地址)","avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom_global.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

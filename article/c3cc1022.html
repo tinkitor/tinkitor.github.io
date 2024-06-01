@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start --><meta name="baidu-site-verification" content="codeva-2b6GcVIJvN" /><meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8" /><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/default/write_blogs.svg">
+  <link rel="icon" href="/img/default/write_blogs.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="putik-666">
+  <meta name="keywords" content="putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  
+    <meta name="description" content="该文章无摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="002_void及void指针含义的深刻解析">
+<meta property="og:url" content="http://blog.brutik.com/article/c3cc1022.html">
+<meta property="og:site_name" content="putik-666的博客">
+<meta property="og:description" content="该文章无摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.brutik.com/img/default/post_example.svg">
+<meta property="article:published_time" content="2022-03-29T09:03:44.000Z">
+<meta property="article:modified_time" content="2024-06-01T09:34:44.300Z">
+<meta property="article:author" content="putik-666">
+<meta property="article:tag" content="未知来源转载">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="编程基础">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://blog.brutik.com/img/default/post_example.svg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>002_void及void指针含义的深刻解析 - putik-666的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom_global.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.brutik.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>putik的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default/post_banner_example.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">002_void及void指针含义的深刻解析</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-29 17:03" pubdate>
+          2022年03月29日, 星期二 ,下午 5:03
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">002_void及void指针含义的深刻解析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-warning">
+            <p>未知来源转载文章</p>
+          </div>
+<h2 id="简化版概述">简化版概述</h2>
+<h3 id="一void-的含义">一、void 的含义</h3>
+<p>void 即“无类型”，void *则为“无类型指针”，可以指向任何数据类型。</p>
+<h3 id="二void-指针使用规范">二、void 指针使用规范</h3>
+<p><strong>①void
+指针可以指向任意类型的数据，亦即可用任意数据类型的指针对 void
+指针赋值。</strong></p>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> *pint;<br><span class="hljs-type">void</span> *pvoid; <br>pvoid = pint;  <span class="hljs-comment">//不过不能 pint = pvoid;</span><br></code></pre></td></tr></table></figure>
+<p>如果要将 pvoid 赋给其他类型指针，则需要强制类型转换如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C">pint = (<span class="hljs-type">int</span> *)pvoid;<br></code></pre></td></tr></table></figure>
+<p>**②在 ANSI C 标准中，不允许对 void 指针进行算术运算如 pvoid++或
+pvoid+=1 等，而在 GNU 中则允许，因为在缺省情况下，GNU 认为 void <em>与
+char </em>一样。 sizeof( *pvoid )== sizeof( char )。**</p>
+<h3 id="三void-的作用">三、void 的作用</h3>
+<p><strong>①对函数返回的限定。</strong></p>
+<p><strong>②对函数参数的限定。</strong></p>
+<p>当函数不需要返回值时，必须使用 void 限定。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span>;<br></code></pre></td></tr></table></figure>
+<p>当函数不允许接受参数时，必须使用 void 限定。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br></code></pre></td></tr></table></figure>
+<p>由于 void 指针可以指向任意类型的数据，亦即可用任意数据类型的指针对
+void 指针赋值，因此还可以用 void
+指针来作为函数形参，这样函数就可以接受任意数据类型的指针作为参数。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">void</span> * <span class="hljs-title function_">memcpy</span><span class="hljs-params">( <span class="hljs-type">void</span> *dest, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *src, <span class="hljs-type">size_t</span> len )</span>;<br><br><span class="hljs-type">void</span> * <span class="hljs-title function_">memset</span><span class="hljs-params">( <span class="hljs-type">void</span> * buffer, <span class="hljs-type">int</span> c, <span class="hljs-type">size_t</span> num )</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="详细版说明">详细版说明</h2>
+<p>许多初学者对 C/C++语言中的 void 及 void
+指针类型不甚理解，因此在使用上出现了一些错误。本文将对 void
+关键字的深刻含义进行解说，并详述 void 及 void
+指针类型的使用方法与技巧。</p>
+<h3 id="一void-的含义-1">一、void 的含义</h3>
+<p>void 的字面意思是“无类型”，void <em>则为“无类型指针”，void
+</em>可以指向任何类型的数据。void
+几乎只有“注释”和限制程序的作用，因为从来没有人会定义一个 void
+变量，让我们试着来定义：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">void a<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<p>这行语句编译时会出错，提示“illegal use of type ’void’”。不过，即使
+void a 的编译不会出错，它也没有任何实际意义。 void
+真正发挥的作用在于：</p>
+<p>（1）对函数返回的限定；</p>
+<p>（2） 对函数参数的限定。</p>
+<p>众所周知，如果指针 p1 和 p2 的类型相同，那么我们可以直接在 p1 和 p2
+间互相赋值；如果 p1 和 p2
+指向不同的数据类型，则必须使用强制类型转换运算符把赋值运算符右边的指针类型转换为左边指针的类型。
+例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">float</span> *p1; <br><span class="hljs-type">int</span> *p2;<br>p1 = p2;<br></code></pre></td></tr></table></figure>
+<p>其中 p1 = p2 语句会编译出错，提示 “ ’=’ : cannot convert from ’int
+<em>’ to ’ float </em>’ ”，必须改为： p1 = (float *)p2;</p>
+<p>而 void
+*则不同，任何类型的指针都可以直接赋值给它，无需进行强制类型转换：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">void</span> *p1; <br><span class="hljs-type">int</span> *p2;<br>p1 = p2; <br></code></pre></td></tr></table></figure>
+<p>但这并不意味着，void
+*也可以无需强制类型转换地赋给其它类型的指针。因为
+“无类型”可以包容“有类型”，而“有类型”则不能包容“无类型”。道理很简单，我们可以说“男人和女人都是人”，但不能说“人是男人”或者“人是女人”。</p>
+<p>下面的语句编译出错：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">void</span> *p1; <br><span class="hljs-type">int</span> *p2;<br>p2 = p1; <br></code></pre></td></tr></table></figure>
+<p>提示 “ ’=’ : cannot convert from ’void <em>’ to ’int </em>’ ”。</p>
+<h3 id="二void-的使用">二、void 的使用</h3>
+<p>下面给出 void 关键字的使用规则：</p>
+<h5 id="规则一-如果函数没有返回值那么应声明为-void-类型">规则一
+：如果函数没有返回值，那么应声明为 void 类型。</h5>
+<p>在 C
+语言中，凡不加返回值类型限定的函数，就会被编译器作为返回整型值处理。但是许多程序员却误以为其为
+void 类型。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C">add ( <span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b ) <br>&#123;<br>    <span class="hljs-keyword">return</span> a + b; <br>&#125; <br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span> <br>&#123; <br>    <span class="hljs-built_in">printf</span> ( \<span class="hljs-string">&quot;2 + 3 = %d\&quot;, add ( 2, 3) ); </span><br><span class="hljs-string">&#125; </span><br></code></pre></td></tr></table></figure>
+<p>程序运行的结果为输出：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">2 </span>+ <span class="hljs-number">3</span> = <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+<p>这说明不加返回值说明的函数的确为 int 函数。</p>
+<p>林锐博士《高质量
+C/C++编程》中提到：“C++语言有很严格的类型安全检查，不允许上述情况（指函数不加类型声明）发生”。可是编译器并不一定这么认定，譬如在
+Visual C++6.0 中上述 add
+函数的编译无错也无警告且运行正确，所以不能寄希望于编译器会做严格的类型检查。</p>
+<p>因此，为了避免混乱，我们在编写
+C/C++程序时，对于任何函数都必须一个不漏地指定其类型。如果函数没有返回值，一定要声明为
+void 类型。这既是程序良好可读性的需要，也是编程规范性的要求。另外，加上
+void
+类型声明后，也可以发挥代码的“自注释”作用。代码的“自注释”即代码能自己注释自己。</p>
+<h5
+id="规则二如果函数无参数那么应声明其参数为-void">规则二：如果函数无参数，那么应声明其参数为
+void 。</h5>
+<p>在 C++语言中声明一个这样的函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">int</span> <span class="hljs-title function_">function</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> <br>&#123; <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; <br>&#125; <br></code></pre></td></tr></table></figure>
+<p>则进行下面的调用是不合法的：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">function</span><span class="hljs-params">(2)</span>;<br></code></pre></td></tr></table></figure>
+<p>因为在 C++中，函数参数为 void 的意思是这个函数不接受任何参数。</p>
+<p>我们在 Turbo C 2.0 中编译：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> \<span class="hljs-string">&quot;stdio.h\&quot; </span></span><br><span class="hljs-string"><span class="hljs-meta">fun() </span></span><br><span class="hljs-string"><span class="hljs-meta">&#123; </span></span><br><span class="hljs-string"><span class="hljs-meta">    return 1; </span></span><br><span class="hljs-string"><span class="hljs-meta">&#125; </span></span><br><span class="hljs-string"><span class="hljs-meta"></span></span><br><span class="hljs-string"><span class="hljs-meta">main() </span></span><br><span class="hljs-string"><span class="hljs-meta">&#123; </span></span><br><span class="hljs-string"><span class="hljs-meta">    printf(\&quot;%d\&quot;,fun(2)); getchar(); </span></span><br><span class="hljs-string"><span class="hljs-meta">&#125; </span></span><br></code></pre></td></tr></table></figure>
+<p>编译正确且输出 1，这说明，在 C
+语言中，可以给无参数的函数传送任意类型的参数，但是在
+C++编译器中编译同样的代码则会出错。在
+C++中，不能向无参数的函数传送任何参数，出错提示 “ ’fun’ : function does
+not take 1 parameters”。所以，无论在 C 还是
+C++中，若函数不接受任何参数，一定要指明参数为 void。</p>
+<h5 id="规则三小心使用-void-指针类型">规则三：小心使用 void
+指针类型</h5>
+<p>按照 ANSI(American National Standards Institute)标准，不能对 void
+指针进行算法操作，即下列操作都是不合法的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">void</span> * pvoid; <br>pvoid++; <span class="hljs-comment">//ANSI：错误 </span><br>pvoid += <span class="hljs-number">1</span>; <span class="hljs-comment">//ANSI：错误 </span><br><br><span class="hljs-comment">//ANSI 标准之所以这样认定，是因为它坚持：进行算法操作的指针必须是确定知道其指向数据类型大小的。 </span><br><span class="hljs-comment">//例如： </span><br><span class="hljs-type">int</span> *pint; <br>pint++; <span class="hljs-comment">//ANSI：正确，pint++的结果是使其增大 sizeof(int)。 </span><br></code></pre></td></tr></table></figure>
+<p>但是大名鼎鼎的 GNU(GNU’s Not Unix 的缩写)则不这么认定，它指定 void
+<em>的算法操作与 char </em>一致。 因此下列语句在 GNU
+编译器中皆正确：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">pvoid++; <span class="hljs-comment">//GNU：正确 </span><br><br>pvoid += <span class="hljs-number">1</span>; <span class="hljs-comment">//GNU：正确 pvoid++的执行结果是其增大了 1</span><br></code></pre></td></tr></table></figure>
+<p>在实际的程序设计中，为迎合 ANSI
+标准，并提高程序的可移植性，我们可以这样编写实现同样功能的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">void</span> * pvoid; <br>(<span class="hljs-type">char</span> *)pvoid++; <span class="hljs-comment">//ANSI：正确；GNU：正确 </span><br>(<span class="hljs-type">char</span> *)pvoid += <span class="hljs-number">1</span>; <span class="hljs-comment">//ANSI：错误；GNU：正确 </span><br></code></pre></td></tr></table></figure>
+<p>GNU 和 ANSI 还有一些区别，总体而言，GNU 较 ANSI
+更“开放”，提供了对更多语法的支持。但是我们在真实设计时，还是应该尽可能地迎合
+ANSI 标准。</p>
+<h5
+id="规则四如果函数的参数可以是任意类型指针那么应声明其参数为-void">规则四：如果函数的参数可以是任意类型指针，那么应声明其参数为
+void *。</h5>
+<p>典型的如内存操作函数 memcpy 和 memset 的函数原型分别为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">void</span> * <span class="hljs-title function_">memcpy</span><span class="hljs-params">(<span class="hljs-type">void</span> *dest, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *src, <span class="hljs-type">size_t</span> len)</span>;<br><span class="hljs-type">void</span> * <span class="hljs-title function_">memset</span><span class="hljs-params">( <span class="hljs-type">void</span> * buffer, <span class="hljs-type">int</span> c, <span class="hljs-type">size_t</span> num )</span>;<br></code></pre></td></tr></table></figure>
+<p>这样，任何类型的指针都可以传入 memcpy 和 memset
+中，这也真实地体现了内存操作函数的意义，因为它操作的对象仅仅是一片内存，而不论这片内存是什么类型。如果
+memcpy 和 memset 的参数类型不是 void <em>，而是 char
+</em>，那才叫真的奇怪了！这样的 memcpy 和 memset
+明显不是一个“纯粹的，脱离低级趣味的” 函数！下面的代码执行正确：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">//示例：memset 接受任意类型指针 </span><br><span class="hljs-type">int</span> intarray[<span class="hljs-number">100</span>]; [Page] <br><span class="hljs-built_in">memset</span> ( intarray, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>*<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>) ); <span class="hljs-comment">//将 intarray 清 0 </span><br><br><span class="hljs-comment">//示例：memcpy 接受任意类型指针 </span><br><span class="hljs-type">int</span> intarray1[<span class="hljs-number">100</span>],intarray2[<span class="hljs-number">100</span>]; <br><span class="hljs-built_in">memcpy</span>(intarray1,intarray2,<span class="hljs-number">100</span>*<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<span class="hljs-comment">//将 intarray2 拷贝给 intarray1</span><br></code></pre></td></tr></table></figure>
+<p>有趣的是，memcpy 和 memset 函数返回的也是 void
+*类型，标准库函数的编写者是多么地富有学问啊！</p>
+<h5 id="规则五void-不能代表一个真实的变量">规则五：void
+不能代表一个真实的变量</h5>
+<p>下面代码都企图让 void 代表一个真实的变量，因此都是错误的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-type">void</span> a; <span class="hljs-comment">//错误</span><br>function(<span class="hljs-type">void</span> a); <span class="hljs-comment">//错误 </span><br></code></pre></td></tr></table></figure>
+<p>void
+体现了一种抽象，这个世界上的变量都是“有类型”的，譬如一个人不是男人就是女人（还有人妖？）。void
+的出现只是为了一种抽象的需要，如果你正确地理解了面向对象中“抽象基类”的概念，也很容易理解
+void 数据类型。正如不能给抽象基类定义一个实例，我们也不能定义一个
+void（让我们类比的称 void 为“抽象数据类型”）变量。</p>
+<h3 id="三总结">三、总结</h3>
+<p>小小的 void
+蕴藏着很丰富的设计哲学，作为一名程序设计人员，对问题进行深一个层次的思考必然使我们受益匪浅。</p>
+<hr />
+<h6 id="参考资料">参考资料：</h6>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>百度上搜的，到底哪来的忘了
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E9%A1%B9/" class="category-chain-item">计算机杂项</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E9%A1%B9/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%AA%E7%9F%A5%E6%9D%A5%E6%BA%90%E8%BD%AC%E8%BD%BD/" class="print-no-link">#未知来源转载</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C</a>
+      
+        <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="print-no-link">#编程基础</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/3cc86140.html" title="003_vc6.0添加插件时error解决方案">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">003_vc6.0添加插件时error解决方案</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/cbedf9fe.html" title="001_键盘两种输入模式是什么意思">
+                        <span class="hidden-mobile">001_键盘两种输入模式是什么意思</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","appKey":"WCb6A9dSGZOFK659XOfsze0e","path":"window.location.pathname","placeholder":"在这里发表你的看法！(默认匿名与无邮箱地址)","avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom_global.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

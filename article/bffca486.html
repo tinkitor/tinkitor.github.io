@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start --><meta name="baidu-site-verification" content="codeva-2b6GcVIJvN" /><meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8" /><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/default/write_blogs.svg">
+  <link rel="icon" href="/img/default/write_blogs.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="putik-666">
+  <meta name="keywords" content="putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  
+    <meta name="description" content="本文主要粗略介绍了贝塞尔曲线的发展历史、数学原理以及其相关应用示例。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贝赛尔曲线的数学原理与工程运用">
+<meta property="og:url" content="http://blog.brutik.com/article/bffca486.html">
+<meta property="og:site_name" content="putik-666的博客">
+<meta property="og:description" content="本文主要粗略介绍了贝塞尔曲线的发展历史、数学原理以及其相关应用示例。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.brutik.com/img/%E8%B4%9D%E8%B5%9B%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B7%A5%E7%A8%8B%E8%BF%90%E7%94%A8/bezier_curve.png">
+<meta property="article:published_time" content="2024-02-05T14:17:31.000Z">
+<meta property="article:modified_time" content="2024-06-01T12:53:02.904Z">
+<meta property="article:author" content="putik-666">
+<meta property="article:tag" content="原创">
+<meta property="article:tag" content="贝塞尔曲线">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://blog.brutik.com/img/%E8%B4%9D%E8%B5%9B%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B7%A5%E7%A8%8B%E8%BF%90%E7%94%A8/bezier_curve.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>贝赛尔曲线的数学原理与工程运用 - putik-666的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom_global.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.brutik.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>putik的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default/post_banner_example.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">贝赛尔曲线的数学原理与工程运用</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-05 22:17" pubdate>
+          2024年02月05日, 星期一 ,晚上 10:17
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">贝赛尔曲线的数学原理与工程运用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-success">
+            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
+          </div>
+<h1 id="前言">前言</h1>
+<p>之前在学习安卓开发涉及到图形绘制时，发现某个类提供了一个方法可以用来绘制曲线，后来那个方法绘制的曲线就是贝赛尔曲线。当时听着这个名字感觉很牛X的样子，然后又进一步了解了到底什么是贝塞尔曲线，了解完后我直呼卧槽。</p>
+<p>所以本文诞生，就是单纯想写一篇贝塞尔曲线的介绍文。本文将主要介绍贝塞尔曲线的发展历史、数学原理，最后会给出几个贝塞尔曲线的相关应用示例。</p>
+<h1 id="正文">正文</h1>
+<h2 id="贝赛尔曲线简述">1. 贝赛尔曲线简述</h2>
+<p>贝塞尔曲线（英语：Bézier
+curve）最初由保尔·德·卡斯特里奥于1959年运用德卡斯特里奥算法所开发，他用稳定数值的方法求出了贝塞尔曲线。但贝塞尔曲线于1962年才由法国工程师皮埃尔·贝塞尔（Pierre
+Bézier）所广泛发表，他借用贝塞尔曲线完成了汽车的主体设计<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="维基百科,贝塞尔曲线[DB/OL],[https://zh.wikipedia.org/zh-cn/貝茲曲線](https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A)">[1]</span></a></sup>。</p>
+<p><img src="../img/贝赛尔曲线的数学原理与工程运用/bezier_curve.png" srcset="/img/loading.gif" lazyload alt="贝赛尔曲线示例"  /></p>
+<p>贝塞尔曲线有着很多特殊的性质，其如今已是计算机图形学及相关领域中常使用的重要参数曲线，在诸如计算机字体设计、动画设计、机器人运动平滑控制中都有运用到贝赛尔曲线。贝塞尔曲线可以组合起来形成贝塞尔样条曲线，或者推广到更高维度以形成贝塞尔曲面。</p>
+<p><img src="../img/贝赛尔曲线的数学原理与工程运用/bezier_surfaces.png" srcset="/img/loading.gif" lazyload alt="贝塞尔曲面示例"  /></p>
+<p>这里介绍两个网站，一个是<a
+target="_blank" rel="noopener" href="https://www.jasondavies.com/animated-bezier/">贝赛尔曲线动画</a>，从该网站给出了几个贝赛尔曲线动态图演示；另一个是<a
+target="_blank" rel="noopener" href="https://www.desmos.com/calculator/cahqdxeshd?lang=zh-CN">贝赛尔曲线demo</a>，在该网站可以手动改变端点来感受贝赛尔曲线的变化。</p>
+<h2 id="数学公式简述与推导">2. 数学公式简述与推导</h2>
+<p>贝赛尔曲线的通式实际上是一个与二项展开式有关的一个多项式，本文仅在通项的推导上做出简单的演示，对于贝塞尔曲线的其他性质不做讨论。下面将从一次开始逐步推导出N次的贝塞尔曲线。</p>
+<h3 id="一次贝赛尔曲线">2.1 一次贝赛尔曲线</h3>
+<p>一次贝塞尔曲线又可以叫做线性贝塞尔曲线，因为一次的贝塞尔曲线实际上就是两个点的连线，即一条直线段，如图：</p>
+<figure>
+<img
+src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211172605127.png" srcset="/img/loading.gif" lazyload
+alt="一次贝赛尔曲线" />
+<figcaption aria-hidden="true">一次贝赛尔曲线</figcaption>
+</figure>
+<p>图中有一条由点P₁(6,6)、点P₂(2,2)连接形成的直线段，P₀为该线段上的动点，运动方向由P₂到P₁,图中红色线段即为P₀的运动轨迹。可知P₀的轨迹方程为：
+<span class="math display">\[
+B_{1}(t)=P_{2}+(P_{1}-P_{2})t,t\in[0,1]
+\]</span></p>
+<p>化简得：</p>
+<p><span class="math display">\[
+B_{1}(t)=P_{1}t+P_{2}(1-t),t\in[0,1]
+\]</span></p>
+<p>注意上式中的P₁、P₂代表一个二元式，表示了一个坐标如P₁为(2,2)，<strong>即B₁(t)就是P₀坐标的变化方程(轨迹坐标方程)，而这个轨迹方程即为一个一次贝赛尔曲线的轨迹方程，其中t为控制P₀在线段上运动范围的变量，其值实际代表了线段P₀P₂与线段P₁P₂的长度比值</strong>。将P₁、P₂的坐标值代入，可得以上示例图中的贝赛尔曲线方程为：
+<span class="math display">\[
+B_{1}(t)=(6,6)*t+(2,2)*(1-t)
+=(2+4t,2+4t),t\in[0,1]
+\]</span></p>
+<h3 id="二次贝赛尔曲线">2.2 二次贝赛尔曲线</h3>
+<p>二次贝赛尔曲线即其方程的最高次为二次。如图，在平面上任取三点并依次用线段连接：</p>
+<figure>
+<img
+src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211213016213.png" srcset="/img/loading.gif" lazyload
+alt="三点连接而成的两条线段" />
+<figcaption aria-hidden="true">三点连接而成的两条线段</figcaption>
+</figure>
+<p>这里为了方便取P₁(6,6)、P₂(2,2)、P₃(10,2)。设t为一个变量，且t∈[0,1]。在线段P₂P₁、P₁P₃两条线段上分别取A、B共两点，且令各线段长度满足以下关系：
+<span class="math display">\[
+\frac{P_{2}A}{P_{2}P_{1}}=\frac{P_{1}B}{P_{1}P_{3}}=t
+\]</span></p>
+<p>当t=0.5时，如图：</p>
+<figure>
+<img
+src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211214107104.png" srcset="/img/loading.gif" lazyload
+alt="t=0.5时的线段图" />
+<figcaption aria-hidden="true">t=0.5时的线段图</figcaption>
+</figure>
+<p>最后，在线段AB上取一点P₀，使其满足： <span class="math display">\[
+\frac{AP_{0}}{AB}=t
+\]</span></p>
+<p>同样当t=0.5时，如图所示：</p>
+<figure>
+<img
+src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211214935636.png" srcset="/img/loading.gif" lazyload
+alt="t=0.5时的线段图" />
+<figcaption aria-hidden="true">t=0.5时的线段图</figcaption>
+</figure>
+<p>实际上此时单独看线段AB上的P₀其实与一次贝塞尔曲线中的P₀一样。同时还可以看出，如果单独看P₂P₁上的A点、P₁P₃上的B点，实际上都是一次贝赛尔曲线的情况，而二次贝赛尔曲线就是在一次贝赛尔曲线的基础上再将线段的端点都限制在一次贝赛尔曲线轨迹的条件下，由此原P₀点的运动轨迹就变为了二次贝赛尔曲线，如图：</p>
+<figure>
+<img
+src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211212922708.png" srcset="/img/loading.gif" lazyload
+alt="二次贝赛尔曲线" />
+<figcaption aria-hidden="true">二次贝赛尔曲线</figcaption>
+</figure>
+<p>最后求P₀的轨迹方程，也就是二次贝赛尔曲线的方程。思路为先求分别求出点A与点B的轨迹方程，最后再借其求出点P₀的轨迹方程：</p>
+<p>因为点A与点B的轨迹方程分别为： <span class="math display">\[
+\begin{cases}
+a(t)=P_{2}+(P_{1}-P_{2})t\\
+b(t)=P_{1}+(P_{3}-P_{1})t
+\end{cases}
+,t\in[0,1]
+\]</span></p>
+<p>故点P₀的轨迹方程为： <span class="math display">\[
+B_{2}(t)=a(t)+[b(t)-a(t)]t
+\]</span></p>
+<p>化简得： <span class="math display">\[
+B_{2}(t)=2t(1-t)P_{1}+(1-t)^2P_{2}+P_{3}t^2
+\]</span></p>
+<p>上式有点眼熟？没错！去掉P₁、P₂、P₃的点坐标，得到一个多项式： <span
+class="math display">\[
+f(t)=(1-t)^2+2t(1-t)+t^2=[t+(1-t)]^2
+\]</span></p>
+<p>这不就是一个二项展开式吗！</p>
+<h3 id="三次贝赛尔曲线">2.3 三次贝赛尔曲线</h3>
+<p>从上面的推导其实可以看出，三次贝赛尔曲线实际是在二次贝赛尔曲线的基础上将线段的三个点约束在三个一次贝塞尔曲线上，由此原有的二次贝塞尔曲线轨迹就变为了三次贝塞尔曲线。所以三次贝塞尔曲线的方程可以为：
+<span class="math display">\[
+B_{3}(t)=P_{0}(1-t)^3+3P_{1}t(1-t)^2+3P_{2}t^2(1-t)+P_{3}t^3,t\in[0,1]
+\]</span></p>
+<p>可以看出去掉点坐标后,实际上就是<code>[t+(1-t)]³</code>的展开式。</p>
+<h3 id="n次贝塞尔曲线">2.4 N次贝塞尔曲线</h3>
+<p>由以上可得知，实际上一次贝赛尔曲线可以通过约束升阶为多次贝赛尔曲线，当然多次贝塞尔曲线也可以不停降次至一次贝塞尔曲线。同时其与点坐标无关的通式实际上是一个二项展开式<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="FrancisZhao,曲线篇: 贝塞尔曲线[DB/OL]，[https://zhuanlan.zhihu.com/p/136647181](https://zhuanlan.zhihu.com/p/136647181)，2020-04-28 ↩">[2]</span></a></sup>，例如N次贝赛尔曲线对应<code>[t+(1-t)]ⁿ</code>。故其通项可以推导为：</p>
+<p>给定多个定点P₀、P₁、P₂、P₃、...、Pn，则其贝赛尔曲线为： <span
+class="math display">\[
+B_{n}(t)=\sum^{n}_{i=0}C^{i}_{n}P_{i}(1-t)^{n-i}t^{i},t\in[0,1]
+\]</span></p>
+<h2 id="相关应用示例介绍">3. 相关应用示例介绍</h2>
+<p>实际上，许多绘图工具都会用贝赛尔曲线，例如PS里拉伸图片时就是用的贝赛尔曲线来约束图片变化路径。这部分感觉没什么讲的必要，读者自己搜能够了解到更多的信息。</p>
+<h1 id="参考文献">参考文献</h1>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1"
+class="footnote-text"><span>维基百科,贝塞尔曲线[DB/OL],<a
+target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A">https://zh.wikipedia.org/zh-cn/貝茲曲線</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>FrancisZhao,曲线篇:
+贝塞尔曲线[DB/OL]，<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136647181">https://zhuanlan.zhihu.com/p/136647181</a>，2020-04-28
+↩︎ <a href="#fnref:2" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%90%86%E8%AE%BA/" class="category-chain-item">计算机理论</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%90%86%E8%AE%BA/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="category-chain-item">图形学</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+        <a href="/tags/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF/" class="print-no-link">#贝塞尔曲线</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/f9025e15.html" title="阅读SpringBoot源码的心得记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">阅读SpringBoot源码的心得记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/b4340977.html" title="Spring,码农滴自我救赎之路">
+                        <span class="hidden-mobile">Spring,码农滴自我救赎之路</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","appKey":"WCb6A9dSGZOFK659XOfsze0e","path":"window.location.pathname","placeholder":"在这里发表你的看法！(默认匿名与无邮箱地址)","avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom_global.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

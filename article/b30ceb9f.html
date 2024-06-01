@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start --><meta name="baidu-site-verification" content="codeva-2b6GcVIJvN" /><meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8" /><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/default/write_blogs.svg">
+  <link rel="icon" href="/img/default/write_blogs.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="putik-666">
+  <meta name="keywords" content="putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  
+    <meta name="description" content="本文主要为我在学习Linux基本使用时做的一些笔记，当然内容也主要是一些基本的命令使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习笔记">
+<meta property="og:url" content="http://blog.brutik.com/article/b30ceb9f.html">
+<meta property="og:site_name" content="putik-666的博客">
+<meta property="og:description" content="本文主要为我在学习Linux基本使用时做的一些笔记，当然内容也主要是一些基本的命令使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.brutik.com/img/default/post_example.svg">
+<meta property="article:published_time" content="2024-06-01T13:05:39.000Z">
+<meta property="article:modified_time" content="2024-06-01T13:22:43.435Z">
+<meta property="article:author" content="putik-666">
+<meta property="article:tag" content="原创">
+<meta property="article:tag" content="Linux基础">
+<meta property="article:tag" content="Linux命令">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://blog.brutik.com/img/default/post_example.svg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Linux学习笔记 - putik-666的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom_global.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.brutik.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>putik的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default/post_banner_example.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Linux学习笔记</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-01 21:05" pubdate>
+          2024年06月01日, 星期六 ,晚上 9:05
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-success">
+            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
+          </div>
+<h1 id="linux分类">1. Linux分类</h1>
+<p>大概有：RedHat和DeBian两大类以及其他类。RedHat下的CentOS稳定，更新少，yum安装管理，安装软件包为<code>.rpm</code>；DeBian下的Ubuntu更新快，apt安装管理，图形界面友好，新手友好，安装软件包为<code>.deb</code>。</p>
+<p>注：Shell是用户与操作系统内核的接口(命令行接口，除此之外还有编程接口API)，Linux一般默认使用Bash
+Shell。</p>
+<h1 id="目录结构规范">2. 目录结构规范</h1>
+<p><strong>①系统启动必须：</strong></p>
+<ul>
+<li><strong>/boot：</strong>存放的启动Linux
+时使用的内核文件，包括连接文件以及镜像文件。</li>
+<li><strong>/etc：</strong>存放<strong>所有</strong>的系统需要的<strong>配置文件</strong>和<strong>子目录列表，</strong>更改目录下的文件可能会导致系统不能启动。</li>
+<li><strong>/lib</strong>：存放基本代码库（比如c++库），其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库。</li>
+<li><strong>/sys</strong>：
+这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统
+sysfs
+。sysfs文件系统集成了下面3种文件系统的信息：针对进程信息的proc文件系统、针对设备的devfs文件系统以及针对伪终端的devpts文件系统。该文件系统是内核设备树的一个直观反映。当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中</li>
+</ul>
+<p><strong>②指令集合：</strong></p>
+<ul>
+<li><strong>/bin：</strong>存放着最常用的程序和指令</li>
+<li><strong>/sbin：</strong>只有系统管理员能使用的程序和指令。</li>
+</ul>
+<p><strong>③外部文件管理：</strong></p>
+<ul>
+<li><strong>/dev ：</strong>Device(设备)的缩写,
+存放的是Linux的外部设备。<strong>注意：</strong>在Linux中访问设备和访问文件的方式是相同的。</li>
+<li><strong>/media</strong>：类windows的<strong>其他设备，</strong>例如U盘、光驱等等，识别后linux会把设备放到这个目录下。</li>
+<li><strong>/mnt</strong>：临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</li>
+</ul>
+<p><strong>④临时文件：</strong></p>
+<ul>
+<li><strong>/run</strong>：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有
+/var/run 目录，应该让它指向 run。</li>
+<li><strong>/lost+found</strong>：一般情况下为空的，系统非法关机后，这里就存放一些文件。</li>
+<li><strong>/tmp</strong>：这个目录是用来存放一些临时文件的。</li>
+</ul>
+<p><strong>⑤账户：</strong></p>
+<ul>
+<li><strong>/root</strong>：系统管理员的用户主目录。</li>
+<li><strong>/home</strong>：用户的主目录，以用户的账号命名的。</li>
+<li><strong>/usr</strong>：用户的很多应用程序和文件都放在这个目录下，类似于windows下的program
+files目录。</li>
+<li><strong>/usr/bin：</strong>系统用户使用的应用程序与指令。</li>
+<li><strong>/usr/sbin：</strong>超级用户使用的比较高级的管理程序和系统守护程序。</li>
+<li><strong>/usr/src：</strong>内核源代码默认的放置目录。</li>
+</ul>
+<p><strong>⑥运行过程中要用：</strong></p>
+<ul>
+<li><strong>/var</strong>：存放经常修改的数据，比如程序运行的日志文件（/var/log
+目录下）。</li>
+<li><strong>/proc</strong>：管理<strong>内存空间！</strong>虚拟的目录，是系统内存的映射，我们可以直接访问这个目录来，获取系统信息。这个目录的内容不在硬盘上而是在内存里，我们也可以直接修改里面的某些文件来做修改。</li>
+</ul>
+<p><strong>⑦扩展用的：</strong></p>
+<ul>
+<li><strong>/opt</strong>：默认是空的，我们安装额外软件可以放在这个里面。</li>
+<li><strong>/srv</strong>：存放服务启动后需要提取的数据<strong>（不用服务器就是空）</strong></li>
+</ul>
+<h1 id="常用文件管理命令">3. 常用文件管理命令</h1>
+<ul>
+<li>通配符
+<ul>
+<li><code>*</code>：0个或任意字符</li>
+<li><code>?</code>：一个字符</li>
+<li><code>[]</code>：匹配一组单个字符，示例<code>[0-9]</code>、<code>[a-z]</code>，似乎只能这么勇</li>
+</ul></li>
+<li><code>ls</code>，查看文件信息
+<ul>
+<li><code>ls -R</code>：递归列出子文夹</li>
+<li><code>ls -m</code>：逗号分隔显示的内容列表</li>
+<li><code>ls -a</code>：显示所有的文件内容，包括隐藏文件</li>
+<li><code>ls -F</code>：显示文件类型</li>
+<li><code>ls -l</code>：显示文件的权限、所有者等等详细信息</li>
+</ul></li>
+<li><code>pwd</code>：print working
+directory，显示当前工作目录的完整路径</li>
+<li><code>cd -</code>：返回以前的目录</li>
+<li><code>mkdir [*filename]</code>：创建一个空文件夹，默认是所有者读、写、以及执行的权限，而其他任何人则只有读、执行的权限</li>
+<li><code>cp [*a_file_uri] [*b_file_uri]</code>：复制文件到指定位置，并指定名称
+<ul>
+<li><code>cp -i</code>：复制文件时遇到重复文件给予确认警告</li>
+<li><code>cp -R</code>：（递归）复制目录</li>
+<li><code>cp -a</code>：完全复制(archive
+mode)，会复制文件的所有属性，同时不会复制软链接里真的得文件内容，加快复制速度</li>
+</ul></li>
+<li><code>mv [*a_file_uri] [*b_file_uri]</code>：移动文件到另一个指定位置，并使用特定文件名</li>
+<li><code>rm</code>：删除文件，可以使用空格隔开多个或者直接使用通配符，若删除带有空格的文件，可使用双引号括住
+<ul>
+<li><code>rm -i</code>：在每次删除文件时都给与警告提示</li>
+<li><code>rm -Rf</code>：R为递归操作，f为force强制的意思，即强制递归删除一个文件，可用于删除文件夹</li>
+</ul></li>
+<li><code>su -l [username]</code>：切换用户，包括环境变量。注意默认是切换到root用户</li>
+<li><code>man -f [*command_name]</code>：显示一个命令的使用描述</li>
+<li><code>cat</code>：链接多个文件的内容并输出到终端【还有个tac，作用是反向拼接，把猫倒过来了】，这是一次性输出完到最后一行，没有分页功能
+<ul>
+<li><code>cat -n</code>：给输出加上行号</li>
+</ul></li>
+<li><code>less</code>：进入less模式分页查看文本文件，类似<code>vim</code>编辑器，可以使用<code>/</code>搜索文本，支持正则表达式</li>
+<li><code>head</code>与<code>tail</code>：查看文件前n行或后n行内容，默认10行
+<ul>
+<li><code>head -n [*一个数字x]</code>：查看前x行</li>
+<li><code>tail -n [*一个数字x] -f</code>：查看后x行，且不断更新内容，f即follow</li>
+</ul></li>
+<li><code>chgrp [*用户组的名称或者数字] 文件</code>：修改文件所属用户组，加个<code>-R</code>就是递归修改目录</li>
+<li><code>chmod [ugo][+-=][rwx]</code>：修改各个控制列表的权限。==（注意：linux中有三个控制列表，分别是user、group、others。）==，<code>+</code>、<code>-</code>、<code>=</code>分别表示增加权限，减少权限和直接修改权限为指定权限。示例：<code>chmod go=r</code>，修改组和其他用户的权限为可读。</li>
+<li><code>chmod [0-7] [0-7] [0-7]</code>：以八进制形式实现修改各个控制列表的权限的功能。三个数字分别代表三个组的rwx权限情况。示例：<code>chmod 744</code>，修改组和其他用户的权限为可读，但是如果不想动user的权限怎么办？chatgpt说先看然后再改成一样的</li>
+<li><code>zip</code>与<code>gzip</code>：压缩文件
+<ul>
+<li><code>unzip</code>与<code>gunzip</code>：解压文件</li>
+</ul></li>
+<li><code>locate [*文件关键字]</code>：从文件名数据库中搜索相关文件，嘎嘎快，但是搜不到新建的文件，必须得刷新</li>
+<li><code>grep [*正则表达式] [*文件名]</code>：从文本文件中搜索关键字并输出</li>
+<li><code>find [*文件路径] -name [关键字]</code>：根据关键字来搜索文件或文件夹，即时搜索（默认递归搜索），不依赖文件名数据库</li>
+<li><code>dpkg</code>：Debian的包管理工具
+<ul>
+<li><code>dpkg -i</code>：安装</li>
+<li><code>dpkg -r</code>：卸载</li>
+</ul></li>
+<li><code>apt</code>：牛逼的包管理工具
+<ul>
+<li><code>apt update</code>：更新安装包数据库，需要root</li>
+<li><code>apt upgrade</code>：更新所有软件，需要root</li>
+<li><code>apt install [*package_name]</code>：安装指定包，需要root</li>
+</ul></li>
+</ul>
+<h2 id="总结">3.1 总结</h2>
+<p>增：<code>mkdir</code>
+、<code>vim</code>、<code>cp</code>、<code>zip与gzip</code></p>
+<p>删：<code>rm</code>、<code>mv</code></p>
+<p>改：<code>chgrp</code>、<code>chmod</code>、<code>cp</code></p>
+<p>查：<code>locate</code>、<code>grep</code>、<code>find</code></p>
+<p>看：<code>cat</code>、<code>head</code>、<code>tail</code></p>
+<h1 id="常用系统资源管理命令">4. 常用系统资源管理命令</h1>
+<ul>
+<li><code>ps</code>：显示进程信息
+<ul>
+<li><code>ps aux</code>：显示所有用户(a)的进程信息</li>
+<li><code>ps U [*username]</code>：显示指定用户的进程信息</li>
+</ul></li>
+<li><code>ss -a</code>：查看所有状态链接的套接字状态(套接字就是端口后面的东西)</li>
+</ul>
+<h1 id="常用网络管理命令">5. 常用网络管理命令</h1>
+<ul>
+<li><code>ifconfig</code>：查看网络接口配置</li>
+<li><code>route</code>：查看路由表</li>
+<li><code>ssh [*username]@[*ip_address]</code>：远程连接到另一台计算机。ssh：secure
+shell</li>
+<li><code>sftp [*username]@[*ip_address]</code>：连接到另一台计算机，并与本地计算机相互传输文件</li>
+</ul>
+<h1 id="命令进阶">6. 命令进阶</h1>
+<ul>
+<li>组合命令
+<ul>
+<li><code>;</code>：命令栈方式，用分号隔开命令，依顺序运行，不论前一个命令是否执行成功</li>
+<li><code>&amp;&amp;</code>、<code>||</code>：逻辑判断链方式，<code>&amp;&amp;</code>表示前一个命令执行成功后一个才能执行，<code>||</code>表示前一个命令执行失败后一个才能执行</li>
+</ul></li>
+<li><code>stdin</code>、<code>stdout</code>、<code>stderr</code>，三种标准输入输出
+<ul>
+<li><code>|</code>：把前一个命令的<code>stdout</code>从默认终端重定向至下一个命令的<code>stdin</code>，这是一个管道控制命令。注意：vim不能使用这个命令，因为vim会接管整个shell。示例：<code>ps -Al | grep vim</code></li>
+<li><code>&gt;</code>：把前一个命令的<code>stdout</code>从默认终端重定向输出到指定文件的<code>stdin</code>，如果文件不存在则创建，如果已经存在则会覆盖原有文件内容。示例：<code>ls -l &gt; niubi.txt</code></li>
+<li><code>&gt;&gt;</code>：把前一个命令的<code>stdout</code>从默认终端输出重定向到指定文件的<code>stdin</code>，如果文件不存在则创建文件，若存在则以追加的形式输出到文件中</li>
+<li><code>&lt;</code>：把一个文件的<code>stdout</code>重定向到前一个命令的<code>stdin</code>中。示例：<code>echo &lt; niubi.txt</code>，终端会打印niubi.txt的内容</li>
+</ul></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E9%A1%B9/" class="category-chain-item">计算机杂项</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E9%A1%B9/Linux%E5%9F%BA%E7%A1%80/" class="category-chain-item">Linux基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+        <a href="/tags/Linux%E5%9F%BA%E7%A1%80/" class="print-no-link">#Linux基础</a>
+      
+        <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" class="print-no-link">#Linux命令</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/609338f3.html" title="MySQL中列级约束与表级约束的区别以及两者存在的意义">
+                        <span class="hidden-mobile">MySQL中列级约束与表级约束的区别以及两者存在的意义</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","appKey":"WCb6A9dSGZOFK659XOfsze0e","path":"window.location.pathname","placeholder":"在这里发表你的看法！(默认匿名与无邮箱地址)","avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/custom_global.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
