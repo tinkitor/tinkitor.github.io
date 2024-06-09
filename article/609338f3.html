@@ -18,19 +18,20 @@
   <meta name="author" content="putik-666">
   <meta name="keywords" content="putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
-    <meta name="description" content="该文章无摘要">
+    <meta name="description" content="区别的话，就是字面意思上的区别，一个只约束一列，一个（可以）约束多列（也就是整个表范围），使用时就是根据实际需求自己选是用列约束还是表约束，其他没啥需要注意的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL中列级约束与表级约束的区别以及两者存在的意义">
 <meta property="og:url" content="http://blog.brutik.com/article/609338f3.html">
 <meta property="og:site_name" content="putik-666的博客">
-<meta property="og:description" content="该文章无摘要">
+<meta property="og:description" content="区别的话，就是字面意思上的区别，一个只约束一列，一个（可以）约束多列（也就是整个表范围），使用时就是根据实际需求自己选是用列约束还是表约束，其他没啥需要注意的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blog.brutik.com/img/default/post_example.svg">
 <meta property="article:published_time" content="2024-03-06T14:05:30.000Z">
-<meta property="article:modified_time" content="2024-06-01T13:02:28.797Z">
+<meta property="article:modified_time" content="2024-06-09T11:01:54.727Z">
 <meta property="article:author" content="putik-666">
 <meta property="article:tag" content="原创">
-<meta property="article:tag" content="待完成">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="MySQL约束">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://blog.brutik.com/img/default/post_example.svg">
   
@@ -244,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          476 字
+          1.6k 字
         
       </span>
     
@@ -255,7 +256,7 @@
         
         
         
-          3 分钟
+          9 分钟
         
       </span>
     
@@ -297,14 +298,14 @@
             
               <div class="markdown-body">
                 
-                <div class="note note-info">
-            <p>未完成文章</p>
-          </div>
-<div class="note note-success">
+                <div class="note note-success">
             <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
           </div>
 <h1 id="前言">前言</h1>
-<p>一直都是对MySQL处于懵懵懂懂的状态，刚刚突然去了解了一下MySQL的约束相关问题，MySQL中常用的有六种约束（注：我在8.3版本的手册中还找到了几个约束如：<code>SET</code>、<code>ENUM</code>，但是到底有多少种约束，不知道），分别是：<code>PRIMARY KEY</code>、<code>FOREIGN KEY</code>、<code>UNIQUE</code>、<code>NOT NULL</code>、<code>CHECK</code>。然后细分又可以分为列级约束和表级约束两大类：</p>
+<p>一直都是对MySQL处于懵懵懂懂的状态，刚刚突然去了解了一下MySQL的约束相关问题，发现MySQL中常用的有六种约束（注：我在8.4版本的<a
+target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.4/en/constraint-enum.html">手册</a>中还找到了几个约束如：<code>SET</code>、<code>ENUM</code>，但是到底有多少种约束，不知道），分别是：<code>PRIMARY KEY</code>、<code>FOREIGN KEY</code>、<code>UNIQUE</code>、<code>NOT NULL</code>、<code>DEFAULT</code>、<code>CHECK</code>。然后细分又可以分为列级约束和表级约束两大类<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="codeacg,MySQL表级约束和列级约束[DB/OL],[https://blog.csdn.net/qq_48759664/article/details/116240961](https://blog.csdn.net/qq_48759664/article/details/116240961),2021-04-28">[1]</span></a></sup>：</p>
 <table>
 
 <thead>
@@ -324,22 +325,78 @@
 </tr>
 </tbody>
 </table>
-<p>搜了一圈关于两种约束有什么区别，但是都是在定义和最终作用上说的，而且在最终作用上只是说列级约束是约束当前列，而表级约束是同时约束多个列，但是我就在每个列级约束上加上同一种约束不就可以起到表级约束相同的效果了吗？而且为什么表级约束不能有<code>DEFAULT</code>和<code>NOT NULL</code>？列级约束和表级约束到底约束了个什么？</p>
-<p>带着以上疑问，此篇文章诞生。</p>
+<p>可以看到，表级约束有的，列级约束都有。于是我去搜了一圈关于两种约束有什么区别的文章，最后都是在定义和最终作用上说的，而且在最终作用上只是说列级约束是约束当前列，而表级约束是同时约束多个列，但是我想如果在每个列级约束上加上同一种约束不就可以起到表级约束相同的效果了吗？而且为什么表级约束不能有<code>DEFAULT</code>和<code>NOT NULL</code>？列级约束和表级约束到底约束了个什么？</p>
+<p>带着以上疑问，此篇文章诞生。此篇文章也主要解决以上两个问题。</p>
 <h1 id="正文">正文</h1>
-<h2 id="正文标题1">正文标题1</h2>
-<h3 id="正文副标题1">正文副标题1</h3>
-<p>有次一个刚入行的妹子让我讲笑话给她听。</p>
-<p>我：你想听 TCP 的笑话么？ 妹子：嗯，我想听一个 TCP 的笑话。
-我：好的，我会给你讲一个TCP 的笑话。 妹子：好的，我会听一个TCP 的笑话。
-我：你准备好听一个TCP 的笑话么？ 妹子：嗯，我准备好听一个TCP 的笑话
-我：Ok，那我要发 TCP 笑话了。大概有 10 秒，20 个字。
-妹子：嗯，我准备收你那个 10 秒时长，20 个字的笑话了。
-我：抱歉，你的连接超时了。你好，你想听 TCP 的笑话么</p>
-<h1 id="附录">附录</h1>
-<h3 id="附录1">附录1</h3>
-<h3 id="附录2">附录2</h3>
-<h1 id="参考文献">参考文献</h1>
+<h2 id="什么是约束">1.什么是约束</h2>
+<p>“约束”就是使用约定对XX进行束缚，这个“束缚”有很多作用，例如小明老婆生了个儿子，法律规定从此以后他就是这个儿子的爸，这对小明进行了一个身份约束，以后小明儿子学校里打架了，顺着这个身份约束去找小明就对了，然后小明把他儿子框框打一顿，他儿子以后就再也不敢打架了，这便解决了一个问题。</p>
+<p>SQL里约束的洋文叫做<code>contraint</code>，SQL
+约束用于规定表中的数据规则，如果存在违反约束的数据行为，行为会被约束终止。约束可以在创建表时规定(通过CREATE
+TABLE语句)，也可以在创建表之后规定(通过ALTER
+TABLE语句)<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="菜鸟教程,SQL约束(Constraints)[DB\OL],[https://www.runoob.com/sql/sql-constraints.html](https://www.runoob.com/sql/sql-constraints.html)">[2]</span></a></sup>。一句话，SQL中的约束决定了表或列中的数据是否有效。</p>
+<h2 id="mysql中的约束">2.MySQL中的约束</h2>
+<h3 id="常用约束">2.1 常用约束</h3>
+<p>MySQL主要常用的约束有六种，分别是：</p>
+<p>①<code>PARIMARY KEY</code>：主键约束。约束某一列或者多列数据值不重复且不为空，注意这里的空指的是<code>NULL</code>，不是指空串，以下文中提到的空都是这个意思。</p>
+<p>②<code>FROEIGN KEY</code>：外键约束。针对不同表的列来创建父子列关系约束，约束子列的值取值范围只能在父列已有值的范围下。</p>
+<p>③<code>UNIQUE</code>：唯一约束。约束某一列或多列数据值唯一，但是可以有多个空。</p>
+<p>④<code>NOT NULL</code>：非空约束，对应<code>NULL</code>空约束。对某一列数据是否能为空做约束。</p>
+<p>⑤<code>DEFAULT</code>：默认值约束。对某一列数据做默认值约束，当没有对其赋值时，则使用默认值。</p>
+<p>⑥<code>CHECK</code>：值检查约束，MySQL
+8.0.16+才支持，之前的版本写了<code>CHECK</code>约束不会报错，同样也不会生效，MySQL只会忽略这个约束<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="[Praveenkumar Hulakund](https://dev.mysql.com/blog-archive/?author=Praveenkumar Hulakund),MySQL 8.0.16 Introducing CHECK constraint[DB\OL],[https://dev.mysql.com/blog-archive/mysql-8-0-16-introducing-check-constraint/](https://dev.mysql.com/blog-archive/mysql-8-0-16-introducing-check-constraint/),2019-04-26">[3]</span></a></sup>。</p>
+<p>接下来对这六个约束进行创建演示(为了方便随便建的表，其他的误考虑)，假设某一个班有多个学生，每个学生都已经满18岁，每个学生也都有唯一对应的十位学号，这个班部分学生这学期选修了一门课程（每一门课程也对应一个唯一ID），其余学生则是一门都没有选修，现设计两张表来存储这些学生的信息：</p>
+<p>首先是选修课程表<code>elective_course</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE IF NOT EXISTS elective_course(<br>    #主键约束，课程ID不能重复且不能为空<br>	id INT PRIMARY KEY,<br>    #NOT NULL非空约束，课程名不能为空，CHECK值检查约束，name不能为空串<br>    name VARCHAR(32) NOT NULL CHECK(name!=&#x27;&#x27;)<br>);<br></code></pre></td></tr></table></figure>
+<p>然后是学生表<code>student</code>，包括了学生信息与选课信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE IF NOT EXISTS student(<br>	#主键约束，学生ID不能重复且不能为空<br>    id INT(10) PRIMARY KEY,<br>    #非空约束，学生名不能为空，检查约束，学生名不能为空串，唯一约束，学生名不能重复但可以为空<br>    #注意，以上这种多种约束，是取约束的合集，也就是取最严的那个约束作为最终约束结果【我猜的】<br>    name VARCHAR(32) NOT NULL CHECK(name!=&#x27;&#x27;) UNIQUE,<br>    #检查约束，年龄必须大于等于18<br>    age INT CHECK(age&gt;=18),<br>    #非空约束，课程ID不能为空<br>    course_id INT NOT NULL,<br>    #外键约束，课程表中的`id`是指向学生表`course_id`的外键<br>    FOREIGN KEY(course_id) REFERENCES elective_course(id)<br>);<br></code></pre></td></tr></table></figure>
+<h3 id="列级约束与表级约束">2.2 列级约束与表级约束</h3>
+<p>列级约束：如其名，就是针对某一列的约束；表级约束：如其名，就是针对全表的约束，但是注意这个意思并不是对全表所有的列都有约束，只是设置表约束的时候有个特点，即都是在定义表之后单独设置的表级约束，而列约束一般都是在定义列之后直接可以设置。如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">#列级约束<br>CREATE TABLE person (<br>    . . .<br>    age INT CHECK (age &gt;= 0),<br>    . . .<br>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">#表级约束<br>CREATE TABLE qualified_borrowers (<br>    . . .<br>    account_number INT,<br>    acceptable_collateral BOOLEAN,<br>    . . .<br>    CHECK (account_number IS NOT NULL AND acceptable_collateral = true)<br>);<br></code></pre></td></tr></table></figure>
+<p>所以怎么区分列级约束和表级约束呢？当然不是看约束是在哪定义的，而是结合定义，看约束了多少个列，只约束了一个列那就是列级约束，约束了两个或两个以上就是表级约束。</p>
+<p>所以最后的问题，两者的区别是啥以及在使用这两者的时候需要注意什么？但是我搜了一圈，也没看见几个讨论这两者的区别以及注意事项的。要说区别的话，就是字面意思上的区别，一个只约束一列，一个（可以）约束多列（也就是整个表范围），使用时就是根据实际需求自己选是用列约束还是表约束，其他没啥需要注意的<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="Tom,Difference between Table level and Column level constraints?[DB\OL],[https://asktom.oracle.com/ords/f?p=100:11:0::::P11_QUESTION_ID:2665518700346300293](https://asktom.oracle.com/ords/f?p=100:11:0::::P11_QUESTION_ID:2665518700346300293),2010-07-26">[4]</span></a></sup>。</p>
+<h1 id="参考资料">参考资料</h1>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1"
+class="footnote-text"><span>codeacg,MySQL表级约束和列级约束[DB/OL],<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48759664/article/details/116240961">https://blog.csdn.net/qq_48759664/article/details/116240961</a>,2021-04-28
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2"
+class="footnote-text"><span>菜鸟教程,SQL约束(Constraints)[DB],<a
+target="_blank" rel="noopener" href="https://www.runoob.com/sql/sql-constraints.html">https://www.runoob.com/sql/sql-constraints.html</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:3" class="footnote-text"><span><a
+target="_blank" rel="noopener" href="https://dev.mysql.com/blog-archive/?author=Praveenkumar%20Hulakund">Praveenkumar
+Hulakund</a>,MySQL 8.0.16 Introducing CHECK constraint[DB],<a
+target="_blank" rel="noopener" href="https://dev.mysql.com/blog-archive/mysql-8-0-16-introducing-check-constraint/">https://dev.mysql.com/blog-archive/mysql-8-0-16-introducing-check-constraint/</a>,2019-04-26
+<a href="#fnref:3" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:4" class="footnote-text"><span>Tom,Difference between Table
+level and Column level constraints?[DB],<a
+target="_blank" rel="noopener" href="https://asktom.oracle.com/ords/f?p=100:11:0::::P11_QUESTION_ID:2665518700346300293">https://asktom.oracle.com/ords/f?p=100:11:0::::P11_QUESTION_ID:2665518700346300293</a>,2010-07-26
+<a href="#fnref:4" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
 
                 
               </div>
@@ -382,7 +439,9 @@
       
         <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
       
-        <a href="/tags/%E5%BE%85%E5%AE%8C%E6%88%90/" class="print-no-link">#待完成</a>
+        <a href="/tags/MySQL/" class="print-no-link">#MySQL</a>
+      
+        <a href="/tags/MySQL%E7%BA%A6%E6%9D%9F/" class="print-no-link">#MySQL约束</a>
       
     </div>
   
