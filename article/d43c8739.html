@@ -18,16 +18,16 @@
   <meta name="author" content="putik-666">
   <meta name="keywords" content="putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
-    <meta name="description" content="该文章无摘要">
+    <meta name="description" content="本文主要涉及我在远程连接mysql上遇到的两个问题以及对应的解决办法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="远程连接mysql遇到的问题">
 <meta property="og:url" content="http://blog.brutik.com/article/d43c8739.html">
 <meta property="og:site_name" content="putik-666的博客">
-<meta property="og:description" content="该文章无摘要">
+<meta property="og:description" content="本文主要涉及我在远程连接mysql上遇到的两个问题以及对应的解决办法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blog.brutik.com/img/default/post_example.svg">
 <meta property="article:published_time" content="2024-06-01T14:22:40.000Z">
-<meta property="article:modified_time" content="2024-06-08T16:42:37.555Z">
+<meta property="article:modified_time" content="2024-06-26T05:40:29.794Z">
 <meta property="article:author" content="putik-666">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="mysql">
@@ -245,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          594 字
+          635 字
         
       </span>
     
@@ -256,7 +256,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -317,10 +317,13 @@
 <p>这种就是远程的mysql数据库拒绝了你的连接请求，那就可能是：</p>
 <p>①服务器mysql没有授予其他ip访问的权限，此时登录服务器数据库，手动授予：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 先看看啥情况<br>select host, user from user; <br></code></pre></td></tr></table></figure>
-<p>如过对应的用户的host里面没有包括自己的ip（一般默认是locahost，那肯定不行）那需要改一下，一般改成<code>%</code>，意为允许所有ip访问：</p>
+<p>如过对应的用户的host里面没有包括自己的ip（一般默认是locahost，那肯定不行）那需要改一下，一般改成<code>%</code>，意为允许所有ip访问【改之后记得重启mysql】：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 授予访问权限<br>update user set host=&#x27;%&#x27; where user=&#x27;对应的用户名&#x27;<br></code></pre></td></tr></table></figure>
 <p>②如果是linux服务器，那还要设置一个配置文件：</p>
 <p>一般Mysql默认安装的话那个文件的路径为<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>，然后进<code>mysqld.cnf</code>把<code>bind-address=127.0.0.1</code>注释掉，或者改成<code>0.0.0.0</code>就OK，注意得用root权限才改得了，然后重启mysql就OK。</p>
+<div class="note note-warning">
+            <p>记得改完配置后需要重启mysql服务器，或者你有其他方法使mysql自己更新配置也行</p>
+          </div>
 
                 
               </div>
@@ -378,6 +381,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/article/c6bac89b.html" title="java中的多线程通信方式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java中的多线程通信方式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

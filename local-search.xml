@@ -4,11 +4,108 @@
   
   
   <entry>
+    <title>斐讯N1刷入OpenWrt实现旁路由</title>
+    <link href="/article/e0e5391f.html"/>
+    <url>/article/e0e5391f.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-info">            <p>未完成文章</p>          </div><div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><h1 id="前言">前言</h1><p>最近感觉家里的网实在是很卡，就单纯打开个百度网页每次都会卡至少两秒钟，且卡的频率越来越频繁，最后忍无可忍，遂决定解决一下这个问题。</p><p>最初只是放弃使用光猫而使用路由器拨号上网，并且花重金购买了一个温控散热器尝试给动不动就60度的光猫散一下温，后来觉得反正都要改一下网，不如就直接弄一个软路由搁家里一次到位，主要是想装点代理插件，免得每次手机自己开代理麻烦得很。经过一系列折腾，我决定网上买个最便宜的斐讯N1盒子刷入OpenWrt来达到自己想要的效果，最终便有了这篇文章。</p><p>本篇文章主要记录本人将斐讯N1盒子刷入作者Flippy的OpenWrt系统并当成一个旁路由，最后装上代理插件实现科学上网的过程，本文章也可以作为一个简单的教程使用，为读者提供对斐讯N1盒子刷入OpenWrt并配置OpenClash代理插件的步骤参考。使用本教程实际上不需要任何前备知识，只需要按着步骤来就行。</p><h1 id="正文">正文</h1><h2 id="一目的与前置准备">一、目的与前置准备</h2><h3 id="目的">1.1 目的</h3><p>本次我的目的只是为了能有一个第三方设备可以同时为多台终端代理网络，实现科学上网，当然这个设备能够24小时运行且功耗很低那就再好不过了。</p><h3 id="前置准备">1.2 前置准备</h3><p>经过搜索查询，发现有一个叫“软路由”东西可以达成以上目的。</p><p>所谓“软路由”就是通过软件来模拟路由，实现路由器的所有功能<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><spanclass="hint--top hint--rounded"aria-label="百度百科,软路由[DB/OL],[https://baike.baidu.com/item/%E8%BD%AF%E8%B7%AF%E7%94%B1/4824918](https://baike.baidu.com/item/%E8%BD%AF%E8%B7%AF%E7%94%B1/4824918)">[1]</span></a></sup>，与之相对的就是大部分人都在使用的“硬路由”，“硬路由”主要通过特定的硬件实现相应功能。所以很显然，一般在实现同等功能、成本相同的前提下硬路由因为直接借助特定硬件设备，实际上是会比软路由性能更好的，说白话就是硬路由性价比更高。</p><p>但是为啥还要使用软路由呢？六个字：可以个性定制。如果是一般硬路由，有些能实现的功能早就写死了，你真要改只能改硬件，那成本就太高了，但是软件不一样，想怎么改就怎么改，就像是安卓手机上装个抖音一样，不想看了卸载了就行，然后还可以装一个快手来看，甚至你可以同时装抖音和快手，两种短视频一起刷【直接原地升天】，可以说是非常灵活，软路由便是如此，所以实现软路由实际就是在一个设备上装一个<strong>软路由系统</strong>。</p><p>而本次我是采用一个斐讯N1盒子来刷入一个软路由系统，在此之前需要准备这些东西：</p><ul><li><strong>一个斐讯N1盒子</strong>，主设备。</li><li><strong>一台电脑</strong>，用来制作系统启动盘，同时连接N1盒子刷入一些系统引导文件，没电脑也可以直接网吧战神。</li><li><strong>一个至少2G的U盘</strong>，用于当系统启动盘。</li><li><strong>一根双公USB数据线</strong>，也就是两个头都是大口的USB线，用来连接。</li><li><strong>一根HDMI线</strong>，用来连接N1盒子，输出N1盒子的画面。</li><li><strong>一个屏幕显示设备</strong>，使用HDMI线连接N1盒子，显示N1盒子的输出画面，一般用电视机就行。</li><li><strong>一个鼠标</strong>，用来插N1盒子上操作N1盒子。</li><li><strong>一根网线</strong>，插N1盒子联网。</li></ul><p>斐讯N1盒子是2018年发布的产品，现在看来也是究极老古董了，但是我只是想刷个OpenWrt实现科学上网的功能，所以用斐讯N1那也是绰绰有余了（OpenWrt系统撑死1G出头，斐讯N1配置2G+8G，处理器4核AmlogicS905DCortex-A53，功耗2w<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><spanclass="hint--top hint--rounded"aria-label="spadger,N1运行功耗测试[DB/OL],(https://www.right.com.cn/forum/thread-495336-1-1.html)[https://www.right.com.cn/forum/thread-495336-1-1.html]">[2]</span></a></sup>，轻松带动OP，遥遥领先）。</p><p>最后汇总一下需要下载的资源的地址，读者可以先不用下载，文章后续都会给出，而且现在有可能就算你下了也不知道是用来干嘛的，在这里汇总只是方便读完后查找相应的资源：</p><ul><li></li></ul><h2 id="二n1刷机">二、N1刷机</h2><p>N1这个盒子很出名，主要是可以随便刷，变砖了也可以救。现在网上N1的教程也是一搜一大把，相应的适配系统直到现在2024了也是在一直更新，对小白来说那是相当友好。</p><h3 id="制作系统启动盘">2.1 制作系统启动盘</h3><p>对N1刷机之前首先得做好系统盘，这里可以使用免费开源的<code>balena-etcher</code>，操作方便且免费，不过我用的时候好像出了点BUG，只能回退到<code>1.8.11</code>版本才能用，下载地址<ahref="https://github.com/balena-io/etcher/releases/tag/v1.18.11">balena-etcher-v1.18.11</a>，windows用户下载<ahref="https://github.com/balena-io/etcher/releases/download/v1.18.11/balenaEtcher-1.18.11-win.zip">balenaEtcher-1.18.11-win.zip</a>即可，下载完解压进入文件夹，此时插入准备好的U盘，点击exe直接启动：</p><figure><imgsrc="../img/斐讯N1刷入OpenWrt实现软路由/image-20240723233255345.png"alt="进入解压文件夹启动程序" /><figcaption aria-hidden="true">进入解压文件夹启动程序</figcaption></figure><p>启动后软件会自动识别出你的U盘（我这里用的是铠侠的U盘），只需依次选择从文件烧录-&gt;现在烧录即可开始烧录，等待一段时间后便完成烧录。</p><figure><imgsrc="../img/斐讯N1刷入OpenWrt实现软路由/image-20240723233750336.png"alt="选择从文件烧录后选择现在烧录开始烧录" /><figcaptionaria-hidden="true">选择从文件烧录后选择现在烧录开始烧录</figcaption></figure><h3 id="n1降级">2.2 N1降级</h3><p>如果你的N1固件版本高于V2.22，那就需要先降级再刷机，要不然刷不了。</p><p>先使用HDMI线连上显示器和N1盒子，同时将鼠标连上N1盒子，插上N1盒子的电源，</p><h1 id="附录">附录</h1><h3 id="附录1">附录1</h3><h3 id="附录2">附录2</h3><h1 id="参考资料">参考资料</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>百度百科,软路由[DB/OL],<ahref="https://baike.baidu.com/item/%E8%BD%AF%E8%B7%AF%E7%94%B1/4824918">https://baike.baidu.com/item/%E8%BD%AF%E8%B7%AF%E7%94%B1/4824918</a><a href="#fnref:1" rev="footnote" class="footnote-backref">↩︎</a></span></span></li><li><span id="fn:2"class="footnote-text"><span>spadger,N1运行功耗测试[DB/OL],(https://www.right.com.cn/forum/thread-495336-1-1.html)[https://www.right.com.cn/forum/thread-495336-1-1.html]<a href="#fnref:2" rev="footnote" class="footnote-backref">↩︎</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>就算计杂项</category>
+      
+      <category>其他</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+      <tag>待完成</tag>
+      
+      <tag>软路由</tag>
+      
+      <tag>刷机</tag>
+      
+      <tag>斐讯N1</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>为什么大部分人都应主动学习计算机专业知识</title>
+    <link href="/article/3dde4174.html"/>
+    <url>/article/3dde4174.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-info">            <p>未完成文章</p>          </div><div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><p>刚刚在哔站上看到了一个视频，是UP主温峻岩的<ahref="https://www.bilibili.com/video/BV1H7421T77z/?spm_id_from=333.788.top_right_bar_window_history.content.click&amp;vd_source=61a94b0c353810f2672fb8cfda78ef1b">《网络和短视频是如何毁灭儿童的？——50分钟读懂<童年的消逝>》</a>，这个视频虽然主要目的是想讲网络和短视频的危害，但是在该视频的第三部分有说到当今学校的一个重要作用就是：筛选与隔离，筛选就是知识的筛选，隔离就是环境的隔离，两者结合可以让学生在隔离的环境中安心学习经过筛选的知识，从而高效地吸收并理解属于人类社会中的一部分“精华”知识，快速地构建起一套完整有用的知识体系。我觉得这个说法很有道理，因为结合我自己的感受也确实是如此。不过由此我突然对于为什么应当要学习计算机基础知识、甚至专业知识有了更深一点的见解，因为我一直都认为计算机基础知识应当是每个现代人必须需要掌握的技能之一，原因自不必多说，但是随着计算机互联网的迅猛发展，现在一些较“专业”的计算机知识的学习门槛也几乎降到了零，所以我也认为这些知识也是每一个现代人需要自觉掌握的，而接下来我会谈谈我对其中的原因理解。</p><p>实际上现在的人类社会信息的主要生产地毫无疑问是互联网，引用一段较老的分析报告：“IDC预计，到 2025 年，属于数据分析的全球数据总量将增长至原来的 50 倍， 达到5.2ZB；而认知系统“触及”的分析数据总量将增长至原来的 100 倍，达到1.4ZB！”，这仅仅是2017年初的预测，而5.2ZB是什么概念，</p><p>知识搜集与整理</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>杂想</category>
+      
+      <category>其他</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+      <tag>待完成</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>java中的多线程通信方式</title>
+    <link href="/article/c6bac89b.html"/>
+    <url>/article/c6bac89b.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-info">            <p>未完成文章</p>          </div><div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><div class="note note-warning">            <p>转载或微调文章，源地址：[在此填入源地址]</p>          </div><h1 id="前言">前言</h1><p>多线程在java的学习路上是必经之路，java的一大特点也是支持多线程(感觉现在主流的语言基本上都支持多线程了)，这样就不用用户自己去调用操作系统的多线程功能来实现多线程程序。不过因为自己平时碰到需求很弱鸡，很少用到java的多线程，最近闲来没事想优化一下之前写的一个安卓的APP，结果就直接卡在了第一步的需求实现：在APP处于加载欢迎页面的过程中，同时检测APP是否有更新，如果有更新就在用户进入主页后弹出对话框等待用户确认是否更新，如果没有更新就啥也不干。由于直接代码写太乱了，各种线程乱成一麻绞在一起，我理了半天也没理清怎么把这个检测更新的线程加上去，然后想着重写算了，但是一时竟无从下键盘——为啥？因为我连java有几种实现多线程的方式都忘了。</p><p>今天主要就是帮助自己再理清一次java的多线程使用，以前没啥写笔记的习惯，学了就忘了，今天准备写点笔记记下来。本文章主要会从线程的概念入手，随后介绍java多线程的实现方式与实战案例，最后再到java多线程的通信方式，顺便实现上面说的那个检测更新的需求。</p><h1 id="正文">正文</h1><h2 id="进程与线程">1.进程与线程</h2><p>在了解“进程”与“线程”之前，需要注意不管是“进程”还是“线程”，它们都是一个中文词语罢了，对于一些初学者来说很容易陷入到对这些词语本身的理解之中，但是要明白这些词语不过就是一个用来描述一种具体或者抽象的东西的符号，它们只是一个符号，仅此而已。就像是“大树”这个词语，不要去试图理解“大树”这个符号是什么东西，而是要理解平时使用“大树”这个符号时，我们实际是想要描述一个什么样的东西：例如一颗很粗壮的树。对于“进程”或者“线程”，实际上这个两个词语对于不了解的初学者来说是比较抽象的，一听到这两个词语就不知道这是啥意思，所以不要试图去理解这些符号本身是什么东西，要去理解这些符号本身想要表达的东西，这样以后一看到“进程”就像一看到“树”这个字一样，脑海里自然而然就出现了它背后所代表的东西。</p><h2 id="什么是进程">1.1 什么是进程</h2><p>虽然进程是计算机里面专属的词语，它用来描述一个运行的程序，但是实际上"进程"背后所代表的思想是符合现实中许多需要处理的事务特点的，所以接下来就从现实例子出发的同时与计算机结合来介绍这个概念。</p><p>假设有这么一个场景：目前你手中有一根吸管，面前有三杯奶茶，一杯是酸的，一杯是甜的，还有一杯是辣的（别问我为什么会有辣的奶茶存在🤺），假设这个时候你只能用那一根吸管最多同时喝一杯奶茶。</p><p>CPU对应吸管，一颗CPU同时只能处理一个事务，一根吸管同时只能吸一种奶茶</p><p>进程对应一整个想要喝的这件事</p><p>线程对应喝什么奶茶这件事</p><h2 id="什么是线程">1.2 什么是线程</h2><h2 id="进程与线程的关系与意义">1.3 进程与线程的关系与意义</h2><h2 id="现代操作系统中的进程与线程">1.4 现代操作系统中的进程与线程</h2><h2 id="java的多线程">2.java的多线程</h2><p>多种实现方式与各个方式的区别</p><h3 id="thread">2.1 thread</h3><h3 id="section">...</h3><h2 id="java的多线程通信">3.java的多线程通信</h2><h3 id="section-1">...</h3><h1 id="附录">附录</h1><h3 id="附录1">附录1</h3><h3 id="附录2">附录2</h3><h1 id="参考文献">参考文献</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>编程实践</category>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+      <tag>java</tag>
+      
+      <tag>java多线程</tag>
+      
+      <tag>待完成</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>远程连接mysql遇到的问题</title>
     <link href="/article/d43c8739.html"/>
     <url>/article/d43c8739.html</url>
     
-    <content type="html"><![CDATA[<div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><h1 id="前言">前言</h1><p>今天心血来潮，想着自己那没前途的工作就感到十分绝望，可是看如今java大势已去，加上自己0经验，早就是属于凉透了那一批“计算机科班”，不过自己还是想挣扎一下，又捡起这该死的java，且狠狠地花了199￥买了个云服务器，准备完善之前学的API项目。</p><p>显然，这边文章能出来，就是说明我遇到了问题。我本来想远程连接服务器那边的mysql，但是死活连不上，然后呢就是排查问题，也花了我好几个小时才搞定，这能忍？必须把这个问题给记录下来！</p><p>本文主要涉及我在远程连接mysql上遇到的两个问题以及对应的解决办法。</p><h1 id="正文">正文</h1><h2 id="连接超时">1.连接超时</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Failed<br>DBMS: MySQL (ver. <span class="hljs-number">8.0</span><span class="hljs-number">.36</span>-0ubuntu0<span class="hljs-number">.22</span><span class="hljs-number">.04</span><span class="hljs-number">.1</span>)  Case sensitivity: plain=exact, delimited=exact Driver: MySQL Connector/J (ver. mysql-connector-j-<span class="hljs-number">8.2</span><span class="hljs-number">.0</span> (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c), JDBC4<span class="hljs-number">.2</span>)<br><br>Connection timed out: connect.<br></code></pre></td></tr></table></figure><p>遇到这个，可能是网络被挡了：</p><p>①检查自己网络是否通畅</p><p>②检查自己远程连接的ip或者域名是否正确</p><p>③以上均无误，则最大可能是自己服务器的防火墙开了，把端口给挡了，需要打开端口访问</p><h2 id="连接被拒绝">2.连接被拒绝</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Failed<br>DBMS: MySQL (ver. <span class="hljs-number">8.0</span><span class="hljs-number">.36</span>-0ubuntu0<span class="hljs-number">.22</span><span class="hljs-number">.04</span><span class="hljs-number">.1</span>)  Case sensitivity: plain=exact, delimited=exact Driver: MySQL Connector/J (ver. mysql-connector-j-<span class="hljs-number">8.2</span><span class="hljs-number">.0</span> (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c), JDBC4<span class="hljs-number">.2</span>)<br><br>Connection refused: connect. <br></code></pre></td></tr></table></figure><p>这种就是远程的mysql数据库拒绝了你的连接请求，那就可能是：</p><p>①服务器mysql没有授予其他ip访问的权限，此时登录服务器数据库，手动授予：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 先看看啥情况<br>select host, user from user; <br></code></pre></td></tr></table></figure><p>如过对应的用户的host里面没有包括自己的ip（一般默认是locahost，那肯定不行）那需要改一下，一般改成<code>%</code>，意为允许所有ip访问：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 授予访问权限<br>update user set host=&#x27;%&#x27; where user=&#x27;对应的用户名&#x27;<br></code></pre></td></tr></table></figure><p>②如果是linux服务器，那还要设置一个配置文件：</p><p>一般Mysql默认安装的话那个文件的路径为<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>，然后进<code>mysqld.cnf</code>把<code>bind-address=127.0.0.1</code>注释掉，或者改成<code>0.0.0.0</code>就OK，注意得用root权限才改得了，然后重启mysql就OK。</p>]]></content>
+    <content type="html"><![CDATA[<div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><h1 id="前言">前言</h1><p>今天心血来潮，想着自己那没前途的工作就感到十分绝望，可是看如今java大势已去，加上自己0经验，早就是属于凉透了那一批“计算机科班”，不过自己还是想挣扎一下，又捡起这该死的java，且狠狠地花了199￥买了个云服务器，准备完善之前学的API项目。</p><p>显然，这边文章能出来，就是说明我遇到了问题。我本来想远程连接服务器那边的mysql，但是死活连不上，然后呢就是排查问题，也花了我好几个小时才搞定，这能忍？必须把这个问题给记录下来！</p><p>本文主要涉及我在远程连接mysql上遇到的两个问题以及对应的解决办法。</p><h1 id="正文">正文</h1><h2 id="连接超时">1.连接超时</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Failed<br>DBMS: MySQL (ver. <span class="hljs-number">8.0</span><span class="hljs-number">.36</span>-0ubuntu0<span class="hljs-number">.22</span><span class="hljs-number">.04</span><span class="hljs-number">.1</span>)  Case sensitivity: plain=exact, delimited=exact Driver: MySQL Connector/J (ver. mysql-connector-j-<span class="hljs-number">8.2</span><span class="hljs-number">.0</span> (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c), JDBC4<span class="hljs-number">.2</span>)<br><br>Connection timed out: connect.<br></code></pre></td></tr></table></figure><p>遇到这个，可能是网络被挡了：</p><p>①检查自己网络是否通畅</p><p>②检查自己远程连接的ip或者域名是否正确</p><p>③以上均无误，则最大可能是自己服务器的防火墙开了，把端口给挡了，需要打开端口访问</p><h2 id="连接被拒绝">2.连接被拒绝</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Failed<br>DBMS: MySQL (ver. <span class="hljs-number">8.0</span><span class="hljs-number">.36</span>-0ubuntu0<span class="hljs-number">.22</span><span class="hljs-number">.04</span><span class="hljs-number">.1</span>)  Case sensitivity: plain=exact, delimited=exact Driver: MySQL Connector/J (ver. mysql-connector-j-<span class="hljs-number">8.2</span><span class="hljs-number">.0</span> (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c), JDBC4<span class="hljs-number">.2</span>)<br><br>Connection refused: connect. <br></code></pre></td></tr></table></figure><p>这种就是远程的mysql数据库拒绝了你的连接请求，那就可能是：</p><p>①服务器mysql没有授予其他ip访问的权限，此时登录服务器数据库，手动授予：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 先看看啥情况<br>select host, user from user; <br></code></pre></td></tr></table></figure><p>如过对应的用户的host里面没有包括自己的ip（一般默认是locahost，那肯定不行）那需要改一下，一般改成<code>%</code>，意为允许所有ip访问【改之后记得重启mysql】：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 授予访问权限<br>update user set host=&#x27;%&#x27; where user=&#x27;对应的用户名&#x27;<br></code></pre></td></tr></table></figure><p>②如果是linux服务器，那还要设置一个配置文件：</p><p>一般Mysql默认安装的话那个文件的路径为<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>，然后进<code>mysqld.cnf</code>把<code>bind-address=127.0.0.1</code>注释掉，或者改成<code>0.0.0.0</code>就OK，注意得用root权限才改得了，然后重启mysql就OK。</p><div class="note note-warning">            <p>记得改完配置后需要重启mysql服务器，或者你有其他方法使mysql自己更新配置也行</p>          </div>]]></content>
     
     
     <categories>
@@ -532,6 +629,8 @@
       
       <tag>原创</tag>
       
+      <tag>待完成</tag>
+      
       <tag>免费</tag>
       
       <tag>博客搭建</tag>
@@ -539,8 +638,6 @@
       <tag>Gitee Pages</tag>
       
       <tag>教程</tag>
-      
-      <tag>待完成</tag>
       
     </tags>
     
@@ -689,9 +786,9 @@
     
     <tags>
       
-      <tag>C</tag>
-      
       <tag>原创</tag>
+      
+      <tag>C</tag>
       
       <tag>编译报错</tag>
       
