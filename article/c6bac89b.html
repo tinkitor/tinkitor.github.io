@@ -21,11 +21,11 @@
     <meta name="description" content="本文章主要从线程的概念入手，随后介绍java多线程的实现方式与实战案例，最后介绍java多线程的几种通信方式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java中的多线程通信方式">
-<meta property="og:url" content="http://blog.brutik.com/article/c6bac89b.html">
+<meta property="og:url" content="https://putik.site/article/c6bac89b.html">
 <meta property="og:site_name" content="putik-666的博客">
 <meta property="og:description" content="本文章主要从线程的概念入手，随后介绍java多线程的实现方式与实战案例，最后介绍java多线程的几种通信方式。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://blog.brutik.com/img/java%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/OIP-C.jpeg">
+<meta property="og:image" content="https://putik.site/img/java%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/OIP-C.jpeg">
 <meta property="article:published_time" content="2024-06-10T12:52:26.000Z">
 <meta property="article:modified_time" content="2024-06-17T14:10:05.010Z">
 <meta property="article:author" content="putik-666">
@@ -34,7 +34,7 @@
 <meta property="article:tag" content="java多线程">
 <meta property="article:tag" content="待完成">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://blog.brutik.com/img/java%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/OIP-C.jpeg">
+<meta name="twitter:image" content="https://putik.site/img/java%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/OIP-C.jpeg">
   
   
   
@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.brutik.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"putik.site","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;

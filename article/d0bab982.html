@@ -21,11 +21,11 @@
     <meta name="description" content="今天在写安卓的时候，需要用java代码去动态的改变一个按钮的宽高，但是意外地发现实际呈现出来的宽高只有高是被设置成功的，而按钮的宽度总是比想设置的宽一些，找了好一会儿才发现了问题所在，在这里记录一下这个问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中控件实际呈现宽高与Java中动态设置的宽高不一致">
-<meta property="og:url" content="http://blog.brutik.com/article/d0bab982.html">
+<meta property="og:url" content="https://putik.site/article/d0bab982.html">
 <meta property="og:site_name" content="putik-666的博客">
 <meta property="og:description" content="今天在写安卓的时候，需要用java代码去动态的改变一个按钮的宽高，但是意外地发现实际呈现出来的宽高只有高是被设置成功的，而按钮的宽度总是比想设置的宽一些，找了好一会儿才发现了问题所在，在这里记录一下这个问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://blog.brutik.com/img/default/post_example.svg">
+<meta property="og:image" content="https://putik.site/img/default/post_example.svg">
 <meta property="article:published_time" content="2023-07-29T08:02:47.000Z">
 <meta property="article:modified_time" content="2024-02-10T15:34:26.871Z">
 <meta property="article:author" content="putik-666">
@@ -34,7 +34,7 @@
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="设置控件宽高">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://blog.brutik.com/img/default/post_example.svg">
+<meta name="twitter:image" content="https://putik.site/img/default/post_example.svg">
   
   
   
@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.brutik.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"putik.site","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
