@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://putik.site/img/%E8%B4%9D%E8%B5%9B%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B7%A5%E7%A8%8B%E8%BF%90%E7%94%A8/bezier_curve.png">
 <meta property="article:published_time" content="2024-02-05T14:17:31.000Z">
-<meta property="article:modified_time" content="2024-06-01T12:53:02.904Z">
+<meta property="article:modified_time" content="2024-09-15T13:00:23.771Z">
 <meta property="article:author" content="putik-666">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="贝塞尔曲线">
@@ -311,21 +311,21 @@
           </div>
 <h1 id="前言">前言</h1>
 <p>之前在学习安卓开发涉及到图形绘制时，发现某个类提供了一个方法可以用来绘制曲线，后来那个方法绘制的曲线就是贝赛尔曲线。当时听着这个名字感觉很牛X的样子，然后又进一步了解了到底什么是贝塞尔曲线，了解完后我直呼卧槽。</p>
-<p>所以本文诞生，就是单纯想写一篇贝塞尔曲线的介绍文。本文将主要介绍贝塞尔曲线的发展历史、数学原理，最后会给出几个贝塞尔曲线的相关应用示例。</p>
+<p>所以本文诞生，就是单纯想写一篇贝塞尔曲线的介绍文。本文将简短地介绍贝塞尔曲线的发展历史、数学原理，最后会给出几个贝塞尔曲线的相关应用示例。</p>
 <h1 id="正文">正文</h1>
-<h2 id="贝赛尔曲线简述">1. 贝赛尔曲线简述</h2>
+<h2 id="一.-贝赛尔曲线简述">一. 贝赛尔曲线简述</h2>
 <p>贝塞尔曲线（英语：Bézier
 curve）最初由保尔·德·卡斯特里奥于1959年运用德卡斯特里奥算法所开发，他用稳定数值的方法求出了贝塞尔曲线。但贝塞尔曲线于1962年才由法国工程师皮埃尔·贝塞尔（Pierre
 Bézier）所广泛发表，他借用贝塞尔曲线完成了汽车的主体设计<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="维基百科,贝塞尔曲线[DB/OL],[https://zh.wikipedia.org/zh-cn/貝茲曲線](https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A)">[1]</span></a></sup>。</p>
+aria-label="维基百科,贝塞尔曲线\\[EB/OL\\],[https://zh.wikipedia.org/zh-cn/貝茲曲線](https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A)">[1]</span></a></sup>。</p>
 <p><img src="../img/贝赛尔曲线的数学原理与工程运用/bezier_curve.png" srcset="/img/loading.gif" lazyload alt="贝赛尔曲线示例"  /></p>
 <p>贝塞尔曲线有着很多特殊的性质，其如今已是计算机图形学及相关领域中常使用的重要参数曲线，在诸如计算机字体设计、动画设计、机器人运动平滑控制中都有运用到贝赛尔曲线。贝塞尔曲线可以组合起来形成贝塞尔样条曲线，或者推广到更高维度以形成贝塞尔曲面。</p>
 <p><img src="../img/贝赛尔曲线的数学原理与工程运用/bezier_surfaces.png" srcset="/img/loading.gif" lazyload alt="贝塞尔曲面示例"  /></p>
 <p>这里介绍两个网站，一个是<a
 target="_blank" rel="noopener" href="https://www.jasondavies.com/animated-bezier/">贝赛尔曲线动画</a>，从该网站给出了几个贝赛尔曲线动态图演示；另一个是<a
 target="_blank" rel="noopener" href="https://www.desmos.com/calculator/cahqdxeshd?lang=zh-CN">贝赛尔曲线demo</a>，在该网站可以手动改变端点来感受贝赛尔曲线的变化。</p>
-<h2 id="数学公式简述与推导">2. 数学公式简述与推导</h2>
+<h2 id="二.-数学公式简述与推导">二. 数学公式简述与推导</h2>
 <p>贝赛尔曲线的通式实际上是一个与二项展开式有关的一个多项式，本文仅在通项的推导上做出简单的演示，对于贝塞尔曲线的其他性质不做讨论。下面将从一次开始逐步推导出N次的贝塞尔曲线。</p>
 <h3 id="一次贝赛尔曲线">2.1 一次贝赛尔曲线</h3>
 <p>一次贝塞尔曲线又可以叫做线性贝塞尔曲线，因为一次的贝塞尔曲线实际上就是两个点的连线，即一条直线段，如图：</p>
@@ -412,28 +412,28 @@ B_{3}(t)=P_{0}(1-t)^3+3P_{1}t(1-t)^2+3P_{2}t^2(1-t)+P_{3}t^3,t\in[0,1]
 <h3 id="n次贝塞尔曲线">2.4 N次贝塞尔曲线</h3>
 <p>由以上可得知，实际上一次贝赛尔曲线可以通过约束升阶为多次贝赛尔曲线，当然多次贝塞尔曲线也可以不停降次至一次贝塞尔曲线。同时其与点坐标无关的通式实际上是一个二项展开式<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="FrancisZhao,曲线篇: 贝塞尔曲线[DB/OL]，[https://zhuanlan.zhihu.com/p/136647181](https://zhuanlan.zhihu.com/p/136647181)，2020-04-28 ↩">[2]</span></a></sup>，例如N次贝赛尔曲线对应<code>[t+(1-t)]ⁿ</code>。故其通项可以推导为：</p>
+aria-label="FrancisZhao,曲线篇: 贝塞尔曲线\\[EB/OL\\]\(2020-04-28)，[https://zhuanlan.zhihu.com/p/136647181](https://zhuanlan.zhihu.com/p/136647181) ↩">[2]</span></a></sup>，例如N次贝赛尔曲线对应<code>[t+(1-t)]ⁿ</code>。故其通项可以推导为：</p>
 <p>给定多个定点P₀、P₁、P₂、P₃、...、Pn，则其贝赛尔曲线为： <span
 class="math display">\[
 B_{n}(t)=\sum^{n}_{i=0}C^{i}_{n}P_{i}(1-t)^{n-i}t^{i},t\in[0,1]
 \]</span></p>
-<h2 id="相关应用示例介绍">3. 相关应用示例介绍</h2>
-<p>实际上，许多绘图工具都会用贝赛尔曲线，例如PS里拉伸图片时就是用的贝赛尔曲线来约束图片变化路径。这部分感觉没什么讲的必要，读者自己搜能够了解到更多的信息。</p>
+<h2 id="三.-相关应用示例介绍">三. 相关应用示例介绍</h2>
+<p>实际上，许多绘图工具都会用贝赛尔曲线，例如PS里拉伸图片时就是用的贝赛尔曲线来约束图片变化路径。本来准备演示一下PS中的贝塞尔，但是失败了。完。</p>
 <h1 id="参考文献">参考文献</h1>
 <section class="footnotes">
 <div class="footnote-list">
 <ol>
 <li>
 <span id="fn:1"
-class="footnote-text"><span>维基百科,贝塞尔曲线[DB/OL],<a
+class="footnote-text"><span>维基百科,贝塞尔曲线[EB/OL],<a
 target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A">https://zh.wikipedia.org/zh-cn/貝茲曲線</a>
 <a href="#fnref:1" rev="footnote" class="footnote-backref">
 ↩︎</a></span></span>
 </li>
 <li>
 <span id="fn:2" class="footnote-text"><span>FrancisZhao,曲线篇:
-贝塞尔曲线[DB/OL]，<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136647181">https://zhuanlan.zhihu.com/p/136647181</a>，2020-04-28
+贝塞尔曲线[EB/OL](2020-04-28)，<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136647181">https://zhuanlan.zhihu.com/p/136647181</a>
 ↩︎ <a href="#fnref:2" rev="footnote" class="footnote-backref">
 ↩︎</a></span></span>
 </li>
