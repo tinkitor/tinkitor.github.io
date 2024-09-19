@@ -8,7 +8,7 @@
     <link href="/article/a0a3227b.html"/>
     <url>/article/a0a3227b.html</url>
     
-    <content type="html"><![CDATA[<div class="note note-warning">            <p>转载或微调文章，源地址：[在此填入源地址]</p>          </div><p>自从某一次系统更新后？还是不知道什么时候，反正以前都没这个问题，连上WIFI后，WIFI图标上有一个感叹号的标志，并且网络速率卡死在了54Mbps上，怎么都上不去。</p><p>后来登录路由器后台，发现WIFI的加密方式居然还有一个WPA，如图：</p><figure><imgsrc="../img/windows提示此WLAN使用较旧的安全标准提示的问题/image-20240916141722279.png"alt="WIFI使用了混合加密方式" /><figcaption aria-hidden="true">WIFI使用了混合加密方式</figcaption></figure><p>网上一查，说是WPA、WPA2都有很大的安全问题且协议老旧，建议使用最新的WPA3，但是看设置发现我的路由器不支持WPA3，所以只能把WPA/WPA2混合改成单独WPA2，重启路由器，发现感叹号标志消失了，无语。</p><p><strong>总结解决办法</strong>：登录路由器后台，将WIFI加密方式改成WPA2或者WPA3，抛弃WPA的加密方式。</p>]]></content>
+    <content type="html"><![CDATA[<div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><p>自从某一次系统更新后？还是不知道什么时候，反正以前都没这个问题，连上WIFI后，WIFI图标上有一个感叹号的标志，并且网络速率卡死在了54Mbps上，怎么都上不去。</p><p>后来登录路由器后台，发现WIFI的加密方式居然还有一个WPA，如图：</p><figure><imgsrc="../img/windows提示此WLAN使用较旧的安全标准提示的问题/image-20240916141722279.png"alt="WIFI使用了混合加密方式" /><figcaption aria-hidden="true">WIFI使用了混合加密方式</figcaption></figure><p>网上一查，说是WPA、WPA2都有很大的安全问题且协议老旧，建议使用最新的WPA3，但是看设置发现我的路由器不支持WPA3，所以只能把WPA/WPA2混合改成单独WPA2，重启路由器，发现感叹号标志消失了，无语。</p><p><strong>总结解决办法</strong>：登录路由器后台，将WIFI加密方式改成WPA2或者WPA3，抛弃WPA的加密方式。</p>]]></content>
     
     
     <categories>
