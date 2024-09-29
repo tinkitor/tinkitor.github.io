@@ -5,7 +5,7 @@
 
 
 
-<head><!-- hexo injector head_begin start --><progress id="content_progress" value="0"></progress><meta name="baidu-site-verification" content="codeva-XYlDuX6TRA" /><meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8" /><!-- hexo injector head_begin end -->
+<head><!-- hexo injector head_begin start --><progress id="content_progress" value="0"></progress><meta name="baidu-site-verification" content="codeva-XYlDuX6TRA" /><meta name="msvalidate.01" content="2E1E62EB08B93864514FB4B4261CF5E9" /><!-- hexo injector head_begin end -->
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/default/write_blogs.svg">
   <link rel="icon" href="/img/default/write_blogs.svg">
@@ -416,7 +416,7 @@ alt="进入cmd" />
 <figcaption aria-hidden="true">进入cmd</figcaption>
 </figure>
 <p>输入以下命令：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-r86xvzm13tml7k"></i><span>SHELL</span><div class="collapse show" id="collapse-r86xvzm13tml7k"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">adb version<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-45mqf9m18zzwd7"></i><span>SHELL</span><div class="collapse show" id="collapse-45mqf9m18zzwd7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">adb version<br></code></pre></td></tr></table></div></figure>
 <p>如果显示如下版本信息，就OK了：</p>
 <figure>
 <img
@@ -426,9 +426,9 @@ alt="显示adb版本信息" />
 </figure>
 <p>如果失败了，包括在2.2.3与2.2.4里面的步骤出现了任何问题，就回退到这一步，按照“安装办法”里面说的将四个核心ADB文件复制到C盘的<code>system32</code>文件夹里，之后还是一模一样的操作，不过不建议这样做。到这里就把ADB连接工具准备好了，接下来就准备ADB连接。</p>
 <p>还是在上述cmd黑框里输入以下命令，使用adb连接到盒子：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-30dfzbm13tml7k"></i><span>SHELL</span><div class="collapse show" id="collapse-30dfzbm13tml7k"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">adb connect 192.168.31.74<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-ows1bnm18zzwd7"></i><span>SHELL</span><div class="collapse show" id="collapse-ows1bnm18zzwd7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">adb connect 192.168.31.74<br></code></pre></td></tr></table></div></figure>
 <p>注意把后面的ip地址替换成自己盒子的ip地址，这里的ip地址就是上面提到的<code>10.10.10.120</code>，不过我这里变了一下变成了<code>192.168.31.74</code>。连接成功后可以输入以下命令：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-9eglutm13tml7k"></i><span>SHELL</span><div class="collapse show" id="collapse-9eglutm13tml7k"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">adb devices<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-ybcrmem18zzwd7"></i><span>SHELL</span><div class="collapse show" id="collapse-ybcrmem18zzwd7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">adb devices<br></code></pre></td></tr></table></div></figure>
 <p>该命令可以查看adb连接的设备信息，如图：</p>
 <figure>
 <img
@@ -452,9 +452,9 @@ aria-hidden="true">adb成功连接到盒子后显示盒子的ip</figcaption>
 <p>完成ADB连接后进入下一步开始刷入系统引导文件，但是注意cmd窗口不要关。</p>
 <h4 id="刷入引导文件与覆盖文件">2.2.4 刷入引导文件与覆盖文件</h4>
 <p>首先输入以下命令进入fastboot：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-ghjsu3m13tml7k"></i><span>SHELL</span><div class="collapse show" id="collapse-ghjsu3m13tml7k"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">adb shell reboot fastboot<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-qabe22m18zzwd7"></i><span>SHELL</span><div class="collapse show" id="collapse-qabe22m18zzwd7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">adb shell reboot fastboot<br></code></pre></td></tr></table></div></figure>
 <p>注意这个时候有可能界面会卡住，导致你不能继续接下来的输入，不过不用担心，最小化这个cmd窗口，再从当前解压后的文件夹的地址栏输入<code>cmd</code>再开一个cmd窗口，此时先检查是不是进入了fastboot，输入以下命令查看设备信息：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-img4jwm13tml7k"></i><span>SHELL</span><div class="collapse show" id="collapse-img4jwm13tml7k"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">fastboot devices -l<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-djwo83m18zzwd7"></i><span>SHELL</span><div class="collapse show" id="collapse-djwo83m18zzwd7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">fastboot devices -l<br></code></pre></td></tr></table></div></figure>
 <p>如果成功进入会显示如图信息：</p>
 <figure>
 <img
@@ -463,9 +463,9 @@ alt="成功进入fastboot" />
 <figcaption aria-hidden="true">成功进入fastboot</figcaption>
 </figure>
 <p>随后开始刷入bootloader(注意从这一步开始一定要确保你的双公USB线是连上的，而且也不要再拔了)：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-hctk85m13tml7k"></i><span>SHELL</span><div class="collapse show" id="collapse-hctk85m13tml7k"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">fastboot flash bootloader bootloader.img<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-ypolbym18zzwd7"></i><span>SHELL</span><div class="collapse show" id="collapse-ypolbym18zzwd7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">fastboot flash bootloader bootloader.img<br></code></pre></td></tr></table></div></figure>
 <p>随后一次输入以下命令：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-1f7b1bm13tml7k"></i><span>SHELL</span><div class="collapse show" id="collapse-1f7b1bm13tml7k"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">刷入 boot</span><br>fastboot flash boot boot.img<br><span class="hljs-meta prompt_"># </span><span class="language-bash">刷入 recovery</span><br>fastboot flash recovery recovery.img<br><span class="hljs-meta prompt_"># </span><span class="language-bash">重启 fastboot</span><br>fastboot reboot<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-enj3wlm18zzwd7"></i><span>SHELL</span><div class="collapse show" id="collapse-enj3wlm18zzwd7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">刷入 boot</span><br>fastboot flash boot boot.img<br><span class="hljs-meta prompt_"># </span><span class="language-bash">刷入 recovery</span><br>fastboot flash recovery recovery.img<br><span class="hljs-meta prompt_"># </span><span class="language-bash">重启 fastboot</span><br>fastboot reboot<br></code></pre></td></tr></table></div></figure>
 <p>如图所示：</p>
 <figure>
 <img
@@ -484,7 +484,7 @@ alt="登录TTYD终端" />
 <figcaption aria-hidden="true">登录TTYD终端</figcaption>
 </figure>
 <p>此时输入<code>ls</code>可以看到一个<code>install-to-emmc.sh</code>文件或者类似文件名的文件，这个就是将OpenWrt系统从U盘安装到N1盒子EMMC也就是闪存里面的执行文件，此时输入以下命令：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-eje12jm13tml7k"></i><span>SHELL</span><div class="collapse show" id="collapse-eje12jm13tml7k"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./install-to-emmc.sh<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-7dcz7um18zzwd7"></i><span>SHELL</span><div class="collapse show" id="collapse-7dcz7um18zzwd7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./install-to-emmc.sh<br></code></pre></td></tr></table></div></figure>
 <p>随后出现一堆选项叫你选择版本，输入<code>11</code>选择N1盒子版本，随后会再次叫你选择需要安装的文件系统选择默认的ext4即可，也就是输入<code>1</code>。等待安装成功后显示done或者success，便可以断电再拔掉U盘。此后便可以直接再次通电，无需插入U盘即可启动OpenWrt系统。</p>
 <h2 id="三-进入openwrt系统设置n1为旁路由">三、
 进入OpenWrt系统设置N1为旁路由</h2>
