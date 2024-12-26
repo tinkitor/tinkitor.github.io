@@ -15,29 +15,29 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="putik-666">
-  <meta name="keywords" content="putik,putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  <meta name="author" content="Tinkitor">
+  <meta name="keywords" content="Tinkitor,,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
     <meta name="description" content="本教程主要实现的功能为：在文件资源管理器中的目录栏键入关键字后，快速启动“git bash here”。注意：本教程仅适用于windows10+系统。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用文件资源管理器目录栏快速git bash">
-<meta property="og:url" content="https://putik.site/article/ab9a7ee.html">
-<meta property="og:site_name" content="putik的博客">
+<meta property="og:url" content="https://tinkitor.github.io/article/ab9a7ee.html">
+<meta property="og:site_name" content="Tinkitor的博客">
 <meta property="og:description" content="本教程主要实现的功能为：在文件资源管理器中的目录栏键入关键字后，快速启动“git bash here”。注意：本教程仅适用于windows10+系统。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://putik.site/img/default/post_example.svg">
+<meta property="og:image" content="https://tinkitor.github.io/img/default/post_example.svg">
 <meta property="article:published_time" content="2023-09-04T03:36:48.000Z">
 <meta property="article:modified_time" content="2024-06-01T12:53:59.038Z">
-<meta property="article:author" content="putik-666">
+<meta property="article:author" content="Tinkitor">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="git bash">
 <meta property="article:tag" content="系统环境变量">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://putik.site/img/default/post_example.svg">
+<meta name="twitter:image" content="https://tinkitor.github.io/img/default/post_example.svg">
   
   
   
-  <title>利用文件资源管理器目录栏快速git bash - putik的博客</title>
+  <title>利用文件资源管理器目录栏快速git bash - Tinkitor的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"putik.site","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"tinkitor.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -121,7 +121,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>putik的博客</strong>
+      <strong>Tinkitor的博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -321,7 +321,7 @@ bash here”。注意：本教程仅适用于windows10+系统。</p>
 <h2 id="一快速实现">一、快速实现</h2>
 <h3 id="创建批处理任务脚本bat文件">1.创建批处理任务脚本（bat文件）</h3>
 <p>在git的安装目录下（为什么是这里？因为方便，随便甩哪也无所谓）创建一个txt文件，将以下代码修改后复制粘贴到文件中：</p>
-<figure class="highlight shell"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-3mpll9m1p58rza"></i><span>SHELL</span><div class="collapse show" id="collapse-3mpll9m1p58rza"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">start D:\program&quot; &quot;files\Git\git-bash.exe<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">start D:\program&quot; &quot;files\Git\git-bash.exe<br></code></pre></td></tr></table></figure>
 <p>需修改部分为<code>D:\program" "files\Git\git-bash.exe</code>，将这里改为你自己的git-bash.exe路径，中间有个<code>" "</code>是表示此处有空格。保存文件后，修改后缀名为<code>bat</code>，文件名修改为<code>gbh</code>。</p>
 <h3 id="添加系统环境变量">2.添加系统环境变量</h3>
 <p>进入设置，在设置搜索框搜索“高级系统设置”，进入“高级系统设置”：</p>
@@ -548,7 +548,7 @@ alt="目录栏里调用脚本" />
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://putik.site/about" target="_blank" rel="nofollow noopener"><span>PUTIK</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://tinkitor/about" target="_blank" rel="nofollow noopener"><span>TINKITOR</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
   

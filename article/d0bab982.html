@@ -15,30 +15,30 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="putik-666">
-  <meta name="keywords" content="putik,putik-666,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  <meta name="author" content="Tinkitor">
+  <meta name="keywords" content="Tinkitor,,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
     <meta name="description" content="今天在写安卓的时候，需要用java代码去动态的改变一个按钮的宽高，但是意外地发现实际呈现出来的宽高只有高是被设置成功的，而按钮的宽度总是比想设置的宽一些，找了好一会儿才发现了问题所在，在这里记录一下这个问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中控件实际呈现宽高与Java中动态设置的宽高不一致">
-<meta property="og:url" content="https://putik.site/article/d0bab982.html">
-<meta property="og:site_name" content="putik的博客">
+<meta property="og:url" content="https://tinkitor.github.io/article/d0bab982.html">
+<meta property="og:site_name" content="Tinkitor的博客">
 <meta property="og:description" content="今天在写安卓的时候，需要用java代码去动态的改变一个按钮的宽高，但是意外地发现实际呈现出来的宽高只有高是被设置成功的，而按钮的宽度总是比想设置的宽一些，找了好一会儿才发现了问题所在，在这里记录一下这个问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://putik.site/img/default/post_example.svg">
+<meta property="og:image" content="https://tinkitor.github.io/img/default/post_example.svg">
 <meta property="article:published_time" content="2023-07-29T08:02:47.000Z">
 <meta property="article:modified_time" content="2024-02-10T15:34:26.871Z">
-<meta property="article:author" content="putik-666">
+<meta property="article:author" content="Tinkitor">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="设置控件宽高">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://putik.site/img/default/post_example.svg">
+<meta name="twitter:image" content="https://tinkitor.github.io/img/default/post_example.svg">
   
   
   
-  <title>Android中控件实际呈现宽高与Java中动态设置的宽高不一致 - putik的博客</title>
+  <title>Android中控件实际呈现宽高与Java中动态设置的宽高不一致 - Tinkitor的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -81,7 +81,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"putik.site","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"tinkitor.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -122,7 +122,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>putik的博客</strong>
+      <strong>Tinkitor的博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -318,15 +318,15 @@
 <p>删除xml文件中对应控件的weight属性（如果有的话）。若还不生效，删除对应控件中所有宽高相关的的属性设置。</p>
 <h2 id="二详细问题分析">二、详细问题分析</h2>
 <h3 id="环境还原">1、环境还原</h3>
-<figure class="highlight java"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-taywg6m1p58rza"></i><span>JAVA</span><div class="collapse show" id="collapse-taywg6m1p58rza"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setImgBtnLayoutParams</span><span class="hljs-params">(ImageButton imageButton,<span class="hljs-type">int</span> widthPX,<span class="hljs-type">int</span> heightPX)</span>&#123;<span class="hljs-comment">//设置imgBtn的布局</span><br>    ViewGroup.<span class="hljs-type">LayoutParams</span> <span class="hljs-variable">layoutParams</span> <span class="hljs-operator">=</span> imageButton.getLayoutParams();<span class="hljs-comment">//获取imgBtn的默认布局</span><br>    layoutParams.height = heightPX;				<span class="hljs-comment">//设置高，单位为像素</span><br>    layoutParams.width = widthPX;				<span class="hljs-comment">//设置宽，单位为像素</span><br>    imageButton.setLayoutParams(layoutParams);	<span class="hljs-comment">//更新imgBtn的布局</span><br>&#125;<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setImgBtnLayoutParams</span><span class="hljs-params">(ImageButton imageButton,<span class="hljs-type">int</span> widthPX,<span class="hljs-type">int</span> heightPX)</span>&#123;<span class="hljs-comment">//设置imgBtn的布局</span><br>    ViewGroup.<span class="hljs-type">LayoutParams</span> <span class="hljs-variable">layoutParams</span> <span class="hljs-operator">=</span> imageButton.getLayoutParams();<span class="hljs-comment">//获取imgBtn的默认布局</span><br>    layoutParams.height = heightPX;				<span class="hljs-comment">//设置高，单位为像素</span><br>    layoutParams.width = widthPX;				<span class="hljs-comment">//设置宽，单位为像素</span><br>    imageButton.setLayoutParams(layoutParams);	<span class="hljs-comment">//更新imgBtn的布局</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>这是实现功能的关键代码，主要功能是改变按钮的宽高。这里<code>imageButton</code>是需要被改变宽、高的控件，<code>widthPX</code>、<code>heightPX</code>分别为需要设置宽高。使用的是普通的方法，按道理说不会有什么问题，但是很不幸的是还是出了问题——按钮宽度总是比设置的宽度长一点。</p>
 <h3 id="问题分析">2、问题分析</h3>
 <p>log一下按钮动态改变前、动态改变后的宽度，居然发现总是有<code>改变后的宽度值=想要改变的宽度值+一个未知值71</code>，好家伙，这是直接相加了。</p>
-<figure class="highlight java"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-b2tpm0m1p58rza"></i><span>JAVA</span><div class="collapse show" id="collapse-b2tpm0m1p58rza"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">before: width of set is 90PX<br>after: width of reality is 161PX<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">before: width of set is 90PX<br>after: width of reality is 161PX<br></code></pre></td></tr></table></figure>
 <p>那么这个未知值71是怎么来的？除了java代码里，那肯定是从XML文件中的属性里来的，如下为对应XML属性：</p>
-<figure class="highlight xml"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-wurkdim1p58rza"></i><span>XML</span><div class="collapse show" id="collapse-wurkdim1p58rza"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">ImageButton</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/back_btn&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;0dp&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;20dp&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:padding</span>=<span class="hljs-string">&quot;10dp&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;@drawable/baseline_arrow_back_02&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:contentDescription</span>=<span class="hljs-string">&quot;@string/des_back_icon&quot;</span> &gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ImageButton</span>&gt;</span><br></code></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs XML"><span class="hljs-tag">&lt;<span class="hljs-name">ImageButton</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/back_btn&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;0dp&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;20dp&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:padding</span>=<span class="hljs-string">&quot;10dp&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;@drawable/baseline_arrow_back_02&quot;</span></span><br><span class="hljs-tag">		<span class="hljs-attr">android:contentDescription</span>=<span class="hljs-string">&quot;@string/des_back_icon&quot;</span> &gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ImageButton</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>可以看到，在XML中会直接影响width只有<code>android:layout_width="0dp"</code>与<code>android:layout_weight="1"</code>，而<code>layout_width</code>属性肯定是没问题的（因为java代码中设置的就是这个值），只有可能是<code>lauout_weight</code>属性（注：这里的weight实际将控件宽度设置为了相对于总宽度的1/12，且还有一个属性与该控件相同布局的按钮）。有了这个思路，再将java代码部分删除（不动态设置）后，再log一下按钮动态改变前、动态改变后的宽度：</p>
-<figure class="highlight java"><i class="iconfont icon-code" type="button" data-toggle="collapse" data-target="#collapse-dxos32m1p58rza"></i><span>JAVA</span><div class="collapse show" id="collapse-dxos32m1p58rza"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">before: width of set is 90PX<br>after: width of reality is 86PX<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">before: width of set is 90PX<br>after: width of reality is 86PX<br></code></pre></td></tr></table></figure>
 <p>现在试着将86与71联系起来。前面说了，weight实际将控件宽度设置为了相对于总宽度的1/12，那么总宽度为<code>86*12=1032</code>，随后因为有一个和该控件相同布局的按钮，则<code>1032-90*2=852</code>，<code>852/12=71</code>，这不巧了吗。</p>
 <p><strong>所以，结论是：当weight属性存在时，若对应宽度或高度值（统称为长度）不为零，则weight值的计算会在总长度减去设置的长度后再按比例设置，且控件的最终长度为<code>weight计算的值+设置的长度值</code>。</strong></p>
 <h3 id="解决方法">3、解决方法</h3>
@@ -536,7 +536,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://putik.site/about" target="_blank" rel="nofollow noopener"><span>PUTIK</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://tinkitor/about" target="_blank" rel="nofollow noopener"><span>TINKITOR</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
   
