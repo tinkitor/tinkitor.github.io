@@ -12,9 +12,5 @@ if(NeedProgressBar){
        			progressBar.max = document.documentElement.scrollHeight - window.innerHeight;
         		progressBar.value = window.scrollY;
     		});
-	});
-	window.addEventListener("load", (event) => {
-		document.getElementById('leancloud-page-views-container').style = 'display: none;'; 
-	});
-		
+	});	
 }
