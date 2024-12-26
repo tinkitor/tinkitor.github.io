@@ -15,7 +15,6 @@ if(NeedProgressBar){
 	});
 	window.addEventListener("load", (event) => {
 		document.getElementById('leancloud-page-views-container').style = 'display: none;'; 
-		alert(document.getElementById('leancloud-page-views-container').style)
 	});
 		
 }
