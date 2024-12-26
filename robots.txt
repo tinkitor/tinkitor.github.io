@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://PUTIK-663.github.io/sitemap.xml
-Sitemap: https://PUTIK-663.github.io/baidusitemap.xml
+Sitemap: https://tinkitor.github.io/sitemap.xml
+Sitemap: https://tinkitor.github.io/baidusitemap.xml
