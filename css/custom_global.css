@@ -11,6 +11,7 @@ ul{
  }
 ul *{
     margin-left: 0em;
+text-indent: 0em;
 }
 a{
     word-break: break-all;
