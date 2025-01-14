@@ -1,0 +1,967 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start --><meta name="baidu-site-verification" content="codeva-XYlDuX6TRA"/><meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8"/><meta name="google-site-verification" content="ZowmcPbzvkQ5mm8-MiUYJqkxjU2hfUU_B6QGEsoGeuo"/><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicon.ico">
+  <link rel="icon" href="/favicon.ico">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tinkitor">
+  <meta name="keywords" content="Tinkitor,,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  
+    <meta name="description" content="该文章无摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RESTful API学习笔记">
+<meta property="og:url" content="https://tinkitor.github.io/article/7663ea22.html">
+<meta property="og:site_name" content="Tinkitor的博客">
+<meta property="og:description" content="该文章无摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tinkitor.github.io/img/default/post_example.svg">
+<meta property="article:published_time" content="2025-01-14T05:41:59.000Z">
+<meta property="article:modified_time" content="2025-01-14T07:45:08.983Z">
+<meta property="article:author" content="Tinkitor">
+<meta property="article:tag" content="原创">
+<meta property="article:tag" content="待完成">
+<meta property="article:tag" content="RESTful API">
+<meta property="article:tag" content="快速入门">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tinkitor.github.io/img/default/post_example.svg">
+  
+  
+  
+  <title>RESTful API学习笔记 - Tinkitor的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom_global.css">
+<link rel="stylesheet" href="/css/read-progress-bar.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"tinkitor.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><progress id="content_progress" value="0"></progress><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Tinkitor的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/timeline.html" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>历史</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default/post_banner_example.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">RESTful API学习笔记</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-14 13:41" pubdate>
+          2025年01月14日, 星期二 ,下午 1:41
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          562 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          3 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">RESTful API学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-info">
+            <p>未完成文章</p>
+          </div>
+<div class="note note-success">
+            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
+          </div>
+<div class="note note-warning">
+            <p>转载或微调文章，源地址：[在此填入源地址]</p>
+          </div>
+<!-- 分类说明，发布时请删除该内容 -->
+<table style="text-align:center;">
+<tr>
+<th>
+一级分类
+</th>
+<th>
+二级分类
+</th>
+<th>
+说明
+</th>
+</tr>
+<tr>
+<td rowspan="7">
+编程实践
+</td>
+<td>
+java
+</td>
+<td>
+java语言语法基础、高级特性、编程应用等相关文章
+</td>
+</tr>
+<tr>
+<td>
+c
+</td>
+<td>
+c语言语法基础、编程应用等相关文章
+</td>
+</tr>
+<tr>
+<td>
+python
+</td>
+<td>
+python语言语法基础、编程应用等相关文章
+</td>
+</tr>
+<tr>
+<td>
+后端综合
+</td>
+<td>
+后端综合类文章，涉及的知识例如SSM框架、SpringBoot等
+</td>
+</tr>
+<tr>
+<td>
+前端综合
+</td>
+<td>
+前端综合类文章，涉及的知识例如前端的各种脚手架、三大基础件等
+</td>
+</tr>
+<tr>
+<td>
+自动化
+</td>
+<td>
+利用各种编程语言、工具实现工作自动化的教程文章，涉及的知识例如自动打卡签到、资源爬取等
+</td>
+</tr>
+<tr>
+<td>
+其他
+</td>
+<td>
+懒得分类的文章
+</td>
+</tr>
+<tr>
+<td rowspan="4">
+计算机理论
+</td>
+<td>
+数据结构
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+操作系统
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+计算机组成原理
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+计算机网络
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td rowspan="3">
+计算机杂项
+</td>
+<td>
+工具的安装、配置或使用
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+项目文档、源码的阅读
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+其他
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td rowspan="3">
+语文
+</td>
+<td>
+散文
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+古诗
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+小说
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td rowspan="3">
+数学
+</td>
+<td>
+高等数学
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+离散数学
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+线性代数
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td rowspan="3">
+英语
+</td>
+<td>
+写作
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+听力
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+口语
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td rowspan="1">
+音乐
+</td>
+<td>
+唱
+</td>
+<td>
+蔡徐坤
+</td>
+</tr>
+<tr>
+<td rowspan="4">
+杂想
+</td>
+<td>
+人物关系
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+社会现象
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+反思家附体
+</td>
+<td>
+无
+</td>
+</tr>
+<tr>
+<td>
+其他
+</td>
+<td>
+无
+</td>
+</tr>
+</table>
+<h1 id="前言">前言</h1>
+<h1 id="正文">正文</h1>
+<h2 id="正文标题1">正文标题1</h2>
+<h3 id="正文副标题1">正文副标题1</h3>
+<p>有次一个刚入行的妹子让我讲笑话给她听。</p>
+<p>我：你想听 TCP 的笑话么？ 妹子：嗯，我想听一个 TCP 的笑话。
+我：好的，我会给你讲一个TCP 的笑话。 妹子：好的，我会听一个TCP 的笑话。
+我：你准备好听一个TCP 的笑话么？ 妹子：嗯，我准备好听一个TCP 的笑话
+我：Ok，那我要发 TCP 笑话了。大概有 10 秒，20 个字。
+妹子：嗯，我准备收你那个 10 秒时长，20 个字的笑话了。
+我：抱歉，你的连接超时了。你好，你想听 TCP 的笑话么</p>
+<h1 id="附录">附录</h1>
+<h3 id="附录1">附录1</h3>
+<h3 id="附录2">附录2</h3>
+<h1 id="参考资料">参考资料</h1>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1"
+class="footnote-text"><span>作者、其他主要作者...,题名[文献类型标识]:引用页码,出版地:出版者,获取和访问路径,文献更新日期或者出版年
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+        <a href="/tags/%E5%BE%85%E5%AE%8C%E6%88%90/" class="print-no-link">#待完成</a>
+      
+        <a href="/tags/RESTful-API/" class="print-no-link">#RESTful API</a>
+      
+        <a href="/tags/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="print-no-link">#快速入门</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/db9ab792.html" title="nginx学习笔记">
+                        <span class="hidden-mobile">nginx学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","appKey":"WCb6A9dSGZOFK659XOfsze0e","path":"window.location.pathname","placeholder":"在这里发表你的看法！(默认匿名与无邮箱地址)","avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://tinkitor/about" target="_blank" rel="nofollow noopener"><span>TINKITOR</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/custom_global.js"></script>
+<script src="/js/read-progress-bar.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
