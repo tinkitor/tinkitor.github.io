@@ -1,81 +1,115 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<link href="dist/css/timeline.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-		<!-- 主题依赖的图标库，不要自行修改 -->
-		<!-- Do not modify the link that theme dependent icons -->
-		<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-		<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-		<link rel="stylesheet" href="/css/main.css" />
-		<link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-		<link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-		<meta charset="utf-8">
-		<link rel="apple-touch-icon" sizes="76x76" href="/img/default/write_blogs.svg">
-		<link rel="icon" href="/img/default/write_blogs.svg">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>历史时间线</title>
-	</head>
-	<body>
-		<nav id="navbar" class="navbar fixed-top navbar-expand-lg scrolling-navbar top-nav-collapse">
-			<div class="container">
-				<a class="navbar-brand" href="/">
-					<strong>Tinkitor的博客</strong>
-				</a>
-				<button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<div class="animated-icon"><span></span><span></span><span></span></div>
-				</button>
-				<!-- Collapsible content -->
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto text-center">
-						<li class="nav-item">
-							<a class="nav-link" href="/" target="_self">
-								<i class="iconfont icon-home-fill"></i>
-								<span>首页</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/archives/" target="_self">
-								<i class="iconfont icon-archive-fill"></i>
-								<span>归档</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/categories/" target="_self">
-								<i class="iconfont icon-category-fill"></i>
-								<span>分类</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/tags/" target="_self">
-								<i class="iconfont icon-tags-fill"></i>
-								<span>标签</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/timeline.html" target="_self">
-								<i class="iconfont icon-books"></i>
-								<span>历史</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/about/" target="_self">
-								<i class="iconfont icon-user-fill"></i>
-								<span>关于</span>
-							</a>
-						</li>
-					</ul>
-				</div>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+<head>
+	<link href="dist/css/timeline.min.css" rel="stylesheet" />
+	<!-- hexo injector head_begin start -->
+	<meta name="baidu-site-verification" content="codeva-XYlDuX6TRA" />
+	<meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8" />
+	<meta name="google-site-verification" content="ZowmcPbzvkQ5mm8-MiUYJqkxjU2hfUU_B6QGEsoGeuo" />
+	<!-- hexo injector head_begin end -->
+	<meta charset="UTF-8">
+	<link rel="apple-touch-icon" sizes="76x76" href="/favicon.ico">
+	<link rel="icon" href="/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<meta name="theme-color" content="#2f4154">
+	<link rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+	<!-- 主题依赖的图标库，不要自行修改 -->
+	<!-- Do not modify the link that theme dependent icons -->
+	<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+	<link rel="stylesheet" href="/css/main.css" />
+	<link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+	<link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+	<script id="fluid-configs">
+		var Fluid = window.Fluid || {};
+		Fluid.ctx = Object.assign({}, Fluid.ctx)
+		var CONFIG = { "hostname": "tinkitor.github.io", "root": "/", "version": "1.9.8", "typing": { "enable": true, "typeSpeed": 70, "cursorChar": "_", "loop": false, "scope": ["home"] }, "anchorjs": { "enable": true, "element": "h1,h2,h3,h4,h5,h6", "placement": "left", "visible": "hover", "icon": "" }, "progressbar": { "enable": true, "height_px": 3, "color": "#29d", "options": { "showSpinner": false, "trickleSpeed": 100 } }, "code_language": { "enable": true, "default": "TEXT" }, "copy_btn": true, "image_caption": { "enable": true }, "image_zoom": { "enable": true, "img_url_replace": ["", ""] }, "toc": { "enable": true, "placement": "right", "headingSelector": "h1,h2,h3,h4,h5,h6", "collapseDepth": 2 }, "lazyload": { "enable": true, "loading_img": "/img/loading.gif", "onlypost": false, "offset_factor": 2 }, "web_analytics": { "enable": true, "follow_dnt": true, "baidu": null, "google": null, "tencent": { "sid": null, "cid": null }, "leancloud": { "app_id": "6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz", "app_key": "WCb6A9dSGZOFK659XOfsze0e", "server_url": "https://6emln801.lc-cn-n1-shared.com", "path": "window.location.pathname", "ignore_local": true }, "umami": { "src": null, "website_id": null, "domains": null, "start_time": "2024-01-01T00:00:00.000Z", "token": null, "api_server": null }, "gtag": null, "woyaola": null, "cnzz": null }, "search_path": "/local-search.xml", "include_content_in_search": true };
+
+		if (CONFIG.web_analytics.follow_dnt) {
+			var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+			Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+		}
+	</script>
+	<script src="/js/utils.js"></script>
+	<script src="/js/color-schema.js"></script>
+	<style>
+		/* timeline 样式微调 */
+		.timeline__item .timeline__content {
+			background-color: var(--board-bg-color);
+			color: var(---text-color-light);
+			word-break: break-word;
+		}
+	</style>
+	<title>历史时间线</title>
+</head>
+
+<body style="background-color:var(--gray);">
+	<nav id="navbar" class="navbar fixed-top navbar-expand-lg scrolling-navbar navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href="/">
+				<strong>Tinkitor的博客</strong>
+			</a>
+			<button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<div class="animated-icon"><span></span><span></span><span></span></div>
+			</button>
+			<!-- Collapsible content -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto text-center">
+					<li class="nav-item">
+						<a class="nav-link" href="/" target="_self">
+							<i class="iconfont icon-home-fill"></i>
+							<span>首页</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/archives/" target="_self">
+							<i class="iconfont icon-archive-fill"></i>
+							<span>归档</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/categories/" target="_self">
+							<i class="iconfont icon-category-fill"></i>
+							<span>分类</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/tags/" target="_self">
+							<i class="iconfont icon-tags-fill"></i>
+							<span>标签</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/timeline.html" target="_self">
+							<i class="iconfont icon-books"></i>
+							<span>历史</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about/" target="_self">
+							<i class="iconfont icon-user-fill"></i>
+							<span>关于</span>
+						</a>
+					</li>
+					<li class="nav-item" id="color-toggle-btn">
+						<a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+							<i class="iconfont icon-dark" id="color-toggle-icon" data="light"></i>
+						</a>
+					</li>
+				</ul>
 			</div>
-		</nav>
-		<div style="margin: 6em auto;min-width: 50%;max-width: 300px;width: fit-content;">
-			<div class="timeline">
-				<div class="timeline__wrap">
-					<div class="timeline__items">
-						<!-- 					
+		</div>
+	</nav>
+	<div style="margin: 6em auto;min-width: 50%;max-width: 300px;width: fit-content;">
+		<div class="timeline">
+			<div class="timeline__wrap">
+				<div class="timeline__items">
+					<!-- 					
 						<div class="timeline__item animated timeline__item--right fadeIn">
 							<div class="timeline__item__inner">
 								<div class="timeline__content__wrap">
@@ -86,396 +120,576 @@
 							</div>
 						</div> -->
 
-						<!-- Go -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									xxxx年
-								</h2>
-								<h3>
-									Go语言
-								</h3>
-								<p>
-									
-								</p>
-							</div>
+					<!-- 博客3.0时代 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2026年</h2>
+							<h3>数字文明的新纪元</h3>
+							<p>
+								2026年，Thomas FJ.
+								Tinkitor正式确定了博客的内容、格式规范并开始了他的博客写作，博客进入了3.0时代！<br>五星评论家麦克阿瑟在其数字纪录片《从ENIAC到TinkitorBlog》中感慨：
+								"从1946年ENIAC的诞生，到2026年这个个人博客的成熟，人类用八十年走完了从巨型机到TinkitorBlog出现的史诗历程。当Tinkitor敲下第一个hexo
+								generate时，他继承的是Thompson和Ritchie在1969年编写UNIX时的极客精神。"
+							</p>
 						</div>
-						
-						<!-- Rust -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									xxxx年
-								</h2>
-								<h3>
-									Rust语言
-								</h3>
-								<p>
-									
-								</p>
-							</div>
-						</div>
-						
-						<!-- JavaScript -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									xxxx年
-								</h2>
-								<h3>
-									JavaScript语言
-								</h3>
-								<p>
-									
-								</p>
-							</div>
-						</div>
-						
-						<!-- Java语言 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									xxxx年
-								</h2>
-								<h3>
-									Java语言
-								</h3>
-								<p>
-									
-								</p>
-							</div>
-						</div>
-
-						<!-- Python语言 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									xxxx年
-								</h2>
-								<h3>
-									Python语言
-								</h3>
-								<p>
-									
-								</p>
-							</div>
-						</div>
-						
-						<!-- PHP -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									xxxx年
-								</h2>
-								<h3>
-									PHP语言
-								</h3>
-								<p>
-									
-								</p>
-							</div>
-						</div>
-						
-						<!-- html -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									xxxx年
-								</h2>
-								<h3>
-									HTML
-								</h3>
-								<p>
-									
-								</p>
-							</div>
-						</div>
-						
-						<!-- Windows操作系统 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1985年
-								</h2>
-								<h3>
-									Microsoft Windows操作系统
-								</h3>
-								<p>
-									美国微软公司推出了名为<strong><i>Microsoft Windows</i></strong>的操作系统，早期Windows只是作为了MS-DOS的图形操作系统外壳。
-									<br>Windows操作系统的诞生是操作系统通过直观的用户图形界面和鼠标实现操作的一次伟大尝试，从此Windows开启了 PC 全面普及的新时代。
-									【注：虽然也是抄的美国施乐公司】
-								</p>
-							</div>
-						</div>
-
-						<!-- Windows操作系统 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1985年
-								</h2>
-								<h3>
-									Microsoft Windows操作系统
-								</h3>
-								<p>
-									美国微软公司推出了名为<strong><i>Microsoft Windows</i></strong>的操作系统，早期Windows只是作为了MS-DOS的图形操作系统外壳。
-									<br>Windows操作系统的诞生是操作系统通过直观的用户图形界面和鼠标实现操作的一次伟大尝试，从此Windows开启了 PC 全面普及的新时代。
-									【注：虽然也是抄的美国施乐公司】
-								</p>
-							</div>
-						</div>
-
-						<!-- Windows操作系统 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1983年
-								</h2>
-								<h3>
-									首个搭载图形用户界面（GUI）的商品化个人电脑
-								</h3>
-								<p>
-									苹果电脑公司设计并发布了<strong><i>Apple Lisa</i></strong>它是全球第一款搭载图形用户界面（GUI）的商品化个人电脑。
-									【注：虽然首台图形用户界面电脑为美国施乐公司（Xerox，发音：/ˈzɪərɒks/，NYSE：XRX）研发的内部产品，Apple是抄的】
-								</p>
-							</div>
-						</div>
-
-						<!-- C++ -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1983年
-								</h2>
-								<h3>
-									C++语言
-								</h3>
-								<p>
-									起于1979年比雅尼·斯特劳斯特鲁普（丹麦语：Bjarne Stroustrup）的C with Classes正式改名为C++，'++'是C语言中的增值操作符，
-									“这个名字象征着源自于C语言变化的自然演进”。
-									<br>不同于早期的C语言的面向过程，C++是一个面向对象的语言。和C语言相比，C++引入了更多的特性，包括：
-									复合类型（引用类型等）、类型处理运算符、C++标准库（IO库与多种容器类）与迭代器、函数重载、面向对象程序设计等等。
-								</p>
-							</div>
-						</div>
-
-						<!-- MS-DOS -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1980年
-								</h2>
-								<h3>
-									MS-DOS操作系统
-								</h3>
-								<p>
-									美国西雅图计算机产品公司（Seattle Computer Products）的一名24岁的程序Tim Paterson花费了四个月时间编写出了 86-DOS 操作系统，
-									次年微软公司将其买下，并命名为MS-DOS，由此MS-DOS正式诞生。
-									<br>MS-DOS操作系统运行在Intel x86个人电脑上，它是DOS操作系统家族中最著名的一个。
-									在Windows 95以前，DOS是IBM PC及兼容机中的最基本配备，而MS-DOS则是个人电脑中最普遍使用的DOS操作系统。
-								</p>
-							</div>
-						</div>
-
-						<!-- X86架构 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1978年
-								</h2>
-								<h3>
-									X86架构
-								</h3>
-								<p>
-									美国Intel公司发布了一款16位微处理器，型号为8086，跟随着8086处理诞生的还有X86架构。
-									<br>X86架构（The X86 architecture）是一种基于复杂指令集计算机（CISC）概念的架构，它包括了一系列CPU架构标准及相关的指令集标准。
-									X86是计算机硬件技术发展历史上的重要支柱之一，它对芯片和 CPU 的发展影响深远。自20世纪 80 年代开始，
-									x86 就成为了台式机 CPU 的代名词，AMD 和 Intel 的处理器都采用了这一架构。只不过到如今64位机器已经成为主流，衍生于X86的AMD64已经
-									成为PC指令集的主流，Intel庞大的X86家族已经面临着革命or殒命的的抉择。
-								</p>
-							</div>
-						</div>
-						
-						<!-- 现代集成电路计算机 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1971年
-								</h2>
-								<h3>
-									现代大规模及超大规模集成电路计算机
-								</h3>
-								<p>
-									美国Intel推出了世界上第一个微处理器4004，开启了微型计算机时代，
-									并正式开启大规模及超大规模集成电路计算机时代。
-								</p>
-							</div>
-						</div>
-						
-						<!-- C语言 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1969年-1973年
-								</h2>
-								<h3>
-									C语言
-								</h3>
-								<p>
-									为了让UNIX操作系统真正具有可移植性，美国贝尔实验室的K.Thompson与Dennis Ritchie以B语言为基础，
-									最终设计开发出了<strong>C语言</strong>。
-									<br>C语言具有高效、灵活、功能丰富、表达力强和较高的可移植性等特点，在程序设计中备受青睐，
-									从其诞生至今(2024年)，C语言不可置疑地仍然是影响最深、使用最为广泛的编程语言。
-									C语言的设计影响了众多后来的编程语言，例如C++、Objective-C、Java、C#等。
-									现行的许多软件都是由C语言或者其影响和派生的编程语言开发出来的。
-								</p>
-							</div>
-						</div>
-						
-						<!-- UNIX、B语言 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1969年
-								</h2>
-								<h3>
-									UNIX系统与B语言
-								</h3>
-								<p>
-									美国贝尔实验室的K.Thompson与Dennis Ritchie在小型计算机上开发出了UNIX系统，并在其基础上开发出了B语言
-									<span style="color: gainsboro;">(可能是Basic Combined Programming Language(基本组合编程语言)的缩写)</span>。
-									<br>在Unix系统是一个分时系统，而在其诞生前只有批处理操作系统。Unix 是现代操作系统的奠基者，几乎所有主流操作系统（Linux、macOS、BSD 等）
-									都可以追溯到 Unix 的发展历史。
-								</p>
-							</div>
-						</div>
-						
-						<!-- 中小规模集成电路计算机 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1964年
-								</h2>
-								<h3>
-									中小规模集成电路计算机
-								</h3>
-								<p>
-									美国公司IBM发布了IBM 360系列首套兼容机，宣告集成电路计算机时代正式开幕。
-								</p>
-							</div>
-						</div>
-						
-						<!-- ALGOL -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1963年
-								</h2>
-								<h3>
-									ALGOL语言
-								</h3>
-								<p>
-									《算法语言ALGOL 60报告》得到修订并出版，ALGOL正式问世。
-									<br>ALGOL，名称源自算法语言（ALGOrithmic Language）的缩写。Algol 60引进了许多新的概念如：代码块、词法作用域、递归、巴科斯-诺尔范式（BNF）等等。
-									Algol 60是程序设计语言发展史上的一个里程碑，它标志着程序设计语言成为一门独立的科学学科，并为后来软件自动化及软件可靠性的发展奠定了基础。
-								</p>
-							</div>
-						</div>
-						
-						<!-- MOS管 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1962年
-								</h2>
-								<h3>
-									半导体
-								</h3>
-								<p>
-									美国贝尔实验室开发出一种相比于BJT更适合集成的新型晶体管，
-									名为<strong>金属氧化物半导体场效应晶体管</strong>
-									（Metal Oxide Semiconductor Field Effect Transistor，MOSFET或MOS），简称MOS管。
-								</p>
-							</div>
-						</div>
-						
-						<!-- COBOL -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1959年
-								</h2>
-								<h3>
-									COBOL语言
-								</h3>
-								<p>
-									CODASYL（数据系统语言会议）开发出COBOL。<br> COBOL是第一个广泛使用的高级编程语言。
-									它是一种类似英语的，对用户友好的语言。所有指令都可以用简单的英语单词进行编码。
-									COBOL设计用于金融、国防等相关的面向商业的应用程序，其高级文件处理能力，可以处理大量的数据。 
-								</p>
-							</div>
-						</div>
-
-
-						<!-- 晶体管计算机 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1958年
-								</h2>
-								<h3>
-									晶体管计算机
-								</h3>
-								<p>
-									美国IBM公司制成了第一台全部使用晶体管的计算机RCA501型。开启第二代计算机——晶体管计算机的时代。
-								</p>
-							</div>
-						</div>
-
-						<!-- FORTRAN -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1954年
-								</h2>
-								<h3>
-									Fortran语言
-								</h3>
-								<p>
-									第一代Fortran语言被首次提出，称为FortranI。
-									<br>Fortran是英文FORmula TRANslation的缩写，
-									意为“公式翻译”。它是为科学、工程问题中的那些能够用数学公式表达的问题而设计的语言，
-									主要用于数值计算。这种语言简单易学，因为可以像抄写数学教科书里的公式一样书写数学公式，
-									它比英文书写的自然语言更接近数学语言。
-								</p>
-							</div>
-						</div>
-
-
-						<!-- 第一台计算机诞生，电子管计算机 -->
-						<div class="timeline__item">
-							<div class="timeline__content">
-								<h2>
-									1946年2月14日
-								</h2>
-								<h3>
-									电子管计算机
-								</h3>
-								<p>
-									在美国宾夕法尼亚大学，世界上第一台电子数字计算机ENIAC诞生。开启第一代计算机——电子管计算机的时代。
-								</p>
-							</div>
-						</div>
-
-
 					</div>
+					<!-- 博客部署受挫 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2024年</h2>
+							<h3>平台迁徙：从Gitee到GitHub的平台转进</h3>
+							<p>
+								2024年5月，Gitee的Pages服务毫无征兆地中断，"这就像2003年AMD推出64位架构时的抉择时刻，"Tinkitor在技术日志中写道，"是坚守舒适区，还是拥抱变革？我选择了后者，
+								就像2007年乔布斯选择ARM架构一样果断。"2024年7月，Tinkitor将博客转移托管至Github，从此再也没用过Gitee。"我不得不放弃Gitee，这是一个艰难地决定"。
+								<br>
+								四星评论家Kane G. Foote在《开源运动史》中评价：
+								<br>
+								"这次平台迁移堪比1991年Linux内核的首次发布——都是在困境中寻求突破的典范。当其他博主还在为服务中断哀嚎时，Tinkitor已经用git命令完成了数字世界的'敦刻尔克大撤退'。"
+
+							</p>
+						</div>
+					</div>
+					<!-- 博客2.0时代 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2022年</h2>
+							<h3>本博客开始托管至Gitee</h3>
+							<p>
+								2022年，经过谨慎的决定，Thomas FJ.
+								Tinkitor决定正式开始博客内容的撰写，并将博客托管至Gitee，开启了博客2.0时代。</br>"这是一个跨越历史的壮举"，著名四星评论家Kane G.
+								Foote如是说。
+							</p>
+						</div>
+					</div>
+					<!-- ChatGPT与大模型时代 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2022年</h2>
+							<h3>ChatGPT与大型语言模型时代</h3>
+							<p>
+								ChatGPT的出现标志着AI技术从专业工具向通用智能助手的转变，开启了生成式AI的新纪元。
+							</p>
+						</div>
+					</div>
+					<!-- 博客1.0时代 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2021年</h2>
+							<h3>本博客初始内容诞生</h3>
+							<p>
+								2021年，Thomas.JM.Tinkitor创建了本博客，尝试记录技术与生活点滴，开创了博客1.0时代。
+							</p>
+						</div>
+					</div>
+					<!-- 量子计算里程碑 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2019年</h2>
+							<h3>量子霸权实现</h3>
+							<p>
+								Google宣布其53量子比特处理器"Sycamore"在200秒内完成了传统超级计算机需要1万年才能完成的计算任务，
+								首次实现了"量子霸权"。这标志着量子计算从理论走向实践的重要里程碑，为未来计算技术的发展开辟了新道路。
+							</p>
+						</div>
+					</div>
+
+					<!-- AI芯片 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2016年</h2>
+							<h3>专用AI处理器</h3>
+							<p>
+								Google推出了张量处理单元（TPU），这是专门为机器学习 workloads 设计的专用集成电路。
+								TPU极大地加速了神经网络训练和推理过程，使得复杂的AI应用如AlphaGo、语音识别和图像处理变得更加可行。
+							</p>
+						</div>
+					</div>
+
+					<!-- 3D NAND -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2013年</h2>
+							<h3>3D NAND闪存技术</h3>
+							<p>
+								Samsung率先量产3D V-NAND闪存，通过垂直堆叠存储单元的方式突破了平面NAND的密度限制。
+								这项技术使得SSD的容量大幅提升而成本下降，加速了机械硬盘向固态硬盘的转型。
+						</div>
+					</div>
+
+					<!-- Rust -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2010年</h2>
+							<h3>Rust语言</h3>
+							<p>
+								Rust语言原本是Mozilla员工Graydon Hoare的个人项目，而Mozilla于2009年开始赞助这个项目，并且在2010年首次公开。Rust由Graydon
+								Hoare设计，旨在提供C++级别的性能同时保证内存安全。
+								Rust的所有权系统和借用检查器在编译时就能发现内存错误，无需垃圾回收机制。Rust在系统编程、
+								WebAssembly和嵌入式领域越来越受欢迎，并被用于Firefox浏览器和Linux内核的开发。2015年5月15日，Rust 1.0稳定版本正式发布。
+							</p>
+						</div>
+					</div>
+
+					<!-- Go -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2009年</h2>
+							<h3>Go语言</h3>
+							<p>
+								Google公司正式发布了Go语言（又称Golang）。Go语言由Robert Griesemer、Rob Pike和Ken Thompson设计，
+								结合了C语言的性能优势和现代编程语言的开发效率。Go语言以其简洁的语法、高效的并发模型（goroutine和channel）
+								和出色的性能而闻名，特别适合构建高并发的网络服务和分布式系统。
+							</p>
+						</div>
+					</div>
+
+					<!-- 智能手机芯片 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2007年</h2>
+							<h3>移动SoC革命</h3>
+							<p>
+								Apple发布第一代iPhone，搭载了专门为移动设备设计的系统级芯片（SoC）。
+								这开启了移动处理器的新时代，将CPU、GPU、内存控制器和其他组件集成在单一芯片上，
+								为智能手机的爆发式增长奠定了硬件基础。
+							</p>
+						</div>
+					</div>
+
+					<!-- 多核处理器 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2005年</h2>
+							<h3>多核处理器时代</h3>
+							<p>
+								AMD和Intel相继推出双核处理器，标志着处理器设计从单纯提升时钟频率转向多核心架构。
+								这一转变解决了单核处理器面临的功耗墙和散热问题，为并行计算的发展开辟了新方向。
+							</p>
+						</div>
+					</div>
+
+					<!-- 64位普及 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>2003年</h2>
+							<h3>64位计算普及</h3>
+							<p>
+								AMD推出AMD64架构（x86-64），在兼容现有32位软件的同时引入了64位扩展。
+								这一设计被Intel采纳为Intel 64，成为个人计算机向64位计算过渡的关键技术，
+								突破了4GB内存限制，为大数据处理提供了硬件基础。
+							</p>
+						</div>
+					</div>
+
+					<!-- GPU发明 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1999年</h2>
+							<h3>GPU的诞生</h3>
+							<p>
+								NVIDIA推出了GeForce 256，这是世界上第一款被正式称为"图形处理单元"（GPU）的芯片。
+								GPU专门为处理计算机图形相关的数学计算而设计，能够高效执行矩阵运算和并行处理。
+								这不仅革命了游戏和视觉效果产业，后来更成为人工智能、科学计算的重要加速器。
+							</p>
+						</div>
+					</div>
+					<!-- JavaScript -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1995年</h2>
+							<h3>JavaScript语言</h3>
+							<p>
+								Netscape公司的Brendan Eich在10天内设计出了JavaScript（最初名为Mocha，后改为LiveScript）。
+								JavaScript是一种解释型的脚本语言，主要用于网页前端开发，为静态的HTML页面添加交互功能。
+								随着Node.js的出现，JavaScript也成为了重要的服务器端编程语言，形成了完整的前后端开发生态。
+							</p>
+						</div>
+					</div>
+
+					<!-- Java语言 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1995年</h2>
+							<h3>Java语言</h3>
+							<p>
+								Sun Microsystems公司正式发布了Java语言。Java由James Gosling领导的团队开发，
+								最初名为Oak，旨在为嵌入式设备开发软件。Java的"一次编写，到处运行"的理念通过Java虚拟机实现，
+								使其成为企业级应用开发的主流语言。Java的面向对象特性、自动内存管理和丰富的类库使其在大型系统中广泛应用。
+							</p>
+						</div>
+					</div>
+
+
+
+					<!-- PHP -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1995年</h2>
+							<h3>PHP语言</h3>
+							<p>
+								Rasmus Lerdorf发布了PHP（Personal Home Page Tools）的第一个版本。
+								PHP是一种专门为Web开发设计的服务器端脚本语言，可以嵌入到HTML中执行。
+								PHP驱动了全球大量的网站，包括WordPress、Wikipedia和Facebook等知名网站，
+								是Web开发历史上最重要的语言之一。
+							</p>
+						</div>
+					</div>
+					<!-- 奔腾处理器 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1993年</h2>
+							<h3>奔腾处理器</h3>
+							<p>
+								Intel推出奔腾（Pentium）处理器，采用超标量架构，能够在单个时钟周期内执行多条指令。
+								奔腾处理器不仅性能大幅提升，还引入了MMX指令集，为多媒体应用提供了硬件加速，
+								推动了个人计算机在家庭和办公环境的普及。
+							</p>
+						</div>
+					</div>
+					<!-- RISC架构 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1992年</h2>
+							<h3>RISC架构的兴起</h3>
+							<p>
+								ARM公司成立并开始授权ARM架构，这是一种精简指令集计算机（RISC）设计。
+								ARM处理器以其低功耗、高效率的特点，后来成为移动设备和嵌入式系统的首选架构，
+								在智能手机时代占据了主导地位。
+							</p>
+						</div>
+					</div>
+					<!-- Python语言 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1991年</h2>
+							<h3>Python语言</h3>
+							<p>
+								Guido van Rossum发布了Python的第一个公开版本。Python以其简洁清晰的语法和强大的可读性而著称，
+								"人生苦短，我用Python"成为了开发者的流行语。Python在数据科学、人工智能、Web开发、自动化脚本等领域广泛应用，
+								拥有庞大的生态系统和活跃的社区支持。
+							</p>
+						</div>
+					</div>
+					<!-- html -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1991年</h2>
+							<h3>HTML</h3>
+							<p>
+								Tim Berners-Lee创建了HTML（HyperText Markup Language）的第一个版本。
+								HTML不是编程语言，而是一种标记语言，用于创建和链接网页文档。作为Web的基石，
+								HTML与CSS和JavaScript共同构成了现代Web开发的三大核心技术。
+								HTML的发展经历了多个版本，从简单的文档标记语言发展成为支持多媒体和交互应用的丰富平台。
+							</p>
+						</div>
+					</div>
+					<!-- SSD -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>1991年</h2>
+							<h3>固态硬盘（SSD）商业化</h3>
+							<p>
+								SanDisk推出了第一款商业化SSD，容量为20MB，基于闪存技术。
+								虽然初代产品容量小、价格昂贵，但SSD无需机械部件的设计带来了革命性的性能提升，
+								为后来存储技术的快速发展奠定了基础。
+							</p>
+						</div>
+					</div>
+					<!-- Windows操作系统 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1985年
+							</h2>
+							<h3>
+								Microsoft Windows操作系统
+							</h3>
+							<p>
+								美国微软公司推出了名为<strong><i>Microsoft Windows</i></strong>的操作系统，早期Windows只是作为了MS-DOS的图形操作系统外壳。
+								<br>Windows操作系统的诞生是操作系统通过直观的用户图形界面和鼠标实现操作的一次伟大尝试，从此Windows开启了 PC 全面普及的新时代。
+								【注：虽然也是抄的美国施乐公司】
+							</p>
+						</div>
+					</div>
+
+					<!-- Windows操作系统 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1983年
+							</h2>
+							<h3>
+								首个搭载图形用户界面（GUI）的商品化个人电脑
+							</h3>
+							<p>
+								苹果电脑公司设计并发布了<strong><i>Apple Lisa</i></strong>它是全球第一款搭载图形用户界面（GUI）的商品化个人电脑。
+								【注：虽然首台图形用户界面电脑为美国施乐公司（Xerox，发音：/ˈzɪərɒks/，NYSE：XRX）研发的内部产品，Apple是抄的】
+							</p>
+						</div>
+					</div>
+
+					<!-- C++ -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1983年
+							</h2>
+							<h3>
+								C++语言
+							</h3>
+							<p>
+								起于1979年比雅尼·斯特劳斯特鲁普（丹麦语：Bjarne Stroustrup）的C with Classes正式改名为C++，'++'是C语言中的增值操作符，
+								“这个名字象征着源自于C语言变化的自然演进”。
+								<br>不同于早期的C语言的面向过程，C++是一个面向对象的语言。和C语言相比，C++引入了更多的特性，包括：
+								复合类型（引用类型等）、类型处理运算符、C++标准库（IO库与多种容器类）与迭代器、函数重载、面向对象程序设计等等。
+							</p>
+						</div>
+					</div>
+
+					<!-- MS-DOS -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1980年
+							</h2>
+							<h3>
+								MS-DOS操作系统
+							</h3>
+							<p>
+								美国西雅图计算机产品公司（Seattle Computer Products）的一名24岁的程序Tim Paterson花费了四个月时间编写出了 86-DOS 操作系统，
+								次年微软公司将其买下，并命名为MS-DOS，由此MS-DOS正式诞生。
+								<br>MS-DOS操作系统运行在Intel x86个人电脑上，它是DOS操作系统家族中最著名的一个。
+								在Windows 95以前，DOS是IBM PC及兼容机中的最基本配备，而MS-DOS则是个人电脑中最普遍使用的DOS操作系统。
+							</p>
+						</div>
+					</div>
+
+					<!-- X86架构 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1978年
+							</h2>
+							<h3>
+								X86架构
+							</h3>
+							<p>
+								美国Intel公司发布了一款16位微处理器，型号为8086，跟随着8086处理诞生的还有X86架构。
+								<br>X86架构（The X86 architecture）是一种基于复杂指令集计算机（CISC）概念的架构，它包括了一系列CPU架构标准及相关的指令集标准。
+								X86是计算机硬件技术发展历史上的重要支柱之一，它对芯片和 CPU 的发展影响深远。自20世纪 80 年代开始，
+								x86 就成为了台式机 CPU 的代名词，AMD 和 Intel 的处理器都采用了这一架构。只不过到如今64位机器已经成为主流，衍生于X86的AMD64已经
+								成为PC指令集的主流，Intel庞大的X86家族已经面临着革命or殒命的的抉择。
+							</p>
+						</div>
+					</div>
+
+					<!-- 现代集成电路计算机 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1971年
+							</h2>
+							<h3>
+								现代大规模及超大规模集成电路计算机
+							</h3>
+							<p>
+								美国Intel推出了世界上第一个微处理器4004，开启了微型计算机时代，
+								并正式开启大规模及超大规模集成电路计算机时代。
+							</p>
+						</div>
+					</div>
+
+					<!-- C语言 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1969年-1973年
+							</h2>
+							<h3>
+								C语言
+							</h3>
+							<p>
+								为了让UNIX操作系统真正具有可移植性，美国贝尔实验室的K.Thompson与Dennis Ritchie以B语言为基础，
+								最终设计开发出了<strong>C语言</strong>。
+								<br>C语言具有高效、灵活、功能丰富、表达力强和较高的可移植性等特点，在程序设计中备受青睐，
+								从其诞生至今(2024年)，C语言不可置疑地仍然是影响最深、使用最为广泛的编程语言。
+								C语言的设计影响了众多后来的编程语言，例如C++、Objective-C、Java、C#等。
+								现行的许多软件都是由C语言或者其影响和派生的编程语言开发出来的。
+							</p>
+						</div>
+					</div>
+
+					<!-- UNIX、B语言 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1969年
+							</h2>
+							<h3>
+								UNIX系统与B语言
+							</h3>
+							<p>
+								美国贝尔实验室的K.Thompson与Dennis Ritchie在小型计算机上开发出了UNIX系统，并在其基础上开发出了B语言
+								<span style="color: gainsboro;">(可能是Basic Combined Programming
+									Language(基本组合编程语言)的缩写)</span>。
+								<br>在Unix系统是一个分时系统，而在其诞生前只有批处理操作系统。Unix 是现代操作系统的奠基者，几乎所有主流操作系统（Linux、macOS、BSD 等）
+								都可以追溯到 Unix 的发展历史。
+							</p>
+						</div>
+					</div>
+
+					<!-- 中小规模集成电路计算机 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1964年
+							</h2>
+							<h3>
+								中小规模集成电路计算机
+							</h3>
+							<p>
+								美国公司IBM发布了IBM 360系列首套兼容机，宣告集成电路计算机时代正式开幕。
+							</p>
+						</div>
+					</div>
+
+					<!-- ALGOL -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1963年
+							</h2>
+							<h3>
+								ALGOL语言
+							</h3>
+							<p>
+								《算法语言ALGOL 60报告》得到修订并出版，ALGOL正式问世。
+								<br>ALGOL，名称源自算法语言（ALGOrithmic Language）的缩写。Algol
+								60引进了许多新的概念如：代码块、词法作用域、递归、巴科斯-诺尔范式（BNF）等等。
+								Algol 60是程序设计语言发展史上的一个里程碑，它标志着程序设计语言成为一门独立的科学学科，并为后来软件自动化及软件可靠性的发展奠定了基础。
+							</p>
+						</div>
+					</div>
+
+					<!-- MOS管 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1962年
+							</h2>
+							<h3>
+								半导体
+							</h3>
+							<p>
+								美国贝尔实验室开发出一种相比于BJT更适合集成的新型晶体管，
+								名为<strong>金属氧化物半导体场效应晶体管</strong>
+								（Metal Oxide Semiconductor Field Effect Transistor，MOSFET或MOS），简称MOS管。
+							</p>
+						</div>
+					</div>
+
+					<!-- COBOL -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1959年
+							</h2>
+							<h3>
+								COBOL语言
+							</h3>
+							<p>
+								CODASYL（数据系统语言会议）开发出COBOL。<br> COBOL是第一个广泛使用的高级编程语言。
+								它是一种类似英语的，对用户友好的语言。所有指令都可以用简单的英语单词进行编码。
+								COBOL设计用于金融、国防等相关的面向商业的应用程序，其高级文件处理能力，可以处理大量的数据。
+							</p>
+						</div>
+					</div>
+
+
+					<!-- 晶体管计算机 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1958年
+							</h2>
+							<h3>
+								晶体管计算机
+							</h3>
+							<p>
+								美国IBM公司制成了第一台全部使用晶体管的计算机RCA501型。开启第二代计算机——晶体管计算机的时代。
+							</p>
+						</div>
+					</div>
+
+					<!-- FORTRAN -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1954年
+							</h2>
+							<h3>
+								Fortran语言
+							</h3>
+							<p>
+								第一代Fortran语言被首次提出，称为FortranI。
+								<br>Fortran是英文FORmula TRANslation的缩写，
+								意为“公式翻译”。它是为科学、工程问题中的那些能够用数学公式表达的问题而设计的语言，
+								主要用于数值计算。这种语言简单易学，因为可以像抄写数学教科书里的公式一样书写数学公式，
+								它比英文书写的自然语言更接近数学语言。
+							</p>
+						</div>
+					</div>
+
+
+					<!-- 第一台计算机诞生，电子管计算机 -->
+					<div class="timeline__item">
+						<div class="timeline__content">
+							<h2>
+								1946年2月14日
+							</h2>
+							<h3>
+								电子管计算机
+							</h3>
+							<p>
+								在美国宾夕法尼亚大学，世界上第一台电子数字计算机ENIAC诞生。开启第一代计算机——电子管计算机的时代。
+							</p>
+						</div>
+					</div>
+
+
 				</div>
 			</div>
 		</div>
+	</div>
 
-	</body>
-	<script src="dist/js/timeline.min.js"></script>
-	<script>
-		timeline(document.querySelectorAll('.timeline'));
-	</script>
+
+</body>
+<script src="dist/js/timeline.min.js"></script>
+<script>
+	timeline(document.querySelectorAll('.timeline'));
+	// 监听滚动事件来切换导航栏样式
+	console.log('开始监听滚动事件以切换导航栏样式');
+	console.log('当前Fluid对象：', Fluid);
+	Fluid.utils.listenScroll(function () {
+		const navbar = document.querySelector('#navbar'); // 根据实际选择器调整
+		if (!navbar) return;
+
+		// 获取滚动位置
+		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+		// 设置一个阈值，比如 10px
+		const scrollThreshold = 10;
+
+		if (scrollTop > scrollThreshold) {
+			// 向下滚动超过阈值，移除 navbar-dark，添加 top-nav-collapse
+			navbar.classList.remove('navbar-dark');
+			navbar.classList.add('top-nav-collapse');
+		} else {
+			// 回到顶部，恢复 navbar-dark，移除 top-nav-collapse
+			navbar.classList.add('navbar-dark');
+			navbar.classList.remove('top-nav-collapse');
+		}
+	});
+</script>
+
 </html>

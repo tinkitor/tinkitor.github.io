@@ -316,12 +316,9 @@
             <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
           </div>
 <h1 id="前言">前言</h1>
-<p>自从升级了win11，那个二级右键菜单越用越不得劲。本来就要多点一下，多点那一下还要一卡一卡的。终于还是在我用右键git
-bash
-here的时候，我实在忍不住了——太慢太卡了！以前我0.5秒就可以打开，现在需要1.5秒，这能忍？</p>
+<p>自从升级了win11，那个二级右键菜单越用越不得劲。本来就要多点一下，多点那一下还要一卡一卡的。终于还是在我用右键git bash here的时候，我实在忍不住了——太慢太卡了！以前我0.5秒就可以打开，现在需要1.5秒，这能忍？</p>
 <p>遂CV大法开启，看看网上能有什么快捷教程可以用的（我记得以前装git的时候看到了一个类似教程，但是我对此并不感冒），结果搜了一圈，全是一些乱七八糟牛头不对马嘴的答案，最终放弃，只能自己创造答案。</p>
-<p>本教程主要实现的功能为：在文件资源管理器中的目录栏键入关键字后，快速启动“git
-bash here”。注意：本教程仅适用于windows10+系统。</p>
+<p>本教程主要实现的功能为：在文件资源管理器中的目录栏键入关键字后，快速启动“git bash here”。注意：本教程仅适用于windows10+系统。</p>
 <h1 id="正文">正文</h1>
 <h2 id="一快速实现">一、快速实现</h2>
 <h3 id="创建批处理任务脚本bat文件">1.创建批处理任务脚本（bat文件）</h3>
@@ -331,10 +328,7 @@ bash here”。注意：本教程仅适用于windows10+系统。</p>
 <h3 id="添加系统环境变量">2.添加系统环境变量</h3>
 <p>进入设置，在设置搜索框搜索“高级系统设置”，进入“高级系统设置”：</p>
 <figure>
-<img
-src="../img/利用文件资源管理器目录栏快速git-bash/image-20230904121523307.png" srcset="/img/loading.gif" lazyload
-alt="进入高级系统设置" />
-<figcaption aria-hidden="true">进入高级系统设置</figcaption>
+<img src="../img/利用文件资源管理器目录栏快速git-bash/image-20230904121523307.png" srcset="/img/loading.gif" lazyload alt="进入高级系统设置" /><figcaption aria-hidden="true">进入高级系统设置</figcaption>
 </figure>
 <p>如上图，点击<code>环境变量</code>开始添加环境变量。进入后可以看到一个是用户变量窗口，一个是系统变量窗口。</p>
 <p>选择系统变量窗口下的<code>新建变量</code>，变量名填<code>gbh</code>（可以随便写，但是需要和上一步中的文件名保持一致），变量值填git-bash.exe的上一级目录，例如<code>D:\program" "files\Git\</code>，点击确定保存。</p>
@@ -343,10 +337,7 @@ alt="进入高级系统设置" />
 <h3 id="开始使用">3.开始使用</h3>
 <p>打开资源管理器，在任意目录下的目录栏输入<code>gbh</code>即可快速实现右键中的<code>git bash here</code>。</p>
 <figure>
-<img
-src="../img/利用文件资源管理器目录栏快速git-bash/image-20230904122836107.png" srcset="/img/loading.gif" lazyload
-alt="目录栏里调用脚本" />
-<figcaption aria-hidden="true">目录栏里调用脚本</figcaption>
+<img src="../img/利用文件资源管理器目录栏快速git-bash/image-20230904122836107.png" srcset="/img/loading.gif" lazyload alt="目录栏里调用脚本" /><figcaption aria-hidden="true">目录栏里调用脚本</figcaption>
 </figure>
 <h2 id="二原理粗略解释">二、原理粗略解释</h2>
 <p>具体什么原理我也不知道，因为这是我自己试出来的。因为我就只知道一个在目录栏里输入cmd就可以快速打开cmd。于是我就顺藤摸瓜，发现目录栏里的关键字可以和环境变量里的<code>Path</code>变量值匹配，而且还可以根据这个变量值自动寻找这个值对应路径下面的bat运行，其中bat的名字是和关键字是一样的。关于bat文件中那段代码<code>start</code>意思就是运行对应文件的意思。就这样了，其他具体的也懒得去深究了，因为对我没太大帮助。</p>

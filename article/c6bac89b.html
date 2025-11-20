@@ -21,21 +21,21 @@
   <meta name="author" content="Tinkitor">
   <meta name="keywords" content="Tinkitor,,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
-    <meta name="description" content="本文章主要从线程的概念入手，随后介绍java多线程的实现方式与实战案例，最后介绍java多线程的几种通信方式。">
+    <meta name="description" content="本文章主要从线程的基本概念入手，随后介绍java多线程的实现方式与实战案例，最后介绍java多线程的几种通信方式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java中的多线程通信方式">
 <meta property="og:url" content="https://tinkitor.github.io/article/c6bac89b.html">
 <meta property="og:site_name" content="Tinkitor的博客">
-<meta property="og:description" content="本文章主要从线程的概念入手，随后介绍java多线程的实现方式与实战案例，最后介绍java多线程的几种通信方式。">
+<meta property="og:description" content="本文章主要从线程的基本概念入手，随后介绍java多线程的实现方式与实战案例，最后介绍java多线程的几种通信方式。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tinkitor.github.io/img/java%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/OIP-C.jpeg">
 <meta property="article:published_time" content="2024-06-10T12:52:26.000Z">
-<meta property="article:modified_time" content="2024-06-17T14:10:05.010Z">
+<meta property="article:modified_time" content="2025-02-05T13:49:33.499Z">
 <meta property="article:author" content="Tinkitor">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="java多线程">
 <meta property="article:tag" content="待完成">
+<meta property="article:tag" content="java多线程">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://tinkitor.github.io/img/java%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/OIP-C.jpeg">
   
@@ -260,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.2k 字
         
       </span>
     
@@ -328,12 +328,11 @@
 <h1 id="正文">正文</h1>
 <h2 id="进程与线程">1.进程与线程</h2>
 <p>在了解“进程”与“线程”之前，需要注意不管是“进程”还是“线程”，它们都是一个中文词语罢了，对于一些初学者来说很容易陷入到对这些词语本身的理解之中，但是要明白这些词语不过就是一个用来描述一种具体或者抽象的东西的符号，它们只是一个符号，仅此而已。就像是“大树”这个词语，不要去试图理解“大树”这个符号是什么东西，而是要理解平时使用“大树”这个符号时，我们实际是想要描述一个什么样的东西：例如一颗很粗壮的树。对于“进程”或者“线程”，实际上这个两个词语对于不了解的初学者来说是比较抽象的，一听到这两个词语就不知道这是啥意思，所以不要试图去理解这些符号本身是什么东西，要去理解这些符号本身想要表达的东西，这样以后一看到“进程”就像一看到“树”这个字一样，脑海里自然而然就出现了它背后所代表的东西。</p>
+<p>N年前的主流计算机一段时间内还只能处理一道程序，随着需求与技术的不断变化发展，计算机开始能够在一段时间内处理多道程序，这就是后来的“并发”概念。不过为了解决并发中多个程序运行时发生的各种冲突矛盾，例如怎么多个程序在运行时怎么区分谁是谁，“进程”这个概念便被发明出来了。而线程，是用于代替进程原有的部分功能而被发明出来的，通俗点讲，线程就是一个轻量级进程。进程负责非CPU资源分配，进程负责CPU调度执行，可以理解为：一个是“老板”，一个是“打工的”。</p>
 <h2 id="什么是进程">1.1 什么是进程</h2>
-<p>虽然进程是计算机里面专属的词语，它用来描述一个运行的程序，但是实际上"进程"背后所代表的思想是符合现实中许多需要处理的事务特点的，所以接下来就从现实例子出发的同时与计算机结合来介绍这个概念。</p>
-<p>假设有这么一个场景：目前你手中有一根吸管，面前有三杯奶茶，一杯是酸的，一杯是甜的，还有一杯是辣的（别问我为什么会有辣的奶茶存在🤺），假设这个时候你只能用那一根吸管最多同时喝一杯奶茶。</p>
-<p>CPU对应吸管，一颗CPU同时只能处理一个事务，一根吸管同时只能吸一种奶茶</p>
-<p>进程对应一整个想要喝的这件事</p>
-<p>线程对应喝什么奶茶这件事</p>
+<p>进程（process）,从字面上理解非常直白：”（正在）进行的程序“，实际上进程也确实是这个意思，大差不差。进程可以有很多个人解释，但是一般都可解释为：</p>
+<p>进程是？引用出处。</p>
+<p>注：“进程”只是一个人为发明的概念，它是一个概念工具，用来描述一个动态的过程，在理解此概念时不可钻字眼牛角尖，只需从实际出发，一切便可豁然开朗。</p>
 <h2 id="什么是线程">1.2 什么是线程</h2>
 <h2 id="进程与线程的关系与意义">1.3 进程与线程的关系与意义</h2>
 <h2 id="现代操作系统中的进程与线程">1.4 现代操作系统中的进程与线程</h2>
@@ -391,9 +390,9 @@
       
         <a href="/tags/java/" class="print-no-link">#java</a>
       
-        <a href="/tags/java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="print-no-link">#java多线程</a>
-      
         <a href="/tags/%E5%BE%85%E5%AE%8C%E6%88%90/" class="print-no-link">#待完成</a>
+      
+        <a href="/tags/java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="print-no-link">#java多线程</a>
       
     </div>
   

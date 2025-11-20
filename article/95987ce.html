@@ -322,22 +322,12 @@
 <p>从一个简单的例子开始：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">char</span> a[<span class="hljs-number">20</span>] ;<br>    <span class="hljs-type">char</span> str[<span class="hljs-number">20</span>] ;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入文件名:&quot;</span>) ;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span> , a ) ;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入关键字:&quot;</span>) ;<br>    <span class="hljs-comment">//getchar() ;//fflush(stdin);</span><br>    gets(str) ;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span> , str);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> ;<br>&#125;<br></code></pre></td></tr></table></figure>
 <figure>
-<img src="../img/005-不理解缓冲区导致数据输出异常/clip_image001.jpg" srcset="/img/loading.gif" lazyload
-alt="输入jj后回车程序就结束了" />
-<figcaption aria-hidden="true">输入jj后回车程序就结束了</figcaption>
+<img src="../img/005-不理解缓冲区导致数据输出异常/clip_image001.jpg" srcset="/img/loading.gif" lazyload alt="输入jj后回车程序就结束了" /><figcaption aria-hidden="true">输入jj后回车程序就结束了</figcaption>
 </figure>
 <p>可以看到没等第二次的关键字的输入程序就运行结束了，这是为什么呢？要充分理解这个问题我们需要理解C语言中对缓冲区的概念。</p>
-<p>在这之前我们初步分析一下，scanf函数输入字符串的的情况下空白字符（空格，回车，Tab）都只是被视为分隔符，关于这一点可以参考
-<a
-href="/2022/03/31/006_C语言中scanf与分隔符-空格、回车、tab/">C语言中scanf与分隔符（空格回车Tab)</a>
-这篇博文，当我们输入字符串jj后按回车的时候就会把jj连同换行符送入缓冲区，然而scanf只会接收字符串jj，并把这个字符串送入到以a为首地址的地址空间中，同时在字符串后面自动加上一个
-\0
-，那么如今缓冲区内就只有一个换行符了。当执行到gets()函数的时候，因为缓冲区内非空，那么gets直接会读取缓冲区中的换行符复制到str为首地址的内存空间，同时在字符串后面自动加上一个
-\0，所以输出的str的结果就是一个换行罢了。</p>
+<p>在这之前我们初步分析一下，scanf函数输入字符串的的情况下空白字符（空格，回车，Tab）都只是被视为分隔符，关于这一点可以参考 <a href="/2022/03/31/006_C语言中scanf与分隔符-空格、回车、tab/">C语言中scanf与分隔符（空格回车Tab)</a> 这篇博文，当我们输入字符串jj后按回车的时候就会把jj连同换行符送入缓冲区，然而scanf只会接收字符串jj，并把这个字符串送入到以a为首地址的地址空间中，同时在字符串后面自动加上一个 \0 ，那么如今缓冲区内就只有一个换行符了。当执行到gets()函数的时候，因为缓冲区内非空，那么gets直接会读取缓冲区中的换行符复制到str为首地址的内存空间，同时在字符串后面自动加上一个 \0，所以输出的str的结果就是一个换行罢了。</p>
 <p>当我们取消程序中注释语句getchar()的时候，getchar()会接收缓冲区中的而第一个字符，那么缓冲区便空了。当执行到gets()的时候，由于缓冲区为空，那么程序便会停在gets()位置处的等待输入。然后我们输入字符串并且按回车将字符串送入缓冲区后，因为gets()的功能是获取缓冲区中的字符串，遇到换行符或者EOF后停止，所以gets()取出缓冲区内所有的字符串以及换行符，所以输出的结果如下图示：</p>
-<p><img src="../img/005-不理解缓冲区导致数据输出异常/clip_image002.jpg" srcset="/img/loading.gif" lazyload
-alt="使用getchar()读取缓冲区剩余内容" />
-可以看到连同换行符也一起输出来了。</p>
+<p><img src="../img/005-不理解缓冲区导致数据输出异常/clip_image002.jpg" srcset="/img/loading.gif" lazyload alt="使用getchar()读取缓冲区剩余内容" /> 可以看到连同换行符也一起输出来了。</p>
 <p>当然除了使用getchar()来消除换行符的影响，也可以使用fflush(stdin)来刷新缓冲区，同样可以起到消除换行符的效果。因为fflush(stdin)的作用是清除标准输入缓冲区中的内容。</p>
 <h3 id="缓冲区介绍">2.缓冲区介绍</h3>
 <p>有了一些感性的认识，我们来看看缓冲区的概念和它的机制。</p>
@@ -367,16 +357,12 @@ alt="使用getchar()读取缓冲区剩余内容" />
 <p>函数原型：int getchar(void);</p>
 <p>说明：当程序调用getchar()函数时，程序就等着用户按键，用户输入的字符被存放在键盘缓冲区中，直到用户按回车为止(回车字符也放在缓冲区中)。当用户键入回车之后，getchar()函数才开始从键盘缓冲区中每次读入一个字符。也就是说，后续的getchar()函数调用不会等待用户按键，而直接读取缓冲区中的字符，直到缓冲区中的字符读完后，才重新等待用户按键。</p>
 <p>不知道您明白了没有，再通俗一点讲，当程序调用getchar()函数时，程序就等着用户按键，并等用户按下回车键返回。期间按下的字符存放在缓冲区，第一个字符作为函数返回值。继续调用getchar()函数，将不再等用户按键，而是返回您刚才输入的第2个字符;继续调用，返回第3个字符，直到缓冲区中的字符读完后，才等待用户按键。</p>
-<p>getchar()函数的执行就是采用了行缓冲。第一次调用getchar()函数，会让程序使用者(用户)输入一行字符并直至按下回车键
-函数才返回。此时用户输入的字符和回车符都存放在行缓冲区。再次调用getchar()函数，会逐步输出行缓冲区的内容。</p>
+<p>getchar()函数的执行就是采用了行缓冲。第一次调用getchar()函数，会让程序使用者(用户)输入一行字符并直至按下回车键 函数才返回。此时用户输入的字符和回车符都存放在行缓冲区。再次调用getchar()函数，会逐步输出行缓冲区的内容。</p>
 <p>运行一段代码体会一下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">char</span> c ;<br>    c = getchar() ;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;c = %c\n&quot;</span> , c ) ;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> ;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>运行结果：</p>
 <figure>
-<img src="../img/005-不理解缓冲区导致数据输出异常/clip_image004.jpg" srcset="/img/loading.gif" lazyload
-alt="s后面的输入由于缓冲区已满而被无视" />
-<figcaption
-aria-hidden="true">s后面的输入由于缓冲区已满而被无视</figcaption>
+<img src="../img/005-不理解缓冲区导致数据输出异常/clip_image004.jpg" srcset="/img/loading.gif" lazyload alt="s后面的输入由于缓冲区已满而被无视" /><figcaption aria-hidden="true">s后面的输入由于缓冲区已满而被无视</figcaption>
 </figure>
 <p>不断输入数据，当不能再输入数据的时候说明缓冲区已满，输入的字符的数目为4096，即4k。那么就可以知道缓冲区的大小为4k。</p>
 <h6 id="参考资料">参考资料:</h6>
@@ -384,10 +370,7 @@ aria-hidden="true">s后面的输入由于缓冲区已满而被无视</figcaption
 <div class="footnote-list">
 <ol>
 <li>
-<span id="fn:1"
-class="footnote-text"><span>https://www.csdndoc.com/article/4341477
-<a href="#fnref:1" rev="footnote" class="footnote-backref">
-↩︎</a></span></span>
+<span id="fn:1" class="footnote-text"><span>https://www.csdndoc.com/article/4341477 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
 </li>
 </ol>
 </div>

@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><!-- hexo injector head_begin start --><meta name="baidu-site-verification" content="codeva-XYlDuX6TRA"/><meta name="msvalidate.01" content="7E701904A834FF84C139D6673D186DE8"/><meta name="google-site-verification" content="ZowmcPbzvkQ5mm8-MiUYJqkxjU2hfUU_B6QGEsoGeuo"/><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicon.ico">
+  <link rel="icon" href="/favicon.ico">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tinkitor">
+  <meta name="keywords" content="Tinkitor,,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
+  
+    <meta name="description" content="该文章无摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前后端RSA双向加解密踩坑记">
+<meta property="og:url" content="https://tinkitor.github.io/article/fd9fcb0.html">
+<meta property="og:site_name" content="Tinkitor的博客">
+<meta property="og:description" content="该文章无摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tinkitor.github.io/img/default/post_example.svg">
+<meta property="article:published_time" content="2025-02-14T12:57:24.000Z">
+<meta property="article:modified_time" content="2025-04-30T03:26:59.157Z">
+<meta property="article:author" content="Tinkitor">
+<meta property="article:tag" content="原创">
+<meta property="article:tag" content="待完成">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tinkitor.github.io/img/default/post_example.svg">
+  
+  
+  
+  <title>前后端RSA双向加解密踩坑记 - Tinkitor的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom_global.css">
+<link rel="stylesheet" href="/css/read-progress-bar.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"tinkitor.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","app_key":"WCb6A9dSGZOFK659XOfsze0e","server_url":"https://6emln801.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><progress id="content_progress" value="0"></progress><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Tinkitor的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/timeline.html" target="_self">
+                <i class="iconfont icon-books"></i>
+                <span>历史</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default/post_banner_example.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">前后端RSA双向加解密踩坑记</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-14 20:57" pubdate>
+          2025年02月14日, 星期五 ,晚上 8:57
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">前后端RSA双向加解密踩坑记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-info">
+            <p>未完成文章</p>
+          </div>
+<div class="note note-success">
+            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
+          </div>
+<h1 id="前言">前言</h1>
+<h1 id="正文">正文</h1>
+<h2 id="正文标题1">正文标题1</h2>
+<h3 id="正文副标题1">正文副标题1</h3>
+<p>crypto web api</p>
+<p>https://developer.mozilla.org/zh-CN/docs/Web/API/SubtleCrypto/decrypt#%E8%AF%AD%E6%B3%95</p>
+<p>前端加密解密正常</p>
+<p>//start</p>
+<p>// 将 ArrayBuffer 转换为 Base64 字符串</p>
+<p><em>function</em> arrayBufferToBase64(<em>buffer</em>:<em>any</em>) {</p>
+<p><em>let</em> binary = '';</p>
+<p><em>const</em> bytes = new <em>Uint8Array</em>(<em>buffer</em>);</p>
+<p>for (<em>let</em> i = 0; i &lt; bytes.byteLength; i++) {</p>
+<p>binary += <em>String</em>.fromCharCode(bytes[i]);</p>
+<p>}</p>
+<p>return window.btoa(binary);</p>
+<p>}</p>
+<p>// 将二进制字符串转换为 ArrayBuffer</p>
+<p><em>function</em> str2ab(<em>str</em>:<em>string</em>) {</p>
+<p><em>const</em> buf = new <em>ArrayBuffer</em>(<em>str</em>.length);</p>
+<p><em>const</em> view = new <em>Uint8Array</em>(buf);</p>
+<p>for (<em>let</em> i = 0; i &lt; <em>str</em>.length; i++) {</p>
+<p>view[i] = <em>str</em>.charCodeAt(i);</p>
+<p>}</p>
+<p>return buf;</p>
+<p>}</p>
+<p>// 将 PEM 公钥转换为 SPKI 格式（去掉头尾标识）</p>
+<p><em>function</em> pemToSpki(<em>base64PublicKey</em>:<em>any</em>) {</p>
+<p>// 去掉公钥的头尾部分</p>
+<p><em>const</em> publicKeyPem = <em>base64PublicKey</em>.replace(/-----BEGIN PUBLIC KEY-----/g, '').replace(/-----END PUBLIC KEY-----/g, '').trim();</p>
+<p>return atob(publicKeyPem); // 解码 Base64 内容</p>
+<p>}</p>
+<p>// 将 Base64 编码的公钥转换为 CryptoKey 对象</p>
+<p>async <em>function</em> importPublicKey(<em>base64PublicKey</em>:<em>string</em>) {</p>
+<p><em>const</em> binaryDerString = window.atob(<em>base64PublicKey</em>); // Base64 解码</p>
+<p><em>const</em> binaryDer = str2ab(binaryDerString); // 将二进制字符串转换为 ArrayBuffer</p>
+<p>// 导入公钥</p>
+<p><em>const</em> publicKey = await crypto.subtle.importKey(</p>
+<p>'spki', // 这里的 spki 表示公钥</p>
+<p>binaryDer, // 公钥的 ArrayBuffer</p>
+<p>{</p>
+<p>name: 'RSA-OAEP',</p>
+<p>hash: 'SHA-256', // 哈希算法</p>
+<p>},</p>
+<p>true, // 是否可以导出</p>
+<p>['encrypt'] // 密钥用途</p>
+<p>);</p>
+<p>return publicKey;</p>
+<p>}</p>
+<p>// 使用公钥进行 RSA 加密</p>
+<p>async <em>function</em> rsaEncrypt(<em>plaintext</em>:<em>string</em>, <em>publicKey</em>:<em>CryptoKey</em>) {</p>
+<p><em>const</em> encoder = new <em>TextEncoder</em>();</p>
+<p><em>const</em> encodedData = encoder.encode(<em>plaintext</em>);</p>
+<p>// 使用公钥进行加密</p>
+<p><em>const</em> encryptedData = await crypto.subtle.encrypt(</p>
+<p>{</p>
+<p>name: 'RSA-OAEP',</p>
+<p>},</p>
+<p><em>publicKey</em>,</p>
+<p>encodedData</p>
+<p>);</p>
+<p>return arrayBufferToBase64(encryptedData); // 转换为 Base64 字符串返回</p>
+<p>}</p>
+<p>// 将 Base64 编码的私钥转换为 CryptoKey 对象</p>
+<p>async <em>function</em> importPrivateKey(<em>base64PrivateKey</em>) {</p>
+<p><em>const</em> binaryDerString = atob(<em>base64PrivateKey</em>); // 将 Base64 解码</p>
+<p><em>const</em> binaryDer = str2ab(binaryDerString); // 将二进制字符串转为 ArrayBuffer</p>
+<p>// 导入私钥</p>
+<p><em>const</em> privateKey = await crypto.subtle.importKey(</p>
+<p>'pkcs8', // 私钥格式</p>
+<p>binaryDer, // 私钥的 ArrayBuffer</p>
+<p>{</p>
+<p>name: 'RSA-OAEP',</p>
+<p>hash: 'SHA-256', // 默认的哈希算法</p>
+<p>},</p>
+<p>true, // 是否可以导出</p>
+<p>['decrypt'] // 密钥用途</p>
+<p>);</p>
+<p>return privateKey;</p>
+<p>}</p>
+<p>// 将 Base64 编码的字符串转换为 ArrayBuffer</p>
+<p><em>function</em> base64ToArrayBuffer(<em>base64</em>) {</p>
+<p><em>const</em> binaryString = atob(<em>base64</em>);</p>
+<p><em>const</em> len = binaryString.length;</p>
+<p><em>const</em> buffer = new <em>ArrayBuffer</em>(len);</p>
+<p><em>const</em> view = new <em>Uint8Array</em>(buffer);</p>
+<p>for (<em>let</em> i = 0; i &lt; len; i++) {</p>
+<p>view[i] = binaryString.charCodeAt(i);</p>
+<p>}</p>
+<p>console.log(buffer)</p>
+<p>return buffer;</p>
+<p>}</p>
+<p>// 使用私钥进行 RSA 解密</p>
+<p>async <em>function</em> rsaDecrypt(<em>encryptedData</em>, <em>privateKeyBase64</em>) {</p>
+<p><em>const</em> binaryData = base64ToArrayBuffer(<em>encryptedData</em>); // 将 Base64 编码的密文转换为 ArrayBuffer</p>
+<p><em>const</em> privateKey = await importPrivateKey(<em>privateKeyBase64</em>)</p>
+<p>// 使用私钥进行解密</p>
+<p><em>const</em> decryptedData = await crypto.subtle.decrypt(</p>
+<p>{</p>
+<p>name: 'RSA-OAEP',</p>
+<p>// Web Crypto API 默认使用 PKCS1Padding 填充方式</p>
+<p>},</p>
+<p>privateKey,</p>
+<p>binaryData</p>
+<p>);</p>
+<p>// 解密后的数据是一个 ArrayBuffer，可以将其转换为字符串</p>
+<p><em>const</em> decoder = new <em>TextDecoder</em>();</p>
+<p>return decoder.decode(decryptedData); // 返回解密后的字符串</p>
+<p>}</p>
+<p>//加密工具</p>
+<p>async <em>function</em> rsaE(<em>s</em>:<em>string</em>,<em>p</em>:<em>string</em>):<em>Promise</em>&lt;<em>string</em>&gt; {</p>
+<p><em>const</em> pulicKey = await importPublicKey('MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmZr6zJX28C8adGE7/pxYRZajhdlPXXX6TiVPyKABaN397WfDOfnYGmqDZu+o4xxCyeqckzp0kFTamEQ0BeZXV1W9RdOaspHBnl5dZUbsJpRuBaCnCJyMKeipBEaIZke9GmI8QuzUYuFFM2KV5MF4yj4N+sVLfZWdgAse54JpFHZ53VI7Kmywdcf/U9wNAKKvMTMwgHawv23q7hwGbHEu8omNM/d6OnFPHGWVzxfRxJ/F1Q2BJSRJgkt5Zwvu1r1TWMeHDKgaq6FZBE6C7LE/YeCHacU6ngwrdZZxiYtYoUvCPCPany4zOGojD5+6vJG3x+jZOp7bM+xthz1OdhX3OQIDAQAB');</p>
+<p>// const result = await rsaEncrypt(s,pulicKey);</p>
+<p><em>const</em> result = 'AcMAET+gaIJu0VULNKPRW+vldyk9C5dJCzpmlLjtQHqXM59Y5bMxq87q1ogvxRel3FmSlf4lM8RyGSjPg0dJdQ1LjBdEx2lH003FXOdR0WQkggH54j8YkarwTjfM4Qsgfo2RvZevGhrt6uDViekdgL1vetRShoz54oSz6xpWibsJYhrG4eK1WriLLAHATn5QCILGAD5pnA/ARYR/9lAEFwO4OG1nvPAMv0ey9/cQo00kpR1v976y5RpWYv2A1IBX06cJgmG0+qHqu/6zT1SwqdBZm2FFe5MM5pB4qkvCZtpnM/K5VjVq1rumrC/7xOr0frzHhEZjqKxu0G/9Gw2TSQ=='</p>
+<p>//const result = 'Sf+aCzDUZ3cIzpeRnLOvoWfUuHH3DlRjk1VnECs5J/F4UIH0+tlYqM8BRHC1NFrjeyTk5k2g+8Oxfj9yN3N3U/EODi7/eK9dF/Q0RlyPXOypUilPtj9l1ig7bRcEv/p4WQO8Bw7V55sIlT2dNGSiiauWcK6oCx9t8VkE9bGTNR772Ojdsbn2Mn3dbUa6u2sv6iUAfoNVIetzrR6U+eOV+Z/O8qP1u9a4alBUtxmJ6YuVijcV5tvDLccziWTwOLIgUYna6A9YgKpi+Ykk2NWy4SOd1SOTbG98+sV/xaotshLVi4lj8vWp0Z9CmgPNl6gOAMknHWWyB2R6wpKb/dZ0BA=='</p>
+<p><em>const</em> cc = await rsaDecrypt(result,'MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCZmvrMlfbwLxp0YTv+nFhFlqOF2U9ddfpOJU/IoAFo3f3tZ8M5+dgaaoNm76jjHELJ6pyTOnSQVNqYRDQF5ldXVb1F05qykcGeXl1lRuwmlG4FoKcInIwp6KkERohmR70aYjxC7NRi4UUzYpXkwXjKPg36xUt9lZ2ACx7ngmkUdnndUjsqbLB1x/9T3A0Aoq8xMzCAdrC/beruHAZscS7yiY0z93o6cU8cZZXPF9HEn8XVDYElJEmCS3lnC+7WvVNYx4cMqBqroVkEToLssT9h4IdpxTqeDCt1lnGJi1ihS8I8I9qfLjM4aiMPn7q8kbfH6Nk6ntsz7G2HPU52Ffc5AgMBAAECggEAA2/+ERZBj5Q0Rrq205621H7Xo7sOXUByxK0t1QbspSbDpByUeD+MvCGaVXNDT6rOHVPqY1qVaXX2qt3q3p9uILKW4OFIhtq/bx58P1QYHJBpimdzGXycX+M4phN4gbZ1B0o/wD0pzxksuebIxTTlsbv0BuLDqtiubMNC8qoe1SH9PUDMSUqf0oYAEF718a9mCiMFl5I0Xw+6Hg4ecznYG5hbaK+5/Ph19BVDl2FXY6BlYNvg3PjwHnsZCI/rfj0FZbgtzefS0AKZ4Wwzza3s/pvNWBShbJkrkMr/JV6nkH2EWOYtgZblQf5oVBSLNqmByrfI9u2md0K5QdKITqk8QQKBgQDKsH8a0rocfy+qBrXziTx8UaiCb6UjXt7955DBSxsL2YPGCTXpcXZaVyLZ58tdUnWw6lTCGpL16EhqzIl5/lWczA5dpnNYxns1FTjDyOmQBmx8j8+lR0yob03flidVnHPq7VwkTxbZn5rE09i+fsO3YxIOaHVl5WjsORiyvPYceQKBgQDCAY0wsOiPRKv/np2tTpT1+IN2K+jMoIkibrADEXHVFZTSQ+O5o50VRd3Kpk/rsPl9iYSJ6q515KNV4SUr4KDaytmUjvaOvLvbtaS1JURvtK8dOLNzIXM5+0w5ehzqco5AtQpdAWhu+hI66Tcl7Et3ua3OeJj4hMmgrDJrNT6AwQKBgQC3LJhBym0NcdfGhbgLtlumUjnCX1lTRNqrhYlpVhHEPLf80bgaF0MJU7QYT4WW+f2Ie81Lea6Uc252rhAT4sjGIhddhR66/Oy9xUb+kOSbF2MVkvXp/SyHD8fFpzI3CWQszIO4AI268KVy+azoQzFm2y6nPLnT82ZGDTeH2INmqQKBgBVB8EOOjtzr7GDE84gC3UWaZmUzaH3LdVtFf5nGdo+fnr/vWmuD5vlmv2euE4HC0YOU5uXpxhX66H7HfbgyE84FfhPOGmwHeBoZ7CNBIx+OT8XG6brKxoJq6648mCCETtv+OlV4iwXl9stntHg+TQKgYNAH3NMWUbV+SMQAgInBAoGBAKP2SXkuHI/ZUFIIvIMwr67TpHWLMtgAl8laV2sjuTX7f9I3Yj+RQvwxaWPvSUGZXrsx9jTsMe6KZbqEZi+ksism5ayC6DujNve5gZDGZBvfT4lnjh0XPU1mGxS8bM6e4h+T5Rvra5Z/AByk3FvgkY9EDgFAqSch7/SmPieVqrQP')</p>
+<p>console.log(cc)</p>
+<p>console.log(result)</p>
+<p>return cc;</p>
+<p>}</p>
+<p><em>const</em> y = rsaE('123456','1');</p>
+<p>后端加密解密正常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Integer</span> <span class="hljs-variable">PUBLIC_CODE</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Integer</span> <span class="hljs-variable">PRIVATE_CODE</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * rsa非对称加密算法，获取公钥私钥对.</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> map形式公钥私钥对，键值：PUBLIC_CODE、PRIVATE_CODE</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Map&lt;Integer,String&gt; <span class="hljs-title function_">string2RSA4KeyPair</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> NoSuchAlgorithmException &#123;<br>    <span class="hljs-comment">// 初始化 Key 生成器，指定算法类型为 RSA</span><br>    <span class="hljs-type">KeyPairGenerator</span> <span class="hljs-variable">keyPairGenerator</span> <span class="hljs-operator">=</span> KeyPairGenerator.getInstance(<span class="hljs-string">&quot;RSA&quot;</span>);<br>    <span class="hljs-comment">// 密钥长度为 2048 位,最小为 512</span><br>    keyPairGenerator.initialize(<span class="hljs-number">2048</span>);<br>    <span class="hljs-comment">// 生成密钥对</span><br>    <span class="hljs-type">KeyPair</span> <span class="hljs-variable">keyPair</span> <span class="hljs-operator">=</span> keyPairGenerator.generateKeyPair();<br>    <span class="hljs-comment">// 获取公钥</span><br>    <span class="hljs-type">RSAPublicKey</span> <span class="hljs-variable">rsaPublicKey</span> <span class="hljs-operator">=</span> (RSAPublicKey) keyPair.getPublic();<br>    <span class="hljs-comment">// 获取私钥</span><br>    <span class="hljs-type">RSAPrivateKey</span> <span class="hljs-variable">rsaPrivateKey</span> <span class="hljs-operator">=</span> (RSAPrivateKey) keyPair.getPrivate();<br>    Map&lt;Integer,String&gt; keyMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    keyMap.put(PUBLIC_CODE, Base64.getEncoder().encodeToString(rsaPublicKey.getEncoded()));<br>    keyMap.put(PRIVATE_CODE, Base64.getEncoder().encodeToString(rsaPrivateKey.getEncoded()));<br>    <span class="hljs-keyword">return</span> keyMap;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * rsa非对称加密,加密.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> puKey 公钥</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> content 待加密内容</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span>  输出加密后的密文</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">RSAEncode</span><span class="hljs-params">(String puKey, String content)</span> <span class="hljs-keyword">throws</span> NoSuchAlgorithmException,<br>        NoSuchPaddingException, InvalidKeyException,<br>        IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException &#123;<br>    <span class="hljs-type">KeyFactory</span> <span class="hljs-variable">keyFactory</span> <span class="hljs-operator">=</span> KeyFactory.getInstance(<span class="hljs-string">&quot;RSA&quot;</span>);<br>    <span class="hljs-comment">//先用BASE64转码秘钥</span><br>    <span class="hljs-type">byte</span>[] bytesKey = Base64.getDecoder().decode(puKey);<br>    System.out.println(ArrayUtil.toString(bytesKey));<br>    <span class="hljs-type">X509EncodedKeySpec</span> <span class="hljs-variable">keySpec</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">X509EncodedKeySpec</span>(bytesKey);<br>    <span class="hljs-type">PublicKey</span> <span class="hljs-variable">publicKey</span> <span class="hljs-operator">=</span> keyFactory.generatePublic(keySpec);<br><br>    <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;RSA/ECB/OAEPWithSHA-256AndMGF1Padding&quot;</span>);<br>    cipher.init(Cipher.ENCRYPT_MODE, publicKey);<br>    <span class="hljs-keyword">return</span> Base64.getEncoder().encodeToString(cipher.doFinal(content.getBytes()));<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * rsa非对称加密,解密.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> prKey 私钥</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> content 加密后的内容</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 解密后的内容</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">RSADecode</span><span class="hljs-params">(String prKey,String content)</span> <span class="hljs-keyword">throws</span> NoSuchAlgorithmException,<br>        NoSuchPaddingException, InvalidKeyException,<br>        IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException &#123;<br>    <span class="hljs-type">KeyFactory</span> <span class="hljs-variable">keyFactory</span> <span class="hljs-operator">=</span> KeyFactory.getInstance(<span class="hljs-string">&quot;RSA&quot;</span>);<br>    <span class="hljs-comment">//先用BASE64转码秘钥</span><br>    <span class="hljs-type">byte</span>[] bytesKey = Base64.getDecoder().decode(prKey);<br>    <span class="hljs-type">PKCS8EncodedKeySpec</span> <span class="hljs-variable">keySpec</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PKCS8EncodedKeySpec</span>(bytesKey);<br>    <span class="hljs-type">PrivateKey</span> <span class="hljs-variable">privateKey</span> <span class="hljs-operator">=</span> keyFactory.generatePrivate(keySpec);<br>    <span class="hljs-comment">//再BASE64转码密文</span><br>    <span class="hljs-type">byte</span>[] bytesContent = Base64.getDecoder().decode(content);<br>    System.out.println(ArrayUtil.toString(bytesContent));<br><br>    <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;RSA/ECB/PKCS1Padding&quot;</span>);<br>    cipher.init(Cipher.DECRYPT_MODE, privateKey);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(cipher.doFinal(bytesContent),StandardCharsets.UTF_8);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>前端后端对相同内容加密后的base64编码长度相同</p>
+<p>目前可能性最大的问题所在：前端后端加密解密时所使用的填充方式或者其他具体细节不一样，前端目前没有找到方式选项（默认OAEP），后端可选：RSA/ECB/OAEPWithSHA1AndMGF1Padding、RSA/ECB/PKCS1Padding、RSA/ECB/OAEPWithSHA-256AndMGF1Padding</p>
+<h1 id="附录">附录</h1>
+<h3 id="附录1">附录1</h3>
+<h3 id="附录2">附录2</h3>
+<h1 id="参考资料">参考资料</h1>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>作者、其他主要作者...,题名[文献类型标识]:引用页码,出版地:出版者,获取和访问路径,文献更新日期或者出版年 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" class="category-chain-item">编程实践</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+        <a href="/tags/%E5%BE%85%E5%AE%8C%E6%88%90/" class="print-no-link">#待完成</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/109fadfa.html" title="爬取微信公众号文章实战笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">爬取微信公众号文章实战笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/7663ea22.html" title="RESTful API学习笔记">
+                        <span class="hidden-mobile">RESTful API学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"6Emln801EcqJVpvUVLTHbOoI-gzGzoHsz","appKey":"WCb6A9dSGZOFK659XOfsze0e","path":"window.location.pathname","placeholder":"在这里发表你的看法！(默认匿名与无邮箱地址)","avatar":"retro","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://tinkitor/about" target="_blank" rel="nofollow noopener"><span>TINKITOR</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/custom_global.js"></script>
+<script src="/js/read-progress-bar.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

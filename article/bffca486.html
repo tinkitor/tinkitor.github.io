@@ -319,75 +319,51 @@
 <p>所以本文诞生，就是单纯想写一篇贝塞尔曲线的介绍文。本文将简短地介绍贝塞尔曲线的发展历史、数学原理，最后会给出几个贝塞尔曲线的相关应用示例。</p>
 <h1 id="正文">正文</h1>
 <h2 id="一.-贝赛尔曲线简述">一. 贝赛尔曲线简述</h2>
-<p>贝塞尔曲线（英语：Bézier
-curve）最初由保尔·德·卡斯特里奥于1959年运用德卡斯特里奥算法所开发，他用稳定数值的方法求出了贝塞尔曲线。但贝塞尔曲线于1962年才由法国工程师皮埃尔·贝塞尔（Pierre
-Bézier）所广泛发表，他借用贝塞尔曲线完成了汽车的主体设计<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
-class="hint--top hint--rounded"
-aria-label="维基百科,贝塞尔曲线\\[EB/OL\\],[https://zh.wikipedia.org/zh-cn/貝茲曲線](https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A)">[1]</span></a></sup>。</p>
+<p>贝塞尔曲线（英语：Bézier curve）最初由保尔·德·卡斯特里奥于1959年运用德卡斯特里奥算法所开发，他用稳定数值的方法求出了贝塞尔曲线。但贝塞尔曲线于1962年才由法国工程师皮埃尔·贝塞尔（Pierre Bézier）所广泛发表，他借用贝塞尔曲线完成了汽车的主体设计<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="维基百科,贝塞尔曲线\\[EB/OL\\],[https://zh.wikipedia.org/zh-cn/貝茲曲線](https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A)">[1]</span></a></sup>。</p>
 <p><img src="../img/贝赛尔曲线的数学原理与工程运用/bezier_curve.png" srcset="/img/loading.gif" lazyload alt="贝赛尔曲线示例"  /></p>
 <p>贝塞尔曲线有着很多特殊的性质，其如今已是计算机图形学及相关领域中常使用的重要参数曲线，在诸如计算机字体设计、动画设计、机器人运动平滑控制中都有运用到贝赛尔曲线。贝塞尔曲线可以组合起来形成贝塞尔样条曲线，或者推广到更高维度以形成贝塞尔曲面。</p>
 <p><img src="../img/贝赛尔曲线的数学原理与工程运用/bezier_surfaces.png" srcset="/img/loading.gif" lazyload alt="贝塞尔曲面示例"  /></p>
-<p>这里介绍两个网站，一个是<a
-target="_blank" rel="noopener" href="https://www.jasondavies.com/animated-bezier/">贝赛尔曲线动画</a>，从该网站给出了几个贝赛尔曲线动态图演示；另一个是<a
-target="_blank" rel="noopener" href="https://www.desmos.com/calculator/cahqdxeshd?lang=zh-CN">贝赛尔曲线demo</a>，在该网站可以手动改变端点来感受贝赛尔曲线的变化。</p>
+<p>这里介绍两个网站，一个是<a target="_blank" rel="noopener" href="https://www.jasondavies.com/animated-bezier/">贝赛尔曲线动画</a>，从该网站给出了几个贝赛尔曲线动态图演示；另一个是<a target="_blank" rel="noopener" href="https://www.desmos.com/calculator/cahqdxeshd?lang=zh-CN">贝赛尔曲线demo</a>，在该网站可以手动改变端点来感受贝赛尔曲线的变化。</p>
 <h2 id="二.-数学公式简述与推导">二. 数学公式简述与推导</h2>
 <p>贝赛尔曲线的通式实际上是一个与二项展开式有关的一个多项式，本文仅在通项的推导上做出简单的演示，对于贝塞尔曲线的其他性质不做讨论。下面将从一次开始逐步推导出N次的贝塞尔曲线。</p>
 <h3 id="一次贝赛尔曲线">2.1 一次贝赛尔曲线</h3>
 <p>一次贝塞尔曲线又可以叫做线性贝塞尔曲线，因为一次的贝塞尔曲线实际上就是两个点的连线，即一条直线段，如图：</p>
 <figure>
-<img
-src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211172605127.png" srcset="/img/loading.gif" lazyload
-alt="一次贝赛尔曲线" />
-<figcaption aria-hidden="true">一次贝赛尔曲线</figcaption>
+<img src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211172605127.png" srcset="/img/loading.gif" lazyload alt="一次贝赛尔曲线" /><figcaption aria-hidden="true">一次贝赛尔曲线</figcaption>
 </figure>
-<p>图中有一条由点P₁(6,6)、点P₂(2,2)连接形成的直线段，P₀为该线段上的动点，运动方向由P₂到P₁,图中红色线段即为P₀的运动轨迹。可知P₀的轨迹方程为：
-<span class="math display">\[
+<p>图中有一条由点P₁(6,6)、点P₂(2,2)连接形成的直线段，P₀为该线段上的动点，运动方向由P₂到P₁,图中红色线段即为P₀的运动轨迹。可知P₀的轨迹方程为： <span class="math display">\[
 B_{1}(t)=P_{2}+(P_{1}-P_{2})t,t\in[0,1]
 \]</span></p>
 <p>化简得：</p>
 <p><span class="math display">\[
 B_{1}(t)=P_{1}t+P_{2}(1-t),t\in[0,1]
 \]</span></p>
-<p>注意上式中的P₁、P₂代表一个二元式，表示了一个坐标如P₁为(2,2)，<strong>即B₁(t)就是P₀坐标的变化方程(轨迹坐标方程)，而这个轨迹方程即为一个一次贝赛尔曲线的轨迹方程，其中t为控制P₀在线段上运动范围的变量，其值实际代表了线段P₀P₂与线段P₁P₂的长度比值</strong>。将P₁、P₂的坐标值代入，可得以上示例图中的贝赛尔曲线方程为：
-<span class="math display">\[
+<p>注意上式中的P₁、P₂代表一个二元式，表示了一个坐标如P₁为(2,2)，<strong>即B₁(t)就是P₀坐标的变化方程(轨迹坐标方程)，而这个轨迹方程即为一个一次贝赛尔曲线的轨迹方程，其中t为控制P₀在线段上运动范围的变量，其值实际代表了线段P₀P₂与线段P₁P₂的长度比值</strong>。将P₁、P₂的坐标值代入，可得以上示例图中的贝赛尔曲线方程为： <span class="math display">\[
 B_{1}(t)=(6,6)*t+(2,2)*(1-t)
 =(2+4t,2+4t),t\in[0,1]
 \]</span></p>
 <h3 id="二次贝赛尔曲线">2.2 二次贝赛尔曲线</h3>
 <p>二次贝赛尔曲线即其方程的最高次为二次。如图，在平面上任取三点并依次用线段连接：</p>
 <figure>
-<img
-src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211213016213.png" srcset="/img/loading.gif" lazyload
-alt="三点连接而成的两条线段" />
-<figcaption aria-hidden="true">三点连接而成的两条线段</figcaption>
+<img src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211213016213.png" srcset="/img/loading.gif" lazyload alt="三点连接而成的两条线段" /><figcaption aria-hidden="true">三点连接而成的两条线段</figcaption>
 </figure>
-<p>这里为了方便取P₁(6,6)、P₂(2,2)、P₃(10,2)。设t为一个变量，且t∈[0,1]。在线段P₂P₁、P₁P₃两条线段上分别取A、B共两点，且令各线段长度满足以下关系：
-<span class="math display">\[
+<p>这里为了方便取P₁(6,6)、P₂(2,2)、P₃(10,2)。设t为一个变量，且t∈[0,1]。在线段P₂P₁、P₁P₃两条线段上分别取A、B共两点，且令各线段长度满足以下关系： <span class="math display">\[
 \frac{P_{2}A}{P_{2}P_{1}}=\frac{P_{1}B}{P_{1}P_{3}}=t
 \]</span></p>
 <p>当t=0.5时，如图：</p>
 <figure>
-<img
-src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211214107104.png" srcset="/img/loading.gif" lazyload
-alt="t=0.5时的线段图" />
-<figcaption aria-hidden="true">t=0.5时的线段图</figcaption>
+<img src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211214107104.png" srcset="/img/loading.gif" lazyload alt="t=0.5时的线段图" /><figcaption aria-hidden="true">t=0.5时的线段图</figcaption>
 </figure>
 <p>最后，在线段AB上取一点P₀，使其满足： <span class="math display">\[
 \frac{AP_{0}}{AB}=t
 \]</span></p>
 <p>同样当t=0.5时，如图所示：</p>
 <figure>
-<img
-src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211214935636.png" srcset="/img/loading.gif" lazyload
-alt="t=0.5时的线段图" />
-<figcaption aria-hidden="true">t=0.5时的线段图</figcaption>
+<img src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211214935636.png" srcset="/img/loading.gif" lazyload alt="t=0.5时的线段图" /><figcaption aria-hidden="true">t=0.5时的线段图</figcaption>
 </figure>
 <p>实际上此时单独看线段AB上的P₀其实与一次贝塞尔曲线中的P₀一样。同时还可以看出，如果单独看P₂P₁上的A点、P₁P₃上的B点，实际上都是一次贝赛尔曲线的情况，而二次贝赛尔曲线就是在一次贝赛尔曲线的基础上再将线段的端点都限制在一次贝赛尔曲线轨迹的条件下，由此原P₀点的运动轨迹就变为了二次贝赛尔曲线，如图：</p>
 <figure>
-<img
-src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211212922708.png" srcset="/img/loading.gif" lazyload
-alt="二次贝赛尔曲线" />
-<figcaption aria-hidden="true">二次贝赛尔曲线</figcaption>
+<img src="../img/贝赛尔曲线的数学原理与工程运用/image-20240211212922708.png" srcset="/img/loading.gif" lazyload alt="二次贝赛尔曲线" /><figcaption aria-hidden="true">二次贝赛尔曲线</figcaption>
 </figure>
 <p>最后求P₀的轨迹方程，也就是二次贝赛尔曲线的方程。思路为先求分别求出点A与点B的轨迹方程，最后再借其求出点P₀的轨迹方程：</p>
 <p>因为点A与点B的轨迹方程分别为： <span class="math display">\[
@@ -403,23 +379,18 @@ B_{2}(t)=a(t)+[b(t)-a(t)]t
 <p>化简得： <span class="math display">\[
 B_{2}(t)=2t(1-t)P_{1}+(1-t)^2P_{2}+P_{3}t^2
 \]</span></p>
-<p>上式有点眼熟？没错！去掉P₁、P₂、P₃的点坐标，得到一个多项式： <span
-class="math display">\[
+<p>上式有点眼熟？没错！去掉P₁、P₂、P₃的点坐标，得到一个多项式： <span class="math display">\[
 f(t)=(1-t)^2+2t(1-t)+t^2=[t+(1-t)]^2
 \]</span></p>
 <p>这不就是一个二项展开式吗！</p>
 <h3 id="三次贝赛尔曲线">2.3 三次贝赛尔曲线</h3>
-<p>从上面的推导其实可以看出，三次贝赛尔曲线实际是在二次贝赛尔曲线的基础上将线段的三个点约束在三个一次贝塞尔曲线上，由此原有的二次贝塞尔曲线轨迹就变为了三次贝塞尔曲线。所以三次贝塞尔曲线的方程可以为：
-<span class="math display">\[
+<p>从上面的推导其实可以看出，三次贝赛尔曲线实际是在二次贝赛尔曲线的基础上将线段的三个点约束在三个一次贝塞尔曲线上，由此原有的二次贝塞尔曲线轨迹就变为了三次贝塞尔曲线。所以三次贝塞尔曲线的方程可以为： <span class="math display">\[
 B_{3}(t)=P_{0}(1-t)^3+3P_{1}t(1-t)^2+3P_{2}t^2(1-t)+P_{3}t^3,t\in[0,1]
 \]</span></p>
 <p>可以看出去掉点坐标后,实际上就是<code>[t+(1-t)]³</code>的展开式。</p>
 <h3 id="n次贝塞尔曲线">2.4 N次贝塞尔曲线</h3>
-<p>由以上可得知，实际上一次贝赛尔曲线可以通过约束升阶为多次贝赛尔曲线，当然多次贝塞尔曲线也可以不停降次至一次贝塞尔曲线。同时其与点坐标无关的通式实际上是一个二项展开式<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
-class="hint--top hint--rounded"
-aria-label="FrancisZhao,曲线篇: 贝塞尔曲线\\[EB/OL\\]\(2020-04-28)，[https://zhuanlan.zhihu.com/p/136647181](https://zhuanlan.zhihu.com/p/136647181) ↩">[2]</span></a></sup>，例如N次贝赛尔曲线对应<code>[t+(1-t)]ⁿ</code>。故其通项可以推导为：</p>
-<p>给定多个定点P₀、P₁、P₂、P₃、...、Pn，则其贝赛尔曲线为： <span
-class="math display">\[
+<p>由以上可得知，实际上一次贝赛尔曲线可以通过约束升阶为多次贝赛尔曲线，当然多次贝塞尔曲线也可以不停降次至一次贝塞尔曲线。同时其与点坐标无关的通式实际上是一个二项展开式<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="FrancisZhao,曲线篇: 贝塞尔曲线\\[EB/OL\\]\(2020-04-28)，[https://zhuanlan.zhihu.com/p/136647181](https://zhuanlan.zhihu.com/p/136647181) ↩">[2]</span></a></sup>，例如N次贝赛尔曲线对应<code>[t+(1-t)]ⁿ</code>。故其通项可以推导为：</p>
+<p>给定多个定点P₀、P₁、P₂、P₃、...、Pn，则其贝赛尔曲线为： <span class="math display">\[
 B_{n}(t)=\sum^{n}_{i=0}C^{i}_{n}P_{i}(1-t)^{n-i}t^{i},t\in[0,1]
 \]</span></p>
 <h2 id="三.-相关应用示例介绍">三. 相关应用示例介绍</h2>
@@ -429,18 +400,10 @@ B_{n}(t)=\sum^{n}_{i=0}C^{i}_{n}P_{i}(1-t)^{n-i}t^{i},t\in[0,1]
 <div class="footnote-list">
 <ol>
 <li>
-<span id="fn:1"
-class="footnote-text"><span>维基百科,贝塞尔曲线[EB/OL],<a
-target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A">https://zh.wikipedia.org/zh-cn/貝茲曲線</a>
-<a href="#fnref:1" rev="footnote" class="footnote-backref">
-↩︎</a></span></span>
+<span id="fn:1" class="footnote-text"><span>维基百科,贝塞尔曲线[EB/OL],<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A">https://zh.wikipedia.org/zh-cn/貝茲曲線</a> <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
 </li>
 <li>
-<span id="fn:2" class="footnote-text"><span>FrancisZhao,曲线篇:
-贝塞尔曲线[EB/OL](2020-04-28)，<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136647181">https://zhuanlan.zhihu.com/p/136647181</a>
-↩︎ <a href="#fnref:2" rev="footnote" class="footnote-backref">
-↩︎</a></span></span>
+<span id="fn:2" class="footnote-text"><span>FrancisZhao,曲线篇: 贝塞尔曲线[EB/OL](2020-04-28)，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/136647181">https://zhuanlan.zhihu.com/p/136647181</a> ↩︎ <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
 </li>
 </ol>
 </div>

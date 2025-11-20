@@ -327,25 +327,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ComponentScan(&quot;com.brutik.mapper&quot;)</span><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(Main.class,args);<br>    &#125;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
 <p>项目目录结构如下：</p>
 <figure>
-<img
-src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213144734852.png" srcset="/img/loading.gif" lazyload
-alt="项目目录结构" />
-<figcaption aria-hidden="true">项目目录结构</figcaption>
+<img src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213144734852.png" srcset="/img/loading.gif" lazyload alt="项目目录结构" /><figcaption aria-hidden="true">项目目录结构</figcaption>
 </figure>
 <p>随后启动SpringBoot项目，但是通过规定地址访问项目内容时却均返回<code>404 not found</code>。</p>
 <figure>
-<img
-src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213145300958.png" srcset="/img/loading.gif" lazyload
-alt="返回未找到资源错误" />
-<figcaption aria-hidden="true">返回未找到资源错误</figcaption>
+<img src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213145300958.png" srcset="/img/loading.gif" lazyload alt="返回未找到资源错误" /><figcaption aria-hidden="true">返回未找到资源错误</figcaption>
 </figure>
 <h3 id="问题排查与解决">1.2 问题排查与解决</h3>
 <p>经过反复确认访问地址没有问题后，再查看SpringBoot自己的日志打印，发现啥也没有，也就是说明代码和环境也没有问题，那么就可能是自己的逻辑写错了。而返回404的内容又是<code>This application has no explicit mapping for /error</code>，遂推断可能是Controller的Bean根本就没有被加载到容器里，才导致地址没有映射，故开始验证猜测。使用idea自带的工具查看Spring容器里的Bean对象：</p>
 <figure>
-<img
-src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213150449774.png" srcset="/img/loading.gif" lazyload
-alt="已加载的Bean对象列表" />
-<figcaption aria-hidden="true">已加载的Bean对象列表</figcaption>
+<img src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213150449774.png" srcset="/img/loading.gif" lazyload alt="已加载的Bean对象列表" /><figcaption aria-hidden="true">已加载的Bean对象列表</figcaption>
 </figure>
 <p>发现只有一个自己写Main被加载了，所以猜测是对的。而Bean没被加载一般都是包没有扫描的问题，而我只在Main类上写了扫描包的注解，最后问题解决：<strong><code>@MapperScan</code>注解错写成了<code>@ComponentScan</code>注解</strong>。</p>
 <h2 id="问题深究">2. 问题深究</h2>
@@ -376,10 +367,7 @@ alt="已加载的Bean对象列表" />
 <h2 id="总结">3. 总结</h2>
 <p>从以上可以看出，如果你头铁直接去读源码，其实也没多少技巧，就是靠注释再结合各种类名、方法名去理解甚至去猜测源码的具体意思，如果遇到一些写得烂的代码，这个时候估计得开始咒作者全家了，因为基本上只能去嗯猜，全靠自己的经验。其实SpringBoot的源码在我的角度也只是一些关键的地方注释写得非常清楚明白，但是在一些不重要的方法或者类上也是看得人脑壳疼，一些类名或者方法名真的是又臭又长，比如：<code>getAutoConfigurationImportListeners</code>这种，来一两个还好，但是满屏都是这种是真的英语非母语者不友好，看得人眼睛是真的疼，虽然表达的意思清晰明了，但是信息密度太低了，来张图感受一下：</p>
 <figure>
-<img
-src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213212844741.png" srcset="/img/loading.gif" lazyload
-alt="眼睛疼" />
-<figcaption aria-hidden="true">眼睛疼</figcaption>
+<img src="../img/关于如何阅读SpringBoot源码的方法笔记/image-20240213212844741.png" srcset="/img/loading.gif" lazyload alt="眼睛疼" /><figcaption aria-hidden="true">眼睛疼</figcaption>
 </figure>
 <p>以上缺点我感觉也无解，要么就用缩写，更让人崩溃。不过好在每个方法代码长度都很短，很符合<code>Robert C. Martin</code>那老计说的“代码整洁艺术”，只要代码长度短，写得再烂也容易读懂。</p>
 <p>所以，放弃头铁，不要动不动就去读源码，有这精力去研究官方文档或者各路为爱发电的大神出的各种博客文章，早出师了，比读源码强一万倍，除非要去学习代码的各种命名规范、继承关系的逻辑等等，否则源码？狗都不看！</p>
