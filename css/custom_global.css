@@ -6,12 +6,28 @@ p{
 p *{
     text-indent: 0em;
 }
+/*note标签不缩进*/
+.note>p{
+    text-indent: 0em;
+ }
+/*表格标题样式*/
+.table-title{
+	text-align:center;
+	font-size:0.8em;
+	color:#2c3e50;
+	opacity: 0.65;
+}
+.markdown-body>table{
+	width:fit-content;
+	text-align:center;
+	margin:16px auto;
+}
 ul{
     margin-left:1em
  }
 ul *{
     margin-left: 0em;
-text-indent: 0em;
+	text-indent: 0em;
 }
 a{
     word-break: break-all;

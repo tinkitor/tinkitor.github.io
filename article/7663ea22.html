@@ -21,21 +21,20 @@
   <meta name="author" content="Tinkitor">
   <meta name="keywords" content="Tinkitor,,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
-    <meta name="description" content="该文章无摘要">
+    <meta name="description" content="本文首先主要介绍REST的相关概念和背景知识，随后根据一个实际项目场景设计一组REST风格的API，最后简要介绍其余热门的API设计风格。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RESTful API学习笔记">
 <meta property="og:url" content="https://tinkitor.github.io/article/7663ea22.html">
 <meta property="og:site_name" content="Tinkitor的博客">
-<meta property="og:description" content="该文章无摘要">
+<meta property="og:description" content="本文首先主要介绍REST的相关概念和背景知识，随后根据一个实际项目场景设计一组REST风格的API，最后简要介绍其余热门的API设计风格。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tinkitor.github.io/img/default/post_example.svg">
 <meta property="article:published_time" content="2025-01-14T05:41:59.000Z">
-<meta property="article:modified_time" content="2025-01-14T07:45:48.432Z">
+<meta property="article:modified_time" content="2026-03-14T04:33:42.369Z">
 <meta property="article:author" content="Tinkitor">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="RESTful API">
 <meta property="article:tag" content="入门速览">
-<meta property="article:tag" content="待完成">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://tinkitor.github.io/img/default/post_example.svg">
   
@@ -260,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          562 字
+          4.6k 字
         
       </span>
     
@@ -271,7 +270,7 @@
         
         
         
-          3 分钟
+          24 分钟
         
       </span>
     
@@ -313,292 +312,259 @@
             
               <div class="markdown-body">
                 
-                <div class="note note-info">
-            <p>未完成文章</p>
-          </div>
-<div class="note note-success">
+                <div class="note note-success">
             <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
           </div>
-<div class="note note-warning">
-            <p>转载或微调文章，源地址：[在此填入源地址]</p>
-          </div>
-<!-- 分类说明，发布时请删除该内容 -->
-<table style="text-align:center;">
-<tr>
-<th>
-一级分类
-</th>
-<th>
-二级分类
-</th>
-<th>
-说明
-</th>
-</tr>
-<tr>
-<td rowspan="7">
-编程实践
-</td>
-<td>
-java
-</td>
-<td>
-java语言语法基础、高级特性、编程应用等相关文章
-</td>
-</tr>
-<tr>
-<td>
-c
-</td>
-<td>
-c语言语法基础、编程应用等相关文章
-</td>
-</tr>
-<tr>
-<td>
-python
-</td>
-<td>
-python语言语法基础、编程应用等相关文章
-</td>
-</tr>
-<tr>
-<td>
-后端综合
-</td>
-<td>
-后端综合类文章，涉及的知识例如SSM框架、SpringBoot等
-</td>
-</tr>
-<tr>
-<td>
-前端综合
-</td>
-<td>
-前端综合类文章，涉及的知识例如前端的各种脚手架、三大基础件等
-</td>
-</tr>
-<tr>
-<td>
-自动化
-</td>
-<td>
-利用各种编程语言、工具实现工作自动化的教程文章，涉及的知识例如自动打卡签到、资源爬取等
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-懒得分类的文章
-</td>
-</tr>
-<tr>
-<td rowspan="4">
-计算机理论
-</td>
-<td>
-数据结构
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-操作系统
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-计算机组成原理
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-计算机网络
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="3">
-计算机杂项
-</td>
-<td>
-工具的安装、配置或使用
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-项目文档、源码的阅读
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="3">
-语文
-</td>
-<td>
-散文
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-古诗
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-小说
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="3">
-数学
-</td>
-<td>
-高等数学
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-离散数学
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-线性代数
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="3">
-英语
-</td>
-<td>
-写作
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-听力
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-口语
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="1">
-音乐
-</td>
-<td>
-唱
-</td>
-<td>
-蔡徐坤
-</td>
-</tr>
-<tr>
-<td rowspan="4">
-杂想
-</td>
-<td>
-人物关系
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-社会现象
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-反思家附体
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-无
-</td>
-</tr>
-</table>
 <h1 id="前言">前言</h1>
+<p>REST（Representational State Transfer，表述性状态转移）是一种软件架构风格，由 Roy Fielding 博士在 2000 年提出。在现代 Web 开发中，RESTful API 已成为应用程序之间通信的标准方式<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="菜鸟教程,RESTful API 教程[DB/OL],[https://www.runoob.com/restfulapi/restful-api-tutorial.html](https://www.runoob.com/restfulapi/restful-api-tutorial.html)">[1]</span></a></sup>。虽然当下有GraphQL、gRPC在挑战着REST的API设计地位，但是REST + OpenAPI 仍是后端服务的标准开发范式之一。</p>
+<p>好吧实际上我也没怎么用过RESTful风格的API，都是黑马爹的视频教程天天在那念什么REST、REST，我头疼啊，不知道这是什么玩意儿，故前来拜读相关资料，并留下一篇笔记可供后人参考。</p>
+<p>本文第一章主要介绍REST的相关概念和背景知识，第二章根据一个实际项目场景设计一组REST风格的API，第三章简要介绍其余热门的API设计思想。如果想直接学习如何设计一个一组RESTful API，可直接查看第二章。</p>
 <h1 id="正文">正文</h1>
-<h2 id="正文标题1">正文标题1</h2>
-<h3 id="正文副标题1">正文副标题1</h3>
-<p>有次一个刚入行的妹子让我讲笑话给她听。</p>
-<p>我：你想听 TCP 的笑话么？ 妹子：嗯，我想听一个 TCP 的笑话。 我：好的，我会给你讲一个TCP 的笑话。 妹子：好的，我会听一个TCP 的笑话。 我：你准备好听一个TCP 的笑话么？ 妹子：嗯，我准备好听一个TCP 的笑话 我：Ok，那我要发 TCP 笑话了。大概有 10 秒，20 个字。 妹子：嗯，我准备收你那个 10 秒时长，20 个字的笑话了。 我：抱歉，你的连接超时了。你好，你想听 TCP 的笑话么</p>
-<h1 id="附录">附录</h1>
-<h3 id="附录1">附录1</h3>
-<h3 id="附录2">附录2</h3>
+<h2 id="一相关概念及背景知识">一、相关概念及背景知识</h2>
+<h3 id="rest">1.1 REST</h3>
+<p>2000年，Roy Thomas Fielding在他的博士论文<a target="_blank" rel="noopener" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">《Architectural Styles and the Design of Network-based Software Architectures》</a>中首次系统性地提出 REST（Representational State Transfer） 架构风格，为现代 Web 架构奠定了理论基础，是 RESTful API 的“开山之作”<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="全栈前端老曹,【高级前端进阶】RESTful API 的前世今生：从论文到实战全解析[EB/OL],[https://blog.csdn.net/qq_38060125/article/details/148027472](https://blog.csdn.net/qq_38060125/article/details/148027472)">[2]</span></a></sup>。 <div class="note note-info">
+            <p>Roy Thomas Fielding，1965年出生，是一位美国计算机科学家，HTTP规范的主要作者之一，也是表述性状态转移（REST）架构风格的创始人。他是计算机网络架构领域的权威，也是Apache HTTP服务器项目的联合创始人。菲尔丁目前在加利福尼亚州圣何塞的Adobe公司担任高级首席科学家。<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="维基百科,Roy Fielding[DB/OL],[https://en.wikipedia.org/wiki/Roy_Fielding](https://en.wikipedia.org/wiki/Roy_Fielding)">[3]</span></a></sup></p>
+          </div></p>
+<p>REST即表述性状态传递（Representational State Transfer，简称REST）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。它是一种针对网络应用的设计和开发方式，可以降低开发的复杂性，提高系统的可伸缩性<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="百度百科,rest[DB/OL],[https://baike.baidu.com/item/rest/6330506](https://baike.baidu.com/item/rest/6330506)">[4]</span></a></sup>。注意表述性状态传递是个名词(虽然有点拗口)，它描述了一种架构风格：</p>
+<ul>
+<li>表述性：即资源的呈现形式是“表述性”的，此时服务器返回的不是资源本身，而是资源的“表述”，如JSON、XML格式的数据（举例：你在网络图书商城点击查看一本图书，此时返回的是以JSON格式返回的图书描述，而不是图书PDF文件本身）；</li>
+<li>状态：即应用状态，例如客户端当前的页面或数据状态；</li>
+<li>传递：即数据传输，例如客户端和服务器之间通过HTTP协议传输资源的表述。</li>
+</ul>
+<p>所以表述性状态传递的意思就是<code>使用表述性方法来进行资源状态的传递</code>。</p>
+<h3 id="rest-api">1.2 REST API</h3>
+<div class="note note-info">
+            <p>本节以及下一节(1.3)的内容均来自于《REST API设计分析及实证研究》<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="周芯宇、陈伟等,REST API设计分析及实证研究[J],软件学报,2022,33(9): 3271-3296,[http://www.jos.org.cn/1000-9825/6383.htm](http://www.jos.org.cn/1000-9825/6383.htm)">[5]</span></a></sup></p>
+          </div>
+<p>REST是一种基于 HTTP 协议的软件架构风格。而HTTP 协议定义了 9 种标准方法 (如表 1 所示），规定了客户端与服务器之间的信息交互方式。Fielding 发现对资源的 4 种常用操作方法 (增删改查， CRUD) 可以直接映射为 HTTP 协议的标准方法（如图 1 所示）。 由于与 HTTP 协议特性相吻合，REST 风格越来越多的应用于 Web 服务设计，规范了 Web 服务接口调用方式，使服务请求响应更加统一和有序：</p>
+<div class="table-title">
+表一 HTTP标准方法
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>HTTP方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GET</td>
+<td>请求指定的页面信息，并返回响应实体</td>
+</tr>
+<tr class="even">
+<td>POST</td>
+<td>向指定资源提交数据处理请求，可能会导致新的资源的建立或已有资源的修改</td>
+</tr>
+<tr class="odd">
+<td>PUT</td>
+<td>从客户端向服务器传送的数据取代指定的文档的内容</td>
+</tr>
+<tr class="even">
+<td>PATCH</td>
+<td>是对 PUT 方法的补充，用来对已知资源进行局部更新</td>
+</tr>
+<tr class="odd">
+<td>DELETE</td>
+<td>请求服务器删除指定的资源</td>
+</tr>
+<tr class="even">
+<td>CONNECT</td>
+<td>HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器</td>
+</tr>
+<tr class="odd">
+<td>OPTIONS</td>
+<td>客户端查看服务器的允许请求方法以及性能描述信息</td>
+</tr>
+<tr class="even">
+<td>TRACE</td>
+<td>回显服务器收到的请求，主要用于测试或诊断</td>
+</tr>
+<tr class="odd">
+<td>HEAD</td>
+<td>类似于 GET 请求，用于获取报头，响应中没有具体的响应体内容</td>
+</tr>
+</tbody>
+</table>
+<p>REST API 泛指通过 HTTP 协议进行通信、资源以网络实体的形式呈现，并使用 HTTP 标准方法对资源进行操作的 Web 服务的 API。图 2 是 REST API 的示意图，服务器端管理的资源以网络实体的形式体现，并以统一资源标识符 (unified resource identity，URI) 唯一标识，因此资源与 REST API 中的路径一一对应。 例如，图 2 中资源 A 用<code>/A</code>来唯一标识，并且路径层级用来表示资源之间的层级关系，如<code>/A/a</code>表示资源 A 的子资源 a。客户端使用 HTTP 标准方法发起服务请求，不同方法对应资源的不同操作，每个操作称为一个端点 (end point)，图 2 中<code>/A/a</code>这一路径有 4 个端点。在图 2 中，客户端使用 GET 方法发起请求，对应的是资源 a 的查找，使用 DELETE 方法是删 除资源 a。</p>
+<figure>
+<img src="..\img\RESTful-API学习笔记\HTTP%20方法与资源操作间的映射.png" srcset="/img/loading.gif" lazyload alt="图一 HTTP 方法与资源操作间的映射" /><figcaption aria-hidden="true">图一 HTTP 方法与资源操作间的映射</figcaption>
+</figure>
+<figure>
+<img src="..\img\RESTful-API学习笔记\REST%20API%20示意图.png" srcset="/img/loading.gif" lazyload alt="图二 REST API示意图" /><figcaption aria-hidden="true">图二 REST API示意图</figcaption>
+</figure>
+<div class="note note-info">
+            <p>遵循REST架构风格设计的API一般可叫做RESTful API。</p>
+          </div>
+<h3 id="rest架构风格及成熟度模型">1.3 REST架构风格及成熟度模型</h3>
+<p>REST是一种架构风格，它包含了对于组件、连接器和数据的约束，文献<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="Fielding RT. Architectural style and the design of network-based software architecture [Ph.D. Thesis]. Irvine: University of California,  2000.">[6]</span></a></sup>对其的定义可概括为6条基本原则，满足这些原则的架构被称之为符合 REST 架构风格：</p>
+<p>1.客户端-服务器原则。REST架构风格基于客户端-服务器架构，背后的约束原则是关注点分离。通过将用户界面功能(user interface functionality)移入客户端，服务器端只做数据存储，简化了服务器组件，实现客户端和服务器端的解耦。因此，在保证通信接口(即REST API)不变的前提下，客户端与服务器端均能独立演进。</p>
+<p>2.无状态原则。客户端到服务器的所有请求都必须包含理解该请求的全部信息，不能利用任何存储在服务器端的上下文，会话状态全部保存在客户端而不是服务器端。无状态给架构带来了3方面的好处：可见性、可靠性和可伸缩性。</p>
+<p>3.缓存原则。该原则要求请求响应中的数据被标记为可缓存或者不可缓存。基于缓存机制，客户端可以为相同请求重用响应数据。缓存有助于减少交互，降低平均延迟，提高访问效率和性能。</p>
+<p>4.系统分层架构原则。该原则约束系统按层次组织，每一层仅为上层提供服务并使用下层所提供的服务，由此减少跨越多层的耦合，提高可重用性。</p>
+<p>5.代码可扩展性原则。服务器能够向客户端传输可执行代码来临时扩展或自定义客户端功能，例如Java Applet和客户端脚本等，由此，减少需要预先实现的功能数量，简化客户端开发，也能改善系统的可扩展性。</p>
+<p>6.统一接口原则。该原则是REST架构风格的核心特征，也是REST API设计的最根本指导原则。统一接口约束客户端和服务器之间的接口定义，实现与接口背后服务的解耦，增强独立演进能力. 具体包括：① 基于资源，使用URI作为资源标识符，资源是到一组实体的概念性映射，任何能够被命名的信息都能够作为一个资源;② 通过表现层操纵资源，当客户端持有资源的表示(包括附加的任何元数据)时，在具有相应权限的前提下，它有足够的信息来修改或删除服务器上的资源;③ 自描述消息，每个消息都包含足够的信息以描述如何处理该消息。例如，可以通过头文件content-type (媒体类型)来指定要调用的媒体类型(media type)解析器;④ 作为应用程序状态引擎的超媒体(hypermedia as the engine of application state，HATEOAS)，在资源的表达中包含了链接信息，客户端可以根据链接来发现可以执行的下一步操作。</p>
+<p>Richardson成熟度模型是对上述设计原则的具体化。在Richardson成熟度模型中，①Level 0级别并不是真正意义上的REST API，只是基于远程过程调用实现的Web服务，HTTP仅作为传输层协议，参数放在消息体中，以POST方式提交到某个URI上的服务端点;② Level 1是REST API的起始级别，将服务抽象成资源，每个资源都由唯一的URI单独标识，而不再是将所有请求发送到单一公开服务端点。请求的资源放在URI中，而不是作为参数放在header中，但是仍然使用单一HTTP方法(大多为POST方法)进行通信;③Level 2级别使用HTTP协议提供的几个标准方法对资源进行不同的操作，比如使用GET方法进行资源获取操作、POST方法进行资源创建; ④Level 3是对HATEOAS的实现，它建立起资源以及资源操作间的联系，提供给用户相关操作的链接。</p>
+<p>REST架构风格基本原则以及Richardson成熟度模型是REST API设计的核心准则和基本依据。注：大多数实际应用都是level1+level2的结合，level3因为其复杂度较高，很少用。</p>
+<h3 id="rest-api说明文档">1.4 REST API说明文档</h3>
+<p>传统 API 文档描述接口的功能、参数和返回类型等信息，是接口的使用说明。与之类似，REST API 说明文档同样需要准确、全面、清晰的描述一组 REST API 提供的所有请求方法以及服务端信息等，具体内容应包括服务的基本介绍、服务器描述信息、附加的文档、所使用的安全验证方案等。</p>
+<p>OpenAPI specification (OAS，OpenAPI规范) 为HTTP API定义了一套标准的且与编程语言无关的接口描述。这使得人类和计算机都能在无需访问源代码、额外文档或检查网络流量的情况下，发现并理解服务的能力（说人话就是通过API描述文档就可以知道这个API在干嘛）<sup id="fnref:7" class="footnote-ref"><a href="#fn:7" rel="footnote"><span class="hint--top hint--rounded" aria-label="OAI,The OpenAPI Specification[DB/OL],GitHub Repository:[2026-03-14],[https://github.com/OAI/OpenAPI-Specification](https://github.com/OAI/OpenAPI-Specification)">[7]</span></a></sup>。而根据这种规范生成的描述文档称为OpenAPI Description(OAD，OpenAPI描述)<sup id="fnref:8" class="footnote-ref"><a href="#fn:8" rel="footnote"><span class="hint--top hint--rounded" aria-label="OAI,The OpenAPI introduction[DB/OL],[https://learn.openapis.org/introduction.html](https://learn.openapis.org/introduction.html)">[8]</span></a></sup>。所以显然OAS能够应用于REST API，实际上现在REST + OpenAPI 已经成为后端服务的标准开发范式之一，因为方便好用（没用REST API也照样用Open API的描述工具，方便就完了）。</p>
+<div class="note note-info">
+            <p>RESTful API的发展演变：</p><p>1.初期阶段(2000-2005)</p><ul><li>主要用于学术和研究</li><li>企业级服务仍以 SOAP 和 XML-RPC 为主</li><li>缺乏统一工具链支持</li></ul><p>2.成熟阶段（2006–2010）</p><ul><li>Twitter 开放 API，推动 REST 普及</li><li>JSON 成为数据交换格式主流</li><li>各大平台开始采用 RESTful 设计（Facebook、Google 等）</li></ul><p>3.工具化时代（2011–2018）</p><ul><li>Swagger（OpenAPI）兴起，文档自动化成为标配</li><li>Postman 成为 API 测试事实标准</li><li>微服务架构流行，REST 成为核心通信方式</li></ul><p>4.当下趋势（2019–至今）</p><ul><li>GraphQL 兴起，挑战传统 REST 设计</li><li>gRPC 在高性能场景中替代部分 REST</li><li>REST + OpenAPI 成为后端服务的标准开发范式之一</li></ul>
+          </div>
+<h2 id="二restful-api的实际应用">二、RESTful API的实际应用</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">级别</th>
+<th style="text-align: center;">名称</th>
+<th style="text-align: center;">实际应用情况</th>
+<th style="text-align: center;">典型案例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Level 0</strong></td>
+<td style="text-align: center;">POX (Plain Old XML)</td>
+<td style="text-align: center;">逐渐淘汰</td>
+<td style="text-align: center;">遗留系统、SOAP WebService</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Level 1</strong></td>
+<td style="text-align: center;">资源识别</td>
+<td style="text-align: center;">普遍应用</td>
+<td style="text-align: center;"><code>/users/123</code> 这种URL结构</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Level 2</strong></td>
+<td style="text-align: center;">HTTP动词</td>
+<td style="text-align: center;">普遍应用</td>
+<td style="text-align: center;">GET(检索)/POST(创建)/PUT(更新)/DELETE(删除) + 状态码</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Level 3</strong></td>
+<td style="text-align: center;">HATEOAS</td>
+<td style="text-align: center;">选择性应用</td>
+<td style="text-align: center;">超媒体驱动，较少完全实现</td>
+</tr>
+</tbody>
+</table>
+<div class="note note-info">
+            <p>以下内容均来自菜鸟教程<sup id="fnref:9" class="footnote-ref"><a href="#fn:9" rel="footnote"><span class="hint--top hint--rounded" aria-label="菜鸟教程,RESTful API教程[DB/OL],[https://www.runoob.com/restfulapi/restful-api-tutorial.html](https://www.runoob.com/restfulapi/restful-api-tutorial.html)">[9]</span></a></sup>。</p>
+          </div>
+<p>本章将进行一个用户管理API设计。</p>
+<h3 id="api端点设计">2.1 API端点设计</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs api">// 用户相关操作<br>GET    /api/users           # 获取用户列表<br>GET    /api/users/&#123;id&#125;      # 获取特定用户<br>POST   /api/users           # 创建新用户<br>PUT    /api/users/&#123;id&#125;      # 更新用户信息<br>DELETE /api/users/&#123;id&#125;      # 删除用户<br><br>// 用户订单相关操作<br>GET    /api/users/&#123;id&#125;/orders     # 获取用户的订单列表<br>POST   /api/users/&#123;id&#125;/orders     # 为用户创建订单<br>GET    /api/orders/&#123;orderId&#125;      # 获取特定订单详情<br></code></pre></td></tr></table></figure>
+<h3 id="完整的crud操作">2.2 完整的CRUD操作</h3>
+<h4 id="创建用户create">2.2.1 创建用户（create）</h4>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs http">// 请求<br>POST /api/users<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json<br><br>&#123;<br>  &quot;name&quot;: &quot;王五&quot;,<br>  &quot;email&quot;: &quot;wangwu@example.com&quot;,<br>  &quot;phone&quot;: &quot;13800000000&quot;,<br>  &quot;address&quot;: &#123;<br>    &quot;city&quot;: &quot;上海&quot;,<br>    &quot;street&quot;: &quot;南京路100号&quot;<br>  &#125;<br>&#125;<br><br>// 成功响应（状态码：201 Created）<br>&#123;<br>  &quot;success&quot;: true,<br>  &quot;data&quot;: &#123;<br>    &quot;id&quot;: 125,<br>    &quot;name&quot;: &quot;王五&quot;,<br>    &quot;email&quot;: &quot;wangwu@example.com&quot;,<br>    &quot;phone&quot;: &quot;13800000000&quot;,<br>    &quot;address&quot;: &#123;<br>      &quot;city&quot;: &quot;上海&quot;, <br>      &quot;street&quot;: &quot;南京路100号&quot;<br>    &#125;,<br>    &quot;createdAt&quot;: &quot;2024-01-15T10:00:00Z&quot;,<br>    &quot;updatedAt&quot;: &quot;2024-01-15T10:00:00Z&quot;<br>  &#125;,<br>  &quot;message&quot;: &quot;用户创建成功&quot;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="读取用户read">2.2.2 读取用户（read）</h4>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs http">// 获取用户列表<br>GET /api/users?page=1&amp;limit=5&amp;sort=createdAt&amp;order=desc<br><br>// 响应（状态码：200 OK）<br>&#123;<br>  &quot;success&quot;: true,<br>  &quot;data&quot;: [<br>    &#123;<br>      &quot;id&quot;: 125,<br>      &quot;name&quot;: &quot;王五&quot;,<br>      &quot;email&quot;: &quot;wangwu@example.com&quot;,<br>      &quot;createdAt&quot;: &quot;2024-01-15T10:00:00Z&quot;<br>    &#125;,<br>    &#123;<br>      &quot;id&quot;: 124,<br>      &quot;name&quot;: &quot;李四&quot;,<br>      &quot;email&quot;: &quot;lisi@example.com&quot;, <br>      &quot;createdAt&quot;: &quot;2024-01-15T09:00:00Z&quot;<br>    &#125;<br>  ],<br>  &quot;pagination&quot;: &#123;<br>    &quot;currentPage&quot;: 1,<br>    &quot;totalPages&quot;: 3,<br>    &quot;totalItems&quot;: 15,<br>    &quot;itemsPerPage&quot;: 5<br>  &#125;<br>&#125;<br><br>// 获取特定用户<br>GET /api/users/125<br><br>// 响应<br>&#123;<br>  &quot;success&quot;: true,<br>  &quot;data&quot;: &#123;<br>    &quot;id&quot;: 125,<br>    &quot;name&quot;: &quot;王五&quot;,<br>    &quot;email&quot;: &quot;wangwu@example.com&quot;,<br>    &quot;phone&quot;: &quot;13800000000&quot;,<br>    &quot;address&quot;: &#123;<br>      &quot;city&quot;: &quot;上海&quot;,<br>      &quot;street&quot;: &quot;南京路100号&quot;<br>    &#125;,<br>    &quot;createdAt&quot;: &quot;2024-01-15T10:00:00Z&quot;,<br>    &quot;updatedAt&quot;: &quot;2024-01-15T10:00:00Z&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="更新用户update">2.2.3 更新用户（update）</h4>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs http">// 请求<br>PUT /api/users/125<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json<br><br>&#123;<br>  &quot;name&quot;: &quot;王五&quot;,<br>  &quot;email&quot;: &quot;wangwu.new@example.com&quot;,<br>  &quot;phone&quot;: &quot;13900000000&quot;,<br>  &quot;address&quot;: &#123;<br>    &quot;city&quot;: &quot;深圳&quot;,<br>    &quot;street&quot;: &quot;科技园路200号&quot;<br>  &#125;<br>&#125;<br><br>// 响应（状态码：200 OK）<br>&#123;<br>  &quot;success&quot;: true,<br>  &quot;data&quot;: &#123;<br>    &quot;id&quot;: 125,<br>    &quot;name&quot;: &quot;王五&quot;,<br>    &quot;email&quot;: &quot;wangwu.new@example.com&quot;,<br>    &quot;phone&quot;: &quot;13900000000&quot;,<br>    &quot;address&quot;: &#123;<br>      &quot;city&quot;: &quot;深圳&quot;,<br>      &quot;street&quot;: &quot;科技园路200号&quot;<br>    &#125;,<br>    &quot;createdAt&quot;: &quot;2024-01-15T10:00:00Z&quot;,<br>    &quot;updatedAt&quot;: &quot;2024-01-15T11:30:00Z&quot;<br>  &#125;,<br>  &quot;message&quot;: &quot;用户信息更新成功&quot;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="删除用户delete">2.2.4 删除用户（delete）</h4>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs http">// 请求<br>DELETE /api/users/125<br><br>// 响应（状态码：200 OK）<br>&#123;<br>  &quot;success&quot;: true,<br>  &quot;message&quot;: &quot;用户删除成功&quot;<br>&#125;<br><br>// 如果用户不存在（状态码：404 Not Found）<br>&#123;<br>  &quot;success&quot;: false,<br>  &quot;error&quot;: &#123;<br>    &quot;code&quot;: &quot;USER_NOT_FOUND&quot;, <br>    &quot;message&quot;: &quot;用户不存在&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="错误处理">2.3 错误处理</h3>
+<h4 id="数据验证错误">2.3.1 数据验证错误</h4>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs http">// 请求（邮箱格式错误）<br>POST /api/users<br>&#123;<br>  &quot;name&quot;: &quot;&quot;,<br>  &quot;email&quot;: &quot;invalid-email&quot;,<br>  &quot;phone&quot;: &quot;123&quot;<br>&#125;<br><br>// 响应（状态码：400 Bad Request）<br>&#123;<br>  &quot;success&quot;: false,<br>  &quot;error&quot;: &#123;<br>    &quot;code&quot;: &quot;VALIDATION_ERROR&quot;,<br>    &quot;message&quot;: &quot;数据验证失败&quot;,<br>    &quot;details&quot;: [<br>      &#123;<br>        &quot;field&quot;: &quot;name&quot;,<br>        &quot;message&quot;: &quot;姓名不能为空&quot;<br>      &#125;,<br>      &#123;<br>        &quot;field&quot;: &quot;email&quot;, <br>        &quot;message&quot;: &quot;邮箱格式不正确&quot;<br>      &#125;,<br>      &#123;<br>        &quot;field&quot;: &quot;phone&quot;,<br>        &quot;message&quot;: &quot;手机号格式不正确&quot;<br>      &#125;<br>    ]<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="资源不存在错误">2.3.2 资源不存在错误</h4>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs http">// 请求（邮箱格式错误）<br>POST /api/users<br>&#123;<br>  &quot;name&quot;: &quot;&quot;,<br>  &quot;email&quot;: &quot;invalid-email&quot;,<br>  &quot;phone&quot;: &quot;123&quot;<br>&#125;<br><br>// 响应（状态码：400 Bad Request）<br>&#123;<br>  &quot;success&quot;: false,<br>  &quot;error&quot;: &#123;<br>    &quot;code&quot;: &quot;VALIDATION_ERROR&quot;,<br>    &quot;message&quot;: &quot;数据验证失败&quot;,<br>    &quot;details&quot;: [<br>      &#123;<br>        &quot;field&quot;: &quot;name&quot;,<br>        &quot;message&quot;: &quot;姓名不能为空&quot;<br>      &#125;,<br>      &#123;<br>        &quot;field&quot;: &quot;email&quot;, <br>        &quot;message&quot;: &quot;邮箱格式不正确&quot;<br>      &#125;,<br>      &#123;<br>        &quot;field&quot;: &quot;phone&quot;,<br>        &quot;message&quot;: &quot;手机号格式不正确&quot;<br>      &#125;<br>    ]<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="使用javascript-调用-api">2.4 使用JavaScript 调用 API</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 使用 fetch API 调用 RESTful API</span><br><br><span class="hljs-comment">// 1. 获取用户列表</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getUsers</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/api/users&#x27;</span>);<br>    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();<br>    <br>    <span class="hljs-keyword">if</span> (result.<span class="hljs-property">success</span>) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;用户列表:&#x27;</span>, result.<span class="hljs-property">data</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;获取失败:&#x27;</span>, result.<span class="hljs-property">error</span>.<span class="hljs-property">message</span>);<br>    &#125;<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;网络错误:&#x27;</span>, error);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 2. 创建新用户</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">createUser</span>(<span class="hljs-params">userData</span>) &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/api/users&#x27;</span>, &#123;<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>      <span class="hljs-attr">headers</span>: &#123;<br>        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,<br>      &#125;,<br>      <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(userData)<br>    &#125;);<br>    <br>    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();<br>    <br>    <span class="hljs-keyword">if</span> (result.<span class="hljs-property">success</span>) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;用户创建成功:&#x27;</span>, result.<span class="hljs-property">data</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;创建失败:&#x27;</span>, result.<span class="hljs-property">error</span>.<span class="hljs-property">message</span>);<br>    &#125;<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;网络错误:&#x27;</span>, error);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 3. 更新用户信息</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">updateUser</span>(<span class="hljs-params">userId, userData</span>) &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`/api/users/<span class="hljs-subst">$&#123;userId&#125;</span>`</span>, &#123;<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;PUT&#x27;</span>,<br>      <span class="hljs-attr">headers</span>: &#123;<br>        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,<br>      &#125;,<br>      <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(userData)<br>    &#125;);<br>    <br>    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();<br>    <br>    <span class="hljs-keyword">if</span> (result.<span class="hljs-property">success</span>) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;用户更新成功:&#x27;</span>, result.<span class="hljs-property">data</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;更新失败:&#x27;</span>, result.<span class="hljs-property">error</span>.<span class="hljs-property">message</span>);<br>    &#125;<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;网络错误:&#x27;</span>, error);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 4. 删除用户</span><br><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">deleteUser</span>(<span class="hljs-params">userId</span>) &#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`/api/users/<span class="hljs-subst">$&#123;userId&#125;</span>`</span>, &#123;<br>      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;DELETE&#x27;</span><br>    &#125;);<br>    <br>    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();<br>    <br>    <span class="hljs-keyword">if</span> (result.<span class="hljs-property">success</span>) &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;用户删除成功&#x27;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;删除失败:&#x27;</span>, result.<span class="hljs-property">error</span>.<span class="hljs-property">message</span>);<br>    &#125;<br>  &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;网络错误:&#x27;</span>, error);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="三其余api设计思想简介">三、其余API设计思想简介</h2>
+<table>
+<thead>
+<tr class="header">
+<th>架构</th>
+<th>传输协议</th>
+<th>数据格式</th>
+<th>适用场景</th>
+<th>学习曲线</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>REST</strong></td>
+<td>HTTP/1.1, HTTP/2</td>
+<td>JSON/XML</td>
+<td>通用API</td>
+<td>低</td>
+</tr>
+<tr class="even">
+<td><strong>GraphQL</strong></td>
+<td>HTTP</td>
+<td>JSON</td>
+<td>复杂查询</td>
+<td>中</td>
+</tr>
+<tr class="odd">
+<td><strong>gRPC</strong></td>
+<td>HTTP/2</td>
+<td>Protobuf</td>
+<td>微服务</td>
+<td>中高</td>
+</tr>
+<tr class="even">
+<td><strong>WebSocket</strong></td>
+<td>TCP</td>
+<td>任意</td>
+<td>实时通信</td>
+<td>中</td>
+</tr>
+<tr class="odd">
+<td><strong>SOAP</strong></td>
+<td>HTTP, SMTP</td>
+<td>XML</td>
+<td>企业集成</td>
+<td>高</td>
+</tr>
+<tr class="even">
+<td><strong>WebHook</strong></td>
+<td>HTTP</td>
+<td>JSON</td>
+<td>事件通知</td>
+<td>低</td>
+</tr>
+<tr class="odd">
+<td><strong>MQTT</strong></td>
+<td>TCP</td>
+<td>二进制</td>
+<td>物联网</td>
+<td>中</td>
+</tr>
+</tbody>
+</table>
+<p>更多介绍，自行搜索。</p>
 <h1 id="参考资料">参考资料</h1>
 <section class="footnotes">
 <div class="footnote-list">
 <ol>
 <li>
-<span id="fn:1" class="footnote-text"><span>作者、其他主要作者...,题名[文献类型标识]:引用页码,出版地:出版者,获取和访问路径,文献更新日期或者出版年 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+<span id="fn:1" class="footnote-text"><span>菜鸟教程,RESTful API 教程[DB/OL],<a target="_blank" rel="noopener" href="https://www.runoob.com/restfulapi/restful-api-tutorial.html">https://www.runoob.com/restfulapi/restful-api-tutorial.html</a> <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>全栈前端老曹,【高级前端进阶】RESTful API 的前世今生：从论文到实战全解析[EB/OL],<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38060125/article/details/148027472">https://blog.csdn.net/qq_38060125/article/details/148027472</a> <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:3" class="footnote-text"><span>维基百科,Roy Fielding[DB/OL],<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Roy_Fielding">https://en.wikipedia.org/wiki/Roy_Fielding</a> <a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:4" class="footnote-text"><span>百度百科,rest[DB/OL],<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/rest/6330506">https://baike.baidu.com/item/rest/6330506</a> <a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:5" class="footnote-text"><span>周芯宇、陈伟等,REST API设计分析及实证研究[J],软件学报,2022,33(9): 3271-3296,<a target="_blank" rel="noopener" href="http://www.jos.org.cn/1000-9825/6383.htm">http://www.jos.org.cn/1000-9825/6383.htm</a> <a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:6" class="footnote-text"><span>Fielding RT. Architectural style and the design of network-based software architecture [Ph.D. Thesis]. Irvine: University of California, 2000. <a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:7" class="footnote-text"><span>OAI,The OpenAPI Specification[DB/OL],GitHub Repository:[2026-03-14],<a target="_blank" rel="noopener" href="https://github.com/OAI/OpenAPI-Specification">https://github.com/OAI/OpenAPI-Specification</a> <a href="#fnref:7" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:8" class="footnote-text"><span>OAI,The OpenAPI introduction[DB/OL],<a target="_blank" rel="noopener" href="https://learn.openapis.org/introduction.html">https://learn.openapis.org/introduction.html</a> <a href="#fnref:8" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:9" class="footnote-text"><span>菜鸟教程,RESTful API教程[DB/OL],<a target="_blank" rel="noopener" href="https://www.runoob.com/restfulapi/restful-api-tutorial.html">https://www.runoob.com/restfulapi/restful-api-tutorial.html</a> <a href="#fnref:9" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
 </li>
 </ol>
 </div>
@@ -611,6 +577,34 @@ python语言语法基础、编程应用等相关文章
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E9%A1%B9/" class="category-chain-item">计算机杂项</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E9%A1%B9/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
@@ -620,8 +614,6 @@ python语言语法基础、编程应用等相关文章
         <a href="/tags/RESTful-API/" class="print-no-link">#RESTful API</a>
       
         <a href="/tags/%E5%85%A5%E9%97%A8%E9%80%9F%E8%A7%88/" class="print-no-link">#入门速览</a>
-      
-        <a href="/tags/%E5%BE%85%E5%AE%8C%E6%88%90/" class="print-no-link">#待完成</a>
       
     </div>
   
