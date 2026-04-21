@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tinkitor.github.io/img/%E9%BB%91%E9%A9%AC%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/post.jpg">
 <meta property="article:published_time" content="2026-02-21T05:37:51.000Z">
-<meta property="article:modified_time" content="2026-03-15T09:24:43.477Z">
+<meta property="article:modified_time" content="2026-04-21T09:33:54.051Z">
 <meta property="article:author" content="Tinkitor">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="java">
@@ -260,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          3.2k 字
         
       </span>
     
@@ -271,7 +271,7 @@
         
         
         
-          11 分钟
+          17 分钟
         
       </span>
     
@@ -413,6 +413,12 @@
 <td style="text-align: left;">root/123</td>
 <td style="text-align: left;">3306</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">redis</td>
+<td style="text-align: left;">192.168.150.101</td>
+<td style="text-align: left;">-/123321</td>
+<td style="text-align: left;">6379</td>
+</tr>
 </tbody>
 </table>
 <h4 id="核心服务启动说明"><strong>3.1.2 核心服务启动说明</strong></h4>
@@ -473,7 +479,55 @@
 </ul>
 <h4 id="mq模拟调试发送消息">3.2.7 mq模拟调试发送消息</h4>
 <p>删除课表接口存在两种业务场景，一种是用户直接删除已经失效得课程，另一种是接收到退款通知直接删除退款的课程。对于第二种，为了防止对数据库做过多变动，需要写个小接口模拟发送mq的退款通知消息。</p>
+<h4 id="坑jenkins构建失败">3.2.8 坑：jenkins构建失败</h4>
+<p><strong>问题描述与分析：</strong>在写完day02接口后，合并代码并提交，发现jenkins自动构建失败，并报错：Long类型不能转换为Integer。随后尝试定位到相关代码，发现是使用mp自带的<code>count()</code>方法导致返回值类型是<code>Long</code>，而要求值类型为<code>Integer</code>，所以编译报错。初步判断可能是因为把mp的包版本从<code>3.4.3</code>改为了<code>3.5.3</code>。</p>
+<p><strong>解决办法：</strong>直接修改所有代码，使用<code>Long</code>的<code>intValue()</code>方法让返回值变为int类型。</p>
 <h3 id="day03-学习计划和进度">3.3 day03-学习计划和进度</h3>
+<h4 id="swagger-api-注解的使用">3.3.1 swagger api 注解的使用</h4>
+<h4 id="坑mybatis-plus报错can-not-use-this-method-for-getsqlfirst">3.3.2 坑：mybatis-plus报错：can not use this method for "getSqlFirst"</h4>
+<p>更新mp版本到3.5.5解决</p>
+<h4 id="坑提示课程不支持试看">3.3.3 坑：提示课程不支持试看</h4>
+<p>根据<code>gateway</code>模块定位对应接口<code>http://api.tianji.com/ms/medias/signature/play?sectionId=16</code>，并查看对应流程走向：<code>media</code>模块获取播放视频的授权签名。查看<code>media</code>日志抛出异常：查询学习服务异常。随后定位<code>media</code>的service实现，可以看到存在一个在遇到免费视频时会判断用户对应课程是否有效的逻辑，该接口位于<code>course</code>模块下。最后定位到<code>course</code>模块下，发现没有实现这个接口。实现该接口，解决问题。</p>
+<h3 id="坑orderitem构造报错">3.3.4 坑：OrderItem构造报错</h3>
+<p>写完本章代码后，尝试本地编译，发现不通过，并在tj-message模块下报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">无法将类 com.baomidou.mybatisplus.core.metadata.OrderItem中的构造器 OrderItem应用到给定类型;<br></code></pre></td></tr></table></figure>
+<p>随后百度，发现这个报错就是在说类没有这个构造函数。所以查看源码，发现确实没有相关构造函数。因为之前用的是<code>3.4.3</code>版本【之后更新到了<code>3.5.5</code>】，所以又回去看了下这个版本里有没有这个构造函数，发现还真有。遂修改函数构造方法，问题解决。</p>
+<h3 id="day04-高并发优化">3.4 day04-高并发优化</h3>
+<h4 id="并发问题的产生与优化方向">3.4.1 并发问题的产生与优化方向</h4>
+<p>一般问题出在数据库读写操作。关键点：读、写请求次数、频率过高</p>
+<p>优化方向：</p>
+<ul>
+<li>读
+<ul>
+<li>优化代码及SQL</li>
+<li>缓存</li>
+</ul></li>
+<li>写
+<ul>
+<li>优化代码及SQL</li>
+<li>变同步为异步写</li>
+<li>合并写请求</li>
+</ul></li>
+</ul>
+<h4 id="项目业务进一步优化问题">3.4.2 项目业务进一步优化问题</h4>
+<ul>
+<li>有个BUG：用户瞬间点进去视频拖动进度条，然后后退出再进去，可以发现视频进度不会记录。我也没找出来前端进入视频播放界面时，到底是怎么查进度的</li>
+<li>队列过长可能导致缓存都过期了，都还没有轮到任务执行，最后使得持久化失败</li>
+</ul>
+<h3 id="day05-问答系统">3.5 day05-问答系统</h3>
+<h4 id="mp的分页查询">3.5.1 mp的分页查询</h4>
+<h4 id="spring容器是如何注入bean的">3.5.2 Spring容器是如何注入Bean的</h4>
+<ul>
+<li>Spring Bean的声明方式</li>
+<li>Spring注入Bean的过程</li>
+</ul>
+<h4 id="坑报错failed-to-convert-property-value-of-type-java.lang.string-to-required-type-java.time.localdatetime">3.5.3 坑：报错Failed to convert property value of type 'java.lang.String' to required type 'java.time.LocalDateTime</h4>
+<p><strong>完整报错</strong>：<code>[Failed to convert property value of type 'java.lang.String' to required type 'java.time.LocalDateTime' for property 'beginTime'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type [java.lang.String] to type [@io.swagger.annotations.ApiModelProperty @org.springframework.format.annotation.DateTimeFormat java.time.LocalDateTime] for value '2021-7-18 00:00:00'; nested exception is java.lang.IllegalArgumentException: Parse attempt failed for value [2021-7-18 00:00:00]]</code></p>
+<p><strong>报错分析</strong>：提示不能将<code>2021-7-18 00:00:00</code>转换为注释所要求的日期格式，经检查发现要求的格式为：<code>yyyy-MM-dd HH:mm:ss</code>，而传入的月份的<code>7</code>是个位数，改成<code>07</code>，解决问题。看了半天，原来是如此简单的错误。</p>
+<h4 id="多个空判断问题">3.5.4 多个空判断问题</h4>
+<p>发现tjxt里的业务代码，很多都是要判断某个对象是否为空，且不抛出异常，特别是还存在这种情况：先从表里查出某个用户的id，此时id不为空，但是又根据这个id查询用户，居然给出了一个判断返回的用户对象是否为空的操作，是空也不返回异常。感觉很不合理，最初的业务设计就应该是用户销号后导致某个用户信息查询不到，但是不能直接返回一个空，而是返回一个带有销号标记的特殊用户对象，对于存在空的情况就应该直接抛出异常，并告知前端异常。</p>
+<h4 id="bean循环依赖注入问题">3.5.5 bean循环依赖注入问题</h4>
+<h3 id="day06-点赞系统">3.6 day06-点赞系统</h3>
 <h2 id="四接口分析">四、接口分析</h2>
 <h3 id="tj-learning">4.1 tj-learning</h3>
 <h4 id="添加课程到课表">4.1.1 添加课程到课表</h4>
@@ -546,29 +600,6 @@
 
               
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/article/747758.html" title="各种设计模式详解">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">各种设计模式详解</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/article/109fadfa.html" title="爬取微信公众号文章实战笔记">
-                        <span class="hidden-mobile">爬取微信公众号文章实战笔记</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 

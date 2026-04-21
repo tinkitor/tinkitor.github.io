@@ -4,6 +4,48 @@
   
   
   <entry>
+    <title>Java中的函数式编程范式应用：Lambda表达式、函数式接口与Stream API</title>
+    <link href="/article/5caedc7.html"/>
+    <url>/article/5caedc7.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-info">            <p>未完成文章</p>          </div><div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><div class="note note-warning">            <p>转载或微调文章，源地址：[在此填入源地址]</p>          </div><!-- 分类说明，发布时请删除该内容 --><table style="text-align:center;"><tr><th>一级分类</th><th>二级分类</th><th>说明</th></tr><tr><td rowspan="8">编程实践</td><td>java</td><td>java语言语法基础、高级特性、编程应用等相关文章</td></tr><tr><td>c/c++</td><td>c/c++语言语法基础、高级特性、编程应用等相关文章</td></tr><tr><td>python</td><td>python语言语法基础、编程应用等相关文章</td></tr><tr><td>后端开发</td><td>后端开发类文章，涉及的知识例如SSM框架、SpringBoot等，也可能是其他语言的后端开发</td></tr><tr><td>前端开发</td><td>前端开发类文章，涉及的知识例如web前端的各种脚手架、三大基础件等，也可能是其他领域的前端开发</td></tr><tr><td>自动化</td><td>利用各种编程语言、工具实现工作自动化的教程文章，涉及的知识例如自动打卡签到、资源爬取等</td></tr><tr><td>AI模型使用</td><td>涉及模型训练、使用的相关内容</td></tr><tr><td>其他</td><td>未分类的文章</td></tr><tr><td rowspan="4">计算机基础</td><td>数据结构</td><td>无</td></tr><tr><td>操作系统</td><td>无</td></tr><tr><td>计算机组成原理</td><td>无</td></tr><tr><td>计算机网络</td><td>无</td></tr><tr><td rowspan="3">计算机杂项</td><td>工具的安装、配置或使用</td><td>无</td></tr><tr><td>项目文档、源码的阅读</td><td>无</td></tr><tr><td>其他</td><td>无</td></tr><tr><td rowspan="5">数学基础</td><td>高等数学</td><td>无</td></tr><tr><td>离散数学</td><td>无</td></tr><tr><td>线性代数</td><td>无</td></tr><tr><td>概率论</td><td>无</td></tr><tr><td>矩阵分析</td><td>无</td></tr><tr><td rowspan="3">人工智能基础</td><td>机器学习</td><td>无</td></tr><tr><td>深度学习</td><td>无</td></tr><tr><td>大模型</td><td>无</td></tr><tr><td rowspan="1">文学</td><td>无</td><td>无</td></tr><tr><td rowspan="1">英语</td><td>无</td><td>无</td></tr><tr><td rowspan="1">音乐</td><td>无</td><td>无</td></tr><tr><td rowspan="1">杂想</td><td>无</td><td>无</td></tr></table><h1 id="前言">前言</h1><h1 id="正文">正文</h1><h2 id="正文标题1">正文标题1</h2><h3 id="正文副标题1">正文副标题1</h3><p>有次一个刚入行的妹子让我讲笑话给她听。</p><p>我：你想听 TCP 的笑话么？ 妹子：嗯，我想听一个 TCP 的笑话。 我：好的，我会给你讲一个TCP 的笑话。 妹子：好的，我会听一个TCP 的笑话。 我：你准备好听一个TCP 的笑话么？ 妹子：嗯，我准备好听一个TCP 的笑话 我：Ok，那我要发 TCP 笑话了。大概有 10 秒，20 个字。 妹子：嗯，我准备收你那个 10 秒时长，20 个字的笑话了。 我：抱歉，你的连接超时了。你好，你想听 TCP 的笑话么</p><h1 id="附录">附录</h1><h3 id="附录1">附录1</h3><h3 id="附录2">附录2</h3><h1 id="参考资料">参考资料</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>作者、其他主要作者.题名[文献类型标识].出版地:出版者,出版年:引用页码[引用日期].获取和访问路径 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+      <tag>待完成</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ER图的基本概念、绘制方法与工具详述</title>
+    <link href="/article/ad1bb212.html"/>
+    <url>/article/ad1bb212.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-info">            <p>未完成文章</p>          </div><div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><div class="note note-warning">            <p>转载或微调文章，源地址：[在此填入源地址]</p>          </div><!-- 分类说明，发布时请删除该内容 --><table style="text-align:center;"><tr><th>一级分类</th><th>二级分类</th><th>说明</th></tr><tr><td rowspan="8">编程实践</td><td>java</td><td>java语言语法基础、高级特性、编程应用等相关文章</td></tr><tr><td>c/c++</td><td>c/c++语言语法基础、高级特性、编程应用等相关文章</td></tr><tr><td>python</td><td>python语言语法基础、编程应用等相关文章</td></tr><tr><td>后端开发</td><td>后端开发类文章，涉及的知识例如SSM框架、SpringBoot等，也可能是其他语言的后端开发</td></tr><tr><td>前端开发</td><td>前端开发类文章，涉及的知识例如web前端的各种脚手架、三大基础件等，也可能是其他领域的前端开发</td></tr><tr><td>自动化</td><td>利用各种编程语言、工具实现工作自动化的教程文章，涉及的知识例如自动打卡签到、资源爬取等</td></tr><tr><td>AI模型使用</td><td>涉及模型训练、使用的相关内容</td></tr><tr><td>其他</td><td>未分类的文章</td></tr><tr><td rowspan="4">计算机基础</td><td>数据结构</td><td>无</td></tr><tr><td>操作系统</td><td>无</td></tr><tr><td>计算机组成原理</td><td>无</td></tr><tr><td>计算机网络</td><td>无</td></tr><tr><td rowspan="3">计算机杂项</td><td>工具的安装、配置或使用</td><td>无</td></tr><tr><td>项目文档、源码的阅读</td><td>无</td></tr><tr><td>其他</td><td>无</td></tr><tr><td rowspan="5">数学基础</td><td>高等数学</td><td>无</td></tr><tr><td>离散数学</td><td>无</td></tr><tr><td>线性代数</td><td>无</td></tr><tr><td>概率论</td><td>无</td></tr><tr><td>矩阵分析</td><td>无</td></tr><tr><td rowspan="3">人工智能基础</td><td>机器学习</td><td>无</td></tr><tr><td>深度学习</td><td>无</td></tr><tr><td>大模型</td><td>无</td></tr><tr><td rowspan="1">文学</td><td>无</td><td>无</td></tr><tr><td rowspan="1">英语</td><td>无</td><td>无</td></tr><tr><td rowspan="1">音乐</td><td>无</td><td>无</td></tr><tr><td rowspan="1">杂想</td><td>无</td><td>无</td></tr></table><h1 id="前言">前言</h1><h1 id="正文">正文</h1><h2 id="正文标题1">正文标题1</h2><h3 id="正文副标题1">正文副标题1</h3><p>有次一个刚入行的妹子让我讲笑话给她听。</p><p>我：你想听 TCP 的笑话么？ 妹子：嗯，我想听一个 TCP 的笑话。 我：好的，我会给你讲一个TCP 的笑话。 妹子：好的，我会听一个TCP 的笑话。 我：你准备好听一个TCP 的笑话么？ 妹子：嗯，我准备好听一个TCP 的笑话 我：Ok，那我要发 TCP 笑话了。大概有 10 秒，20 个字。 妹子：嗯，我准备收你那个 10 秒时长，20 个字的笑话了。 我：抱歉，你的连接超时了。你好，你想听 TCP 的笑话么</p><h1 id="附录">附录</h1><h3 id="附录1">附录1</h3><h3 id="附录2">附录2</h3><h1 id="参考资料">参考资料</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>作者、其他主要作者.题名[文献类型标识].出版地:出版者,出版年:引用页码[引用日期].获取和访问路径 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+      <tag>待完成</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>git常用命令</title>
     <link href="/article/423abe9e.html"/>
     <url>/article/423abe9e.html</url>
@@ -46,39 +88,6 @@
       <tag>原创</tag>
       
       <tag>待完成</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>黑马天机学堂学习笔记</title>
-    <link href="/article/f6508528.html"/>
-    <url>/article/f6508528.html</url>
-    
-    <content type="html"><![CDATA[<div class="note note-info">            <p>未完成文章</p>          </div><div class="note note-success">            <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>          </div><h1 id="前言">前言</h1><p>本文主要内容天机</p><h1 id="正文">正文</h1><h2 id="一项目简介">一、项目简介</h2><h3 id="正文副标题1">1.1 正文副标题1</h3><h2 id="二技术栈简述">二、技术栈简述</h2><p>spring</p><p>springboot</p><p>mq</p><p>mybatis</p><p>nacos</p><p>gogs</p><p>jenkins</p><p>feign（一个声明式Web Service客户端，统一了抽象的HTTP调用接口，具体实现可以自由选择，例如okhttp）</p><h2 id="三学习日记">三、学习日记</h2><p>对应黑马给的在线文档：<a href="https://my.feishu.cn/wiki/wikcnp21tivsf57nQrHckQuZ3Vd">天机学堂-飞书文档</a>。本节内容主要记录在学习过程中遇到的一些零碎知识点。</p><h3 id="day01-初识项目">3.1 day01-初识项目</h3><h4 id="各种工具服务的账号密码汇总"><strong>3.1.1 各种工具、服务的账号密码汇总：</strong></h4><table><thead><tr class="header"><th style="text-align: left;">名称</th><th style="text-align: left;">域名/IP</th><th style="text-align: left;">账号</th><th style="text-align: left;">端口</th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Git私服</td><td style="text-align: left;">git.tianji.com</td><td style="text-align: left;">tjxt/123321</td><td style="text-align: left;">10880</td></tr><tr class="even"><td style="text-align: left;">Jenkins持续集成</td><td style="text-align: left;">jenkins.tianji.com</td><td style="text-align: left;">root/123</td><td style="text-align: left;">18080</td></tr><tr class="odd"><td style="text-align: left;">RabbitMQ</td><td style="text-align: left;">mq.tianji.com</td><td style="text-align: left;">tjxt/123321</td><td style="text-align: left;">15672</td></tr><tr class="even"><td style="text-align: left;">Nacos控制台</td><td style="text-align: left;">nacos.tianji.com</td><td style="text-align: left;">nacos/nacos</td><td style="text-align: left;">8848</td></tr><tr class="odd"><td style="text-align: left;">xxl-job控制台</td><td style="text-align: left;">xxljob.tianji.com</td><td style="text-align: left;">admin/123456</td><td style="text-align: left;">8880</td></tr><tr class="even"><td style="text-align: left;">ES的Kibana控制台</td><td style="text-align: left;">es.tianji.com</td><td style="text-align: left;">-</td><td style="text-align: left;">5601</td></tr><tr class="odd"><td style="text-align: left;">微服务网关</td><td style="text-align: left;">api.tianji.com</td><td style="text-align: left;">-</td><td style="text-align: left;">10010</td></tr><tr class="even"><td style="text-align: left;">用户端入口</td><td style="text-align: left;">www.tianji.com</td><td style="text-align: left;">jack/123</td><td style="text-align: left;">18081</td></tr><tr class="odd"><td style="text-align: left;">管理端入口</td><td style="text-align: left;">manage.tianji.com</td><td style="text-align: left;">13500010002/admin</td><td style="text-align: left;">18082</td></tr><tr class="even"><td style="text-align: left;">centos6</td><td style="text-align: left;">-</td><td style="text-align: left;">root/123321</td><td style="text-align: left;">-</td></tr><tr class="odd"><td style="text-align: left;">mysql</td><td style="text-align: left;">192.168.150.101</td><td style="text-align: left;">root/123</td><td style="text-align: left;">3306</td></tr></tbody></table><h4 id="核心服务启动说明"><strong>3.1.2 核心服务启动说明</strong></h4><p>为了节省内存，可以只单开一个微服务。必须保证启动的微服务：gateway、auth、data、user</p><h4 id="idea远程jvm代码调试"><strong>3.1.3 IDEA远程JVM代码调试</strong></h4><p><strong>功能描述：</strong>在idea本地使用<code>Remote JVM Debug</code>，配置好远程ip与端口，在确保远程与本地代码一致的情况下，可直接远程调用JVM运行对应代码进行debug，同时将debug信息映射至本地idea。</p><p><strong>原理简述：</strong></p><p><img src="..\img\黑马天机学堂学习笔记\image-20260222124641951.png" alt="整体功能架构图" style="zoom: 67%;" /></p><p>核心是JDWP协议，JDWP 是一个精巧的中间层协议，它①抽象化了调试操作的复杂性，让IDE可以用高级概念（行号、变量名）操作②翻译这些高级概念为JVM级别的低层操作（字节码索引、局部变量槽）③代理执行所有调试命令，在保持JVM稳定性的同时提供完全控制④维护状态管理断点、事件监听、线程挂起等复杂状态。正是由于JDWP需要精确映射源码位置到字节码位置，才使得代码一致性成为远程调试的绝对前提。任何差异都会在"翻译"过程中被放大，导致调试完全失控。</p><p><strong>注意：</strong>IDEA 远程调试不是在本地运行项目，而是连接到已经启动并运行在完整环境中的远程JVM。这个JVM已经加载了所有配置、依赖和上下文，即已经完整运行了一个项目，只是对JVM多加了一些调试相关的参数，使得在运行时远程调试变得可能。（所以启动脚本好像可能会很复杂啊？并非复杂）</p><h4 id="如何正确调试本地微服务">3.1.4 如何正确调试本地微服务</h4><p><strong>场景描述：</strong>在本地修改代码时，需要结合本地微服务进行组件测试。此时开发环境已经正在完整运行所有项目，所以需要在测试时需要将开发环境的目标微服务替换为本地微服务。</p><p><strong>困境描述：</strong>如何安全、成功地替换？可能会发生：替换时开发环境项目崩溃；未能成功替换，导致微服务调用不可控。</p><p><strong>解决方案：</strong>首先在开发环境中直接注册本地微服务，随后选择以下任意操作：①直接干掉开发环境微服务，只使用本地微服务②在nacos中将本地微服务权重调用调为最高</p><h4 id="坑nacos报错">3.1.5 坑：nacos报错</h4><h4 id="附意外发现的bug逻辑缺陷">附：意外发现的BUG/逻辑缺陷：</h4><ul><li>删除订单时，对于不存在的订单号，仍然返回200</li></ul><h3 id="day02-我的课表">3.2 day02-我的课表</h3><h4 id="threadlocal对象">3.2.1 ThreadLocal对象</h4><h4 id="什么是jwt">3.2.2 什么是JWT</h4><h4 id="坑报名课程失败">3.2.3 坑：报名课程失败</h4><p>在测试<code>添加课程到课表</code>接口时，报名免费课程提示报名失败请联系管理员。原因是课程已经过期无法再报名，需要到数据库中：tj_course-&gt;course表内修改purchase_end_time列。</p><h4 id="坑republishing-failed-message-to-exchange-error.topic-with-routing-key-error.learning-service">3.2.4 坑：Republishing failed message to exchange 'error.topic' with routing key error.learning-service</h4><p>显示报名成功后，查看数据库发现并没有成功插入学习计划信息，回看控制台发现显示mq的警告：<code>Republishing failed message to exchange 'error.topic' with routing key error.learning-service</code>，这句警告意为mq将失败消息发给了error.topic交换机，遂进入mq的web控制端查看error.topic的消息，显示：<code>Caused by: java.sql.SQLException: Field 'id' doesn't have a default value</code>，实际上就是表的id字段没有默认值，修改id为自增，仍然不能解决问题（且报相同的错误信息？）。</p><p>后面发现执行的插入语句为：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">==&gt; Parameters: 2(Long), 1549025085494521857(Long), 2026-02-28T11:58:14.999833100(LocalDateTime), 2027-02-28T11:58:14.999833100(LocalDateTime)<br>==&gt;  Preparing: INSERT INTO learning_lesson ( user_id, course_id, create_time, expire_time ) VALUES ( ?, ?, ?, ? )<br></code></pre></td></tr></table></figure><p>插入的user_id与course_id是联合主键，已经在数据库中存在，所以将其在数据库中删除，成功解决问题。【经验证，两个都要改才能解决问题】</p><h4 id="响应式编程与命令式编程">3.2.5 响应式编程与命令式编程</h4><p>响应式编程是一种基于数据流和变化传播的编程范式，强调通过观察数据流的变化来自动触发相应的操作。相比之下，命令式编程则专注于通过明确的步骤和指令来实现程序逻辑。</p><p><strong>响应式编程的特点</strong>：响应式编程以数据流为核心，允许开发者通过声明式的方式处理异步事件和实时数据变化。其主要特点包括：</p><ul><li>数据流与变化传播：数据被建模为流，当流中的数据发生变化时，相关逻辑会自动更新。例如，表单验证可以通过数据流实时更新UI。</li><li>函数式编程特性：响应式编程借鉴了函数式编程的思想，如不可变性和高阶函数，减少副作用并提高代码的可维护性。</li><li>异步与并发支持：通过异步流处理复杂的并发任务，适用于高性能的Web应用和实时系统。</li></ul><p><strong>命令式编程的特点</strong>：命令式编程通过明确的步骤和指令来实现逻辑，强调“如何做”。其主要特点包括：</p><ul><li>精确控制：开发者可以完全掌控程序的执行流程，适合需要高效率的系统。</li><li>易于理解：对于初学者来说，命令式编程更贴近现实世界的思维方式。</li><li>低级编程支持：适用于内核开发或设备驱动程序等需要直接操作硬件的场景。</li></ul><p>两者的对比与应用场景：响应式编程适用于实时Web应用、移动导航、游戏开发和大数据处理等需要处理异步事件和高并发的场景。例如，实时股票交易系统可以通过响应式编程快速更新股价数据。而命令式编程更适合需要精确控制的低级开发，如操作系统内核或嵌入式系统。尽管响应式编程在现代开发中展现了强大的优势，但其学习曲线较陡，且过度使用可能导致性能问题。开发者应根据项目需求选择合适的编程范式，以实现最佳的开发效率和系统性能。</p><h4 id="spring-bean的注入方式">3.2.6 Spring Bean的注入方式</h4><p>在实现<code>查询我的课表</code>接口时，controller代码为：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Api(tags = &quot;我的课表相关接口&quot;)</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/lessons&quot;)</span><br><span class="hljs-meta">@RequiredArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LearningLessonController</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ILearningLessonService lessonService;<br><br>    <span class="hljs-meta">@ApiOperation(&quot;查询我的课表，排序字段 latest_learn_time:学习时间排序，create_time:购买时间排序&quot;)</span><br>    <span class="hljs-meta">@GetMapping(&quot;/page&quot;)</span><br>    <span class="hljs-keyword">public</span> PageDTO&lt;LearningLessonVO&gt; <span class="hljs-title function_">queryMyLessons</span><span class="hljs-params">(PageQuery query)</span> &#123;<br>        <span class="hljs-keyword">return</span> lessonService.queryMyLessons(query);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>注意到<code>ILearningLessonService</code>没有使用<code>@Autowired</code>或者<code>@Resource</code>注解来注入，而是使用了Lombok的<code>@RequiredArgsConstructor</code>注解。好久没敲spring java了，忘了到底有哪几种注入方式了，这里给个列表：</p><ul><li><code>@Autowired</code>注解</li><li><code>@Resource</code>注解</li><li><code>@Inject</code>注解（JSR-330）</li><li>构造器注入（即上面代码所用的方法）</li><li><code>@Bean</code>注解结合配置类注入</li><li><code>@Value</code>注解（简单属性）</li><li>Setter方法注入</li><li>XML配置注入</li></ul><h4 id="mq模拟调试发送消息">3.2.7 mq模拟调试发送消息</h4><p>删除课表接口存在两种业务场景，一种是用户直接删除已经失效得课程，另一种是接收到退款通知直接删除退款的课程。对于第二种，为了防止对数据库做过多变动，需要写个小接口模拟发送mq的退款通知消息。</p><h3 id="day03-学习计划和进度">3.3 day03-学习计划和进度</h3><h2 id="四接口分析">四、接口分析</h2><h3 id="tj-learning">4.1 tj-learning</h3><h4 id="添加课程到课表">4.1.1 添加课程到课表</h4><h4 id="分页查询我的课表">4.4.2 分页查询我的课表</h4><h1 id="附录">附录</h1><h3 id="附录1">附录1</h3><h3 id="附录2">附录2</h3><h1 id="参考资料">参考资料</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>作者、其他主要作者.题名[文献类型标识].出版地:出版者,出版年:引用页码[引用日期].获取和访问路径 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span></li></ol></div></section>]]></content>
-    
-    
-    <categories>
-      
-      <category>编程实践</category>
-      
-      <category>java</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>原创</tag>
-      
-      <tag>java</tag>
-      
-      <tag>springboot</tag>
-      
-      <tag>微服务</tag>
       
     </tags>
     
@@ -1039,11 +1048,11 @@
     
     <tags>
       
-      <tag>转载</tag>
-      
       <tag>C</tag>
       
       <tag>编程基础</tag>
+      
+      <tag>转载</tag>
       
     </tags>
     
@@ -1070,11 +1079,11 @@
     
     <tags>
       
-      <tag>转载</tag>
-      
       <tag>C</tag>
       
       <tag>编程基础</tag>
+      
+      <tag>转载</tag>
       
     </tags>
     
