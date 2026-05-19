@@ -21,21 +21,22 @@
   <meta name="author" content="Tinkitor">
   <meta name="keywords" content="Tinkitor,,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
-    <meta name="description" content="该文章无摘要">
+    <meta name="description" content="本文主要讲解java 8后引入的函数式编程方法，涉及Lambda表达式、Stream API及其相关用法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中的函数式编程范式应用：Lambda表达式、函数式接口与Stream API">
 <meta property="og:url" content="https://tinkitor.github.io/article/5caedc7.html">
 <meta property="og:site_name" content="Tinkitor的博客">
-<meta property="og:description" content="该文章无摘要">
+<meta property="og:description" content="本文主要讲解java 8后引入的函数式编程方法，涉及Lambda表达式、Stream API及其相关用法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tinkitor.github.io/img/default/post_example.svg">
+<meta property="og:image" content="https://tinkitor.github.io/img/Java%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F%E5%BA%94%E7%94%A8%EF%BC%9ALambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%81%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E4%B8%8EStream-API/post.png">
 <meta property="article:published_time" content="2026-04-18T12:44:07.000Z">
-<meta property="article:modified_time" content="2026-04-21T02:14:21.655Z">
+<meta property="article:modified_time" content="2026-05-19T18:24:55.554Z">
 <meta property="article:author" content="Tinkitor">
 <meta property="article:tag" content="原创">
-<meta property="article:tag" content="待完成">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="函数式编程">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tinkitor.github.io/img/default/post_example.svg">
+<meta name="twitter:image" content="https://tinkitor.github.io/img/Java%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F%E5%BA%94%E7%94%A8%EF%BC%9ALambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%81%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E4%B8%8EStream-API/post.png">
   
   
   
@@ -258,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          607 字
+          3.6k 字
         
       </span>
     
@@ -269,7 +270,7 @@
         
         
         
-          4 分钟
+          18 分钟
         
       </span>
     
@@ -311,287 +312,179 @@
             
               <div class="markdown-body">
                 
-                <div class="note note-info">
-            <p>未完成文章</p>
-          </div>
-<div class="note note-success">
+                <div class="note note-success">
             <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
           </div>
-<div class="note note-warning">
-            <p>转载或微调文章，源地址：[在此填入源地址]</p>
-          </div>
-<!-- 分类说明，发布时请删除该内容 -->
-<table style="text-align:center;">
-<tr>
-<th>
-一级分类
-</th>
-<th>
-二级分类
-</th>
-<th>
-说明
-</th>
-</tr>
-<tr>
-<td rowspan="8">
-编程实践
-</td>
-<td>
-java
-</td>
-<td>
-java语言语法基础、高级特性、编程应用等相关文章
-</td>
-</tr>
-<tr>
-<td>
-c/c++
-</td>
-<td>
-c/c++语言语法基础、高级特性、编程应用等相关文章
-</td>
-</tr>
-<tr>
-<td>
-python
-</td>
-<td>
-python语言语法基础、编程应用等相关文章
-</td>
-</tr>
-<tr>
-<td>
-后端开发
-</td>
-<td>
-后端开发类文章，涉及的知识例如SSM框架、SpringBoot等，也可能是其他语言的后端开发
-</td>
-</tr>
-<tr>
-<td>
-前端开发
-</td>
-<td>
-前端开发类文章，涉及的知识例如web前端的各种脚手架、三大基础件等，也可能是其他领域的前端开发
-</td>
-</tr>
-<tr>
-<td>
-自动化
-</td>
-<td>
-利用各种编程语言、工具实现工作自动化的教程文章，涉及的知识例如自动打卡签到、资源爬取等
-</td>
-</tr>
-<tr>
-<td>
-AI模型使用
-</td>
-<td>
-涉及模型训练、使用的相关内容
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-未分类的文章
-</td>
-</tr>
-<tr>
-<td rowspan="4">
-计算机基础
-</td>
-<td>
-数据结构
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-操作系统
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-计算机组成原理
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-计算机网络
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="3">
-计算机杂项
-</td>
-<td>
-工具的安装、配置或使用
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-项目文档、源码的阅读
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="5">
-数学基础
-</td>
-<td>
-高等数学
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-离散数学
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-线性代数
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-概率论
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-矩阵分析
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="3">
-人工智能基础
-</td>
-<td>
-机器学习
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-深度学习
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td>
-大模型
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="1">
-文学
-</td>
-<td>
-无
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="1">
-英语
-</td>
-<td>
-无
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="1">
-音乐
-</td>
-<td>
-无
-</td>
-<td>
-无
-</td>
-</tr>
-<tr>
-<td rowspan="1">
-杂想
-</td>
-<td>
-无
-</td>
-<td>
-无
-</td>
-</tr>
-</table>
 <h1 id="前言">前言</h1>
+<p>本文主要讲解java 8后引入的函数式编程方法，涉及Lambda表达式（方法引用）、函数式接口、与Stream API及其相关用法。</p>
 <h1 id="正文">正文</h1>
-<h2 id="正文标题1">正文标题1</h2>
-<h3 id="正文副标题1">正文副标题1</h3>
-<p>有次一个刚入行的妹子让我讲笑话给她听。</p>
-<p>我：你想听 TCP 的笑话么？ 妹子：嗯，我想听一个 TCP 的笑话。 我：好的，我会给你讲一个TCP 的笑话。 妹子：好的，我会听一个TCP 的笑话。 我：你准备好听一个TCP 的笑话么？ 妹子：嗯，我准备好听一个TCP 的笑话 我：Ok，那我要发 TCP 笑话了。大概有 10 秒，20 个字。 妹子：嗯，我准备收你那个 10 秒时长，20 个字的笑话了。 我：抱歉，你的连接超时了。你好，你想听 TCP 的笑话么</p>
-<h1 id="附录">附录</h1>
-<h3 id="附录1">附录1</h3>
-<h3 id="附录2">附录2</h3>
+<h2 id="一引言为什么需要函数式编程">一、引言：为什么需要函数式编程？</h2>
+<p>想象这样一个场景：你有一个用户列表，需要找出所有成年人，按年龄排序，然后提取他们的姓名。</p>
+<p>在Java 7及以前，你需要写这样的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;User&gt; users = getUserList();<br>List&lt;User&gt; adults = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br><span class="hljs-comment">// 1. 筛选成年人</span><br><span class="hljs-keyword">for</span> (User user : users) &#123;<br>    <span class="hljs-keyword">if</span> (user.getAge() &gt;= <span class="hljs-number">18</span>) &#123;<br>        adults.add(user);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 2. 按年龄排序</span><br>Collections.sort(adults, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>&lt;User&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(User u1, User u2)</span> &#123;<br>        <span class="hljs-keyword">return</span> u1.getAge() - u2.getAge();<br>    &#125;<br>&#125;);<br><br><span class="hljs-comment">// 3. 提取姓名</span><br>List&lt;String&gt; names = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><span class="hljs-keyword">for</span> (User user : adults) &#123;<br>    names.add(user.getName());<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>问题很明显</strong>： - 代码冗长，像在写"说明书" - 充斥着大量"模板代码" - 意图被实现细节淹没</p>
+<p><strong>函数式编程的目标</strong>：让代码更接近<strong>问题描述</strong>，而不是<strong>实现步骤</strong>。</p>
+<h2 id="二函数式编程是什么">二、函数式编程是什么？</h2>
+<p>函数式编程是一种编程范式，它： - 将计算视为数学函数的求值 - 强调"做什么"，而不是"怎么做" - 鼓励不可变性和无副作用（所谓无副作用就是操作除了返回值，对外界无任何影响，例如修改外部变量会产生副作用）</p>
+<h3 id="对比理解">对比理解</h3>
+<table>
+<thead>
+<tr class="header">
+<th>范式</th>
+<th>关注点</th>
+<th>思维方式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>命令式</td>
+<td>怎么做（How）</td>
+<td>写步骤，修改变量</td>
+</tr>
+<tr class="even">
+<td>函数式</td>
+<td>做什么（What）</td>
+<td>描述数据映射和转换</td>
+</tr>
+<tr class="odd">
+<td>面向对象</td>
+<td>谁来做（Who）</td>
+<td>定义对象，传递消息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>简单例子</strong>：计算偶数的平方和</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 命令式：关注步骤</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) &#123;<br>    <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;<br>        sum += i * i;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 函数式：关注转换</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> IntStream.rangeClosed(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)<br>    .filter(i -&gt; i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>    .map(i -&gt; i * i)<br>    .sum();<br></code></pre></td></tr></table></figure>
+<p>一眼就能看出区别：函数式版本像在读一句话——"从1到10中，过滤出偶数，计算平方，然后求和"。</p>
+<h2 id="三lambda表达式行为参数化的语法基础">三、Lambda表达式：行为参数化的语法基础</h2>
+<h3 id="什么是lambda">3.1 什么是Lambda？</h3>
+<p>Lambda表达式可以理解为匿名函数——一个没有名字、可以直接传递的代码块。</p>
+<p><strong>语法格式</strong>：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-function"><span class="hljs-params">(参数列表)</span> -&gt;</span> &#123; 方法体 &#125;<br></code></pre></td></tr></table></figure>
+<h3 id="演变过程从匿名类到lambda">3.2 演变过程：从匿名类到Lambda</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 1. 原始方式：匿名内部类（Java 7及以前）</span><br><span class="hljs-type">Runnable</span> <span class="hljs-variable">r1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Hello&quot;</span>);<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">// 2. Lambda完整写法</span><br><span class="hljs-type">Runnable</span> <span class="hljs-variable">r2</span> <span class="hljs-operator">=</span> () -&gt; &#123;<br>    System.out.println(<span class="hljs-string">&quot;Hello&quot;</span>);<br>&#125;;<br><br><span class="hljs-comment">// 3. Lambda最简写法（单条语句可省略&#123;&#125;）</span><br><span class="hljs-type">Runnable</span> <span class="hljs-variable">r3</span> <span class="hljs-operator">=</span> () -&gt; System.out.println(<span class="hljs-string">&quot;Hello&quot;</span>);<br><br><span class="hljs-comment">// 启动线程</span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(r3).start();<br><span class="hljs-comment">// 更常见：直接内联</span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; System.out.println(<span class="hljs-string">&quot;Hello&quot;</span>)).start();<br></code></pre></td></tr></table></figure>
+<h3 id="各种写法示例">3.3 各种写法示例</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 无参数</span><br><span class="hljs-type">Runnable</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> () -&gt; System.out.println(<span class="hljs-string">&quot;无参数&quot;</span>);<br><br><span class="hljs-comment">// 单参数（括号可省略）</span><br>Consumer&lt;String&gt; c1 = (s) -&gt; System.out.println(s);<br>Consumer&lt;String&gt; c2 = s -&gt; System.out.println(s);  <span class="hljs-comment">// 更简洁</span><br><br><span class="hljs-comment">// 多参数</span><br>Comparator&lt;Integer&gt; comp = (a, b) -&gt; a - b;<br><br><span class="hljs-comment">// 多行语句（必须用&#123;&#125;和return）</span><br>Function&lt;Integer, String&gt; f = n -&gt; &#123;<br>    <span class="hljs-keyword">if</span> (n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;偶数&quot;</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;奇数&quot;</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="方法引用lambda的进一步简化">3.4 方法引用：Lambda的进一步简化</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Lambda</span><br>list.forEach(s -&gt; System.out.println(s));<br><br><span class="hljs-comment">// 方法引用</span><br>list.forEach(System.out::println);<br><br><span class="hljs-comment">// 四种方法引用类型</span><br><span class="hljs-comment">// 1. 静态方法引用：Math::abs</span><br><span class="hljs-comment">// 2. 实例方法引用（绑定对象）：System.out::println</span><br><span class="hljs-comment">// 3. 实例方法引用（未绑定）：String::toUpperCase</span><br><span class="hljs-comment">// 4. 构造方法引用：ArrayList::new</span><br></code></pre></td></tr></table></figure>
+<div class="note note-info">
+            <p>在java中，实际上方法引用不是一种独立的新类型。它和 Lambda 表达式一样，都是函数式接口的实例。方法引用实际上是快速将一个Lambda表达式的实现指向一个已经写好的方法，方法引用可以看作是lambda表达式的特殊形式，或者称之为语法糖中的语法糖。一般方法已经存在才可以使用方法引用，而方法若未存在，则只能使用lambda表达式。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="Fisherman渔夫.Java-Lambda表达式和“方法引用”的对比和详解[EB/OL].[2026-05-19].[https://cloud.tencent.com/developer/article/1532870](https://cloud.tencent.com/developer/article/1532870)">[1]</span></a></sup></p>
+          </div>
+<h2 id="四函数式接口lambda的类型系统">四、函数式接口：Lambda的类型系统</h2>
+<h3 id="什么是函数式接口">4.1 什么是函数式接口？</h3>
+<p><strong>函数式接口</strong>是<strong>只有一个抽象方法</strong>的接口，它是Lambda表达式的<strong>目标类型</strong>（即可以用Lambda表达式“赋值”）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span>  <span class="hljs-comment">// 推荐加上，编译器会检查</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyInterface</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span>;  <span class="hljs-comment">// 唯一的抽象方法</span><br>    <br>    <span class="hljs-comment">// 可以有默认方法和静态方法</span><br>    <span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Hello&quot;</span>);<br>    &#125;<br>    <br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">util</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Utility&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 使用Lambda</span><br><span class="hljs-type">MyInterface</span> <span class="hljs-variable">mi</span> <span class="hljs-operator">=</span> () -&gt; System.out.println(<span class="hljs-string">&quot;doing something&quot;</span>);<br>mi.doSomething();<br></code></pre></td></tr></table></figure>
+<h3 id="java四大核心函数式接口">4.2 Java四大核心函数式接口</h3>
+<table>
+<thead>
+<tr class="header">
+<th>接口</th>
+<th>参数</th>
+<th>返回</th>
+<th>抽象方法</th>
+<th>比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Function&lt;T,R&gt;</code></td>
+<td>T</td>
+<td>R</td>
+<td><code>apply(T)</code></td>
+<td>加工厂</td>
+</tr>
+<tr class="even">
+<td><code>Consumer&lt;T&gt;</code></td>
+<td>T</td>
+<td>void</td>
+<td><code>accept(T)</code></td>
+<td>黑洞</td>
+</tr>
+<tr class="odd">
+<td><code>Supplier&lt;T&gt;</code></td>
+<td>无</td>
+<td>T</td>
+<td><code>get()</code></td>
+<td>泉眼</td>
+</tr>
+<tr class="even">
+<td><code>Predicate&lt;T&gt;</code></td>
+<td>T</td>
+<td>boolean</td>
+<td><code>test(T)</code></td>
+<td>安检</td>
+</tr>
+</tbody>
+</table>
+<h3 id="详细示例">4.3 详细示例</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 1. Function：转换器</span><br>Function&lt;String, Integer&gt; strToInt = s -&gt; Integer.parseInt(s);<br><span class="hljs-type">Integer</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> strToInt.apply(<span class="hljs-string">&quot;123&quot;</span>);  <span class="hljs-comment">// 123</span><br><br>Function&lt;Integer, String&gt; intToStr = i -&gt; <span class="hljs-string">&quot;Number: &quot;</span> + i;<br><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> intToStr.apply(<span class="hljs-number">456</span>);  <span class="hljs-comment">// &quot;Number: 456&quot;</span><br><br><span class="hljs-comment">// 2. Consumer：消费者</span><br>Consumer&lt;String&gt; printer = s -&gt; System.out.println(s);<br>printer.accept(<span class="hljs-string">&quot;Hello&quot;</span>);  <span class="hljs-comment">// 打印 Hello</span><br><br><span class="hljs-comment">// 3. Supplier：供应者</span><br>Supplier&lt;Double&gt; random = () -&gt; Math.random();<br><span class="hljs-type">Double</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> random.get();  <span class="hljs-comment">// 0.123456...</span><br><br><span class="hljs-comment">// 4. Predicate：判断器</span><br>Predicate&lt;Integer&gt; isPositive = n -&gt; n &gt; <span class="hljs-number">0</span>;<br>System.out.println(isPositive.test(<span class="hljs-number">5</span>));   <span class="hljs-comment">// true</span><br>System.out.println(isPositive.test(-<span class="hljs-number">3</span>));  <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+<h3 id="函数式接口的链式调用">4.4 函数式接口的链式调用</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Function 组合：andThen 和 compose</span><br>Function&lt;Integer, Integer&gt; multiply2 = n -&gt; n * <span class="hljs-number">2</span>;<br>Function&lt;Integer, Integer&gt; add3 = n -&gt; n + <span class="hljs-number">3</span>;<br><br><span class="hljs-comment">// 先乘2，再加3</span><br>Function&lt;Integer, Integer&gt; f1 = multiply2.andThen(add3);<br>System.out.println(f1.apply(<span class="hljs-number">5</span>));  <span class="hljs-comment">// (5*2)+3 = 13</span><br><br><span class="hljs-comment">// 先加3，再乘2</span><br>Function&lt;Integer, Integer&gt; f2 = multiply2.compose(add3);<br>System.out.println(f2.apply(<span class="hljs-number">5</span>));  <span class="hljs-comment">// (5+3)*2 = 16</span><br><br><span class="hljs-comment">// Predicate 组合：and, or, negate</span><br>Predicate&lt;Integer&gt; isEven = n -&gt; n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>;<br>Predicate&lt;Integer&gt; isPositive = n -&gt; n &gt; <span class="hljs-number">0</span>;<br><br>Predicate&lt;Integer&gt; isPositiveEven = isPositive.and(isEven);<br>System.out.println(isPositiveEven.test(<span class="hljs-number">4</span>));   <span class="hljs-comment">// true</span><br>System.out.println(isPositiveEven.test(-<span class="hljs-number">2</span>));  <span class="hljs-comment">// false</span><br><br><span class="hljs-comment">// Consumer 组合：andThen</span><br>Consumer&lt;String&gt; printA = s -&gt; System.out.print(<span class="hljs-string">&quot;A&quot;</span>);<br>Consumer&lt;String&gt; printB = s -&gt; System.out.print(<span class="hljs-string">&quot;B&quot;</span>);<br>printA.andThen(printB).accept(<span class="hljs-string">&quot;&quot;</span>);  <span class="hljs-comment">// 输出：AB</span><br></code></pre></td></tr></table></figure>
+<h2 id="五stream-api声明式数据处理">五、Stream API：声明式数据处理</h2>
+<h3 id="什么是stream">5.1 什么是Stream？</h3>
+<p>Stream是Java 8引入的<strong>数据流</strong>概念，代表一个支持函数式操作的<strong>元素序列</strong>。</p>
+<p><strong>核心特点</strong>： - <strong>不存储数据</strong>：只是数据源的视图 - <strong>函数式编程</strong>：对Stream的操作返回一个新的Stream - <strong>惰性执行</strong>：中间操作不会立即执行 - <strong>不可变性</strong>：不修改数据源</p>
+<h3 id="创建stream">5.2 创建Stream</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 1. 从集合创建</span><br>List&lt;String&gt; list = Arrays.asList(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);<br>Stream&lt;String&gt; stream1 = list.stream();<br>Stream&lt;String&gt; parallelStream = list.parallelStream();  <span class="hljs-comment">// 并行流</span><br><br><span class="hljs-comment">// 2. 从数组创建</span><br>Stream&lt;Integer&gt; stream2 = Arrays.stream(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;);<br><br><span class="hljs-comment">// 3. 使用Stream.of</span><br>Stream&lt;String&gt; stream3 = Stream.of(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);<br><br><span class="hljs-comment">// 4. 无限流</span><br>Stream&lt;Double&gt; randoms = Stream.generate(Math::random).limit(<span class="hljs-number">10</span>);<br>Stream&lt;Integer&gt; iterated = Stream.iterate(<span class="hljs-number">0</span>, n -&gt; n + <span class="hljs-number">2</span>).limit(<span class="hljs-number">10</span>);  <span class="hljs-comment">// 0,2,4...</span><br></code></pre></td></tr></table></figure>
+<h3 id="中间操作-vs-终端操作">5.3 中间操作 vs 终端操作</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; numbers = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>);<br><br><span class="hljs-comment">// 中间操作：filter, map, sorted, distinct, limit, skip</span><br><span class="hljs-comment">// 终端操作：collect, forEach, reduce, count, anyMatch, findFirst</span><br><br>Stream&lt;Integer&gt; middleStream = numbers.stream()<br>    .filter(n -&gt; n &gt; <span class="hljs-number">2</span>)   <span class="hljs-comment">// 中间操作，还没执行</span><br>    .map(n -&gt; n * <span class="hljs-number">2</span>);     <span class="hljs-comment">// 中间操作，还没执行</span><br><br><span class="hljs-comment">// 加终端操作才会实际执行</span><br>List&lt;Integer&gt; result = middleStream.collect(Collectors.toList());  <span class="hljs-comment">// 执行！</span><br></code></pre></td></tr></table></figure>
+<h3 id="常用操作示例">5.4 常用操作示例</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;User&gt; users = Arrays.asList(<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">25</span>, <span class="hljs-string">&quot;Beijing&quot;</span>),<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-number">17</span>, <span class="hljs-string">&quot;Shanghai&quot;</span>),<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;Charlie&quot;</span>, <span class="hljs-number">30</span>, <span class="hljs-string">&quot;Beijing&quot;</span>),<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;David&quot;</span>, <span class="hljs-number">22</span>, <span class="hljs-string">&quot;Guangzhou&quot;</span>),<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;Eve&quot;</span>, <span class="hljs-number">19</span>, <span class="hljs-string">&quot;Beijing&quot;</span>)<br>);<br><br><span class="hljs-comment">// 1. filter：过滤</span><br>List&lt;User&gt; adults = users.stream()<br>    .filter(u -&gt; u.getAge() &gt;= <span class="hljs-number">18</span>)<br>    .collect(Collectors.toList());<br><br><span class="hljs-comment">// 2. map：转换</span><br>List&lt;String&gt; names = users.stream()<br>    .map(User::getName)<br>    .collect(Collectors.toList());<br><br><span class="hljs-comment">// 3. sorted：排序</span><br>List&lt;User&gt; sortedByAge = users.stream()<br>    .sorted(Comparator.comparing(User::getAge))<br>    .collect(Collectors.toList());<br><br><span class="hljs-comment">// 4. distinct：去重</span><br>List&lt;String&gt; uniqueCities = users.stream()<br>    .map(User::getCity)<br>    .distinct()<br>    .collect(Collectors.toList());<br><br><span class="hljs-comment">// 5. limit &amp; skip：分页</span><br>List&lt;User&gt; page = users.stream()<br>    .skip(<span class="hljs-number">2</span>)   <span class="hljs-comment">// 跳过前2条</span><br>    .limit(<span class="hljs-number">2</span>)  <span class="hljs-comment">// 取2条</span><br>    .collect(Collectors.toList());<br><br><span class="hljs-comment">// 6. anyMatch/allMatch/noneMatch：匹配检查</span><br><span class="hljs-type">boolean</span> <span class="hljs-variable">hasAdult</span> <span class="hljs-operator">=</span> users.stream().anyMatch(u -&gt; u.getAge() &gt;= <span class="hljs-number">18</span>);<br><span class="hljs-type">boolean</span> <span class="hljs-variable">allAdult</span> <span class="hljs-operator">=</span> users.stream().allMatch(u -&gt; u.getAge() &gt;= <span class="hljs-number">18</span>);<br><span class="hljs-type">boolean</span> <span class="hljs-variable">noChild</span> <span class="hljs-operator">=</span> users.stream().noneMatch(u -&gt; u.getAge() &lt; <span class="hljs-number">18</span>);<br><br><span class="hljs-comment">// 7. findFirst/findAny：查找</span><br>Optional&lt;User&gt; firstBeijing = users.stream()<br>    .filter(u -&gt; <span class="hljs-string">&quot;Beijing&quot;</span>.equals(u.getCity()))<br>    .findFirst();<br><br><span class="hljs-comment">// 8. reduce：归约</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sumAge</span> <span class="hljs-operator">=</span> users.stream()<br>    .map(User::getAge)<br>    .reduce(<span class="hljs-number">0</span>, Integer::sum);<br><br><span class="hljs-comment">// 9. count：计数</span><br><span class="hljs-type">long</span> <span class="hljs-variable">beijingCount</span> <span class="hljs-operator">=</span> users.stream()<br>    .filter(u -&gt; <span class="hljs-string">&quot;Beijing&quot;</span>.equals(u.getCity()))<br>    .count();<br><br><span class="hljs-comment">// 10. peek：调试（不终止流）</span><br>List&lt;String&gt; names2 = users.stream()<br>    .peek(u -&gt; System.out.println(<span class="hljs-string">&quot;before filter: &quot;</span> + u.getName()))<br>    .filter(u -&gt; u.getAge() &gt;= <span class="hljs-number">18</span>)<br>    .peek(u -&gt; System.out.println(<span class="hljs-string">&quot;after filter: &quot;</span> + u.getName()))<br>    .map(User::getName)<br>    .collect(Collectors.toList());<br></code></pre></td></tr></table></figure>
+<h3 id="收集器-collectors">5.5 收集器 Collectors</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// toList：转List</span><br>List&lt;String&gt; names = users.stream()<br>    .map(User::getName)<br>    .collect(Collectors.toList());<br><br><span class="hljs-comment">// toSet：转Set（自动去重）</span><br>Set&lt;String&gt; cities = users.stream()<br>    .map(User::getCity)<br>    .collect(Collectors.toSet());<br><br><span class="hljs-comment">// toMap：转Map</span><br>Map&lt;Long, String&gt; idToName = users.stream()<br>    .collect(Collectors.toMap(User::getId, User::getName));<br><br><span class="hljs-comment">// groupingBy：分组</span><br>Map&lt;String, List&lt;User&gt;&gt; byCity = users.stream()<br>    .collect(Collectors.groupingBy(User::getCity));<br><br><span class="hljs-comment">// 分组并统计数量</span><br>Map&lt;String, Long&gt; countByCity = users.stream()<br>    .collect(Collectors.groupingBy(User::getCity, Collectors.counting()));<br><br><span class="hljs-comment">// joining：拼接字符串</span><br><span class="hljs-type">String</span> <span class="hljs-variable">allNames</span> <span class="hljs-operator">=</span> users.stream()<br>    .map(User::getName)<br>    .collect(Collectors.joining(<span class="hljs-string">&quot;, &quot;</span>, <span class="hljs-string">&quot;[&quot;</span>, <span class="hljs-string">&quot;]&quot;</span>));<br><br><span class="hljs-comment">// summarizingInt：统计信息</span><br><span class="hljs-type">IntSummaryStatistics</span> <span class="hljs-variable">stats</span> <span class="hljs-operator">=</span> users.stream()<br>    .collect(Collectors.summarizingInt(User::getAge));<br>System.out.println(<span class="hljs-string">&quot;平均年龄: &quot;</span> + stats.getAverage());<br>System.out.println(<span class="hljs-string">&quot;最大年龄: &quot;</span> + stats.getMax());<br></code></pre></td></tr></table></figure>
+<h3 id="综合案例用户报表生成">5.6 综合案例：用户报表生成</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserReport</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        List&lt;User&gt; users = getUserList();<br>        <br>        <span class="hljs-comment">// 需求：统计北京地区成年用户的平均年龄，并按年龄排序输出姓名</span><br>        <br>        <span class="hljs-type">String</span> <span class="hljs-variable">report</span> <span class="hljs-operator">=</span> users.stream()<br>            .filter(u -&gt; <span class="hljs-string">&quot;Beijing&quot;</span>.equals(u.getCity()))     <span class="hljs-comment">// 北京用户</span><br>            .filter(u -&gt; u.getAge() &gt;= <span class="hljs-number">18</span>)                   <span class="hljs-comment">// 成年人</span><br>            .sorted(Comparator.comparing(User::getAge))      <span class="hljs-comment">// 按年龄排序</span><br>            .peek(u -&gt; System.out.println(<span class="hljs-string">&quot;统计: &quot;</span> + u.getName()))  <span class="hljs-comment">// 调试</span><br>            .collect(Collectors.collectingAndThen(<br>                Collectors.toList(),<br>                list -&gt; &#123;<br>                    <span class="hljs-type">double</span> <span class="hljs-variable">avgAge</span> <span class="hljs-operator">=</span> list.stream()<br>                        .mapToInt(User::getAge)<br>                        .average()<br>                        .orElse(<span class="hljs-number">0</span>);<br>                    <span class="hljs-type">String</span> <span class="hljs-variable">names</span> <span class="hljs-operator">=</span> list.stream()<br>                        .map(User::getName)<br>                        .collect(Collectors.joining(<span class="hljs-string">&quot;, &quot;</span>));<br>                    <span class="hljs-keyword">return</span> String.format(<span class="hljs-string">&quot;平均年龄: %.2f\n用户列表: %s&quot;</span>, avgAge, names);<br>                &#125;<br>            ));<br>        <br>        System.out.println(report);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="六optional优雅处理null">六、Optional：优雅处理null</h2>
+<p>Optional是函数式编程中处理null的优雅方案。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 传统方式：判空地狱</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getCity</span><span class="hljs-params">(User user)</span> &#123;<br>    <span class="hljs-keyword">if</span> (user != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-type">Address</span> <span class="hljs-variable">addr</span> <span class="hljs-operator">=</span> user.getAddress();<br>        <span class="hljs-keyword">if</span> (addr != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> addr.getCity();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Unknown&quot;</span>;<br>&#125;<br><br><span class="hljs-comment">// Optional方式</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getCity</span><span class="hljs-params">(User user)</span> &#123;<br>    <span class="hljs-keyword">return</span> Optional.ofNullable(user)<br>        .map(User::getAddress)<br>        .map(Address::getCity)<br>        .orElse(<span class="hljs-string">&quot;Unknown&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">// Optional其他用法</span><br>Optional&lt;String&gt; optional = Optional.ofNullable(getSomeString());<br><br><span class="hljs-comment">// 存在则执行</span><br>optional.ifPresent(s -&gt; System.out.println(<span class="hljs-string">&quot;Value: &quot;</span> + s));<br><br><span class="hljs-comment">// 提供默认值</span><br><span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> optional.orElse(<span class="hljs-string">&quot;default&quot;</span>);<br><br><span class="hljs-comment">// 异常处理</span><br><span class="hljs-type">String</span> <span class="hljs-variable">value2</span> <span class="hljs-operator">=</span> optional.orElseThrow(() -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;No value&quot;</span>));<br><br><span class="hljs-comment">// 过滤</span><br>optional.filter(s -&gt; s.length() &gt; <span class="hljs-number">5</span>)<br>    .ifPresent(s -&gt; System.out.println(<span class="hljs-string">&quot;Long string: &quot;</span> + s));<br></code></pre></td></tr></table></figure>
+<h2 id="七惰性求值与性能优化">七、惰性求值与性能优化</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 惰性求值：中间操作不执行，终端操作才执行</span><br>List&lt;Integer&gt; numbers = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>);<br><br>Stream&lt;Integer&gt; stream = numbers.stream()<br>    .filter(n -&gt; &#123;<br>        System.out.println(<span class="hljs-string">&quot;filter: &quot;</span> + n);<br>        <span class="hljs-keyword">return</span> n &gt; <span class="hljs-number">2</span>;<br>    &#125;)<br>    .map(n -&gt; &#123;<br>        System.out.println(<span class="hljs-string">&quot;map: &quot;</span> + n);<br>        <span class="hljs-keyword">return</span> n * <span class="hljs-number">2</span>;<br>    &#125;);<br><br>System.out.println(<span class="hljs-string">&quot;Stream创建完成，还没有执行任何操作&quot;</span>);<br><br><span class="hljs-comment">// 加终端操作才执行</span><br><span class="hljs-comment">// 惰性求值的特性可以让执行垂直化，而不是只能水平化(即一层代码执行完所有，才继续执行下一层)</span><br>stream.forEach(System.out::println);<br><br><span class="hljs-comment">// 惰性求值的应用之短路操作：findFirst、limit等会提前终止，从而降低计算量</span><br><span class="hljs-comment">// 执行流程讲解：</span><br><span class="hljs-comment">// 发现findFirst()，开始执行 </span><br><span class="hljs-comment">// -&gt; 发现没有元素，于是向游filter请求 </span><br><span class="hljs-comment">// -&gt; filter继续向上游请求第一个元素</span><br><span class="hljs-comment">// -&gt; filter收到一个数1，不大于2，不返回继续向上游请求</span><br><span class="hljs-comment">// -&gt; filter收到一个数2，不大于2，不返回继续向上游请求</span><br><span class="hljs-comment">// -&gt; filter收到一个数3，大于2，向下游返回一个3</span><br><span class="hljs-comment">// -&gt; findFirst()收到一个数3，完成任务，立即返回并结束</span><br><span class="hljs-comment">// 【如果没有惰性求值，就只能filter所有数，性能较低】</span><br>Optional&lt;Integer&gt; first = numbers.stream()<br>    .filter(n -&gt; &#123;<br>        System.out.println(<span class="hljs-string">&quot;filter: &quot;</span> + n);<br>        <span class="hljs-keyword">return</span> n &gt; <span class="hljs-number">2</span>;<br>    &#125;)<br>    .findFirst();  <span class="hljs-comment">// 找到第一个符合条件的就停止，不会处理全部元素</span><br></code></pre></td></tr></table></figure>
+<h2 id="八最佳实践与注意事项">八、最佳实践与注意事项</h2>
+<h3 id="何时使用函数式编程">8.1 何时使用函数式编程</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 适合：数据转换、集合处理</span><br>List&lt;String&gt; names = users.stream()<br>    .filter(User::isActive)<br>    .map(User::getName)<br>    .collect(Collectors.toList());<br><br><span class="hljs-comment">// 适合：延迟执行、按需计算</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">debug</span><span class="hljs-params">(Supplier&lt;String&gt; message)</span> &#123;<br>    <span class="hljs-keyword">if</span> (isDebugEnabled()) &#123;<br>        System.out.println(message.get());<br>    &#125;<br>&#125;<br>debug(() -&gt; <span class="hljs-string">&quot;Expensive: &quot;</span> + expensiveToString());<br><br><span class="hljs-comment">// 不适合：复杂的业务逻辑（超过3-4行Lambda）</span><br><span class="hljs-comment">// 坏味道：Lambda太长</span><br>users.stream().forEach(u -&gt; &#123;<br>    <span class="hljs-comment">// 20行业务逻辑...</span><br>    <span class="hljs-comment">// 应该抽取成方法</span><br>&#125;);<br><br><span class="hljs-comment">// 改进：提取方法</span><br>users.stream().forEach(<span class="hljs-built_in">this</span>::processUser);<br></code></pre></td></tr></table></figure>
+<h3 id="常见陷阱">8.2 常见陷阱</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 陷阱1：Lambda捕获的变量必须是effectively final，即等效final</span><br><span class="hljs-comment">// effectively final 的意思是：一个变量虽然没被 final 关键字修饰，但它的初始化（赋值）在程序执行过程中只会发生一次，之后再也没有被改变过。</span><br><span class="hljs-comment">// 这样设计的原因：保证并发安全、Java 的设计决策：值捕获，而不是引用捕获（确保这份拷贝和原变量的值始终一致）</span><br><span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-comment">// list.forEach(x -&gt; count++);  // 编译错误</span><br><br><span class="hljs-comment">// 解决方法：使用数组或AtomicInteger</span><br><span class="hljs-type">int</span>[] count = &#123;<span class="hljs-number">0</span>&#125;;<br>list.forEach(x -&gt; count[<span class="hljs-number">0</span>]++);<br><br><span class="hljs-comment">// 陷阱2：Stream不能复用</span><br>Stream&lt;String&gt; stream = list.stream();<br>stream.forEach(System.out::println);<br><span class="hljs-comment">// stream.forEach(System.out::println);  // 异常：stream已关闭</span><br><br><span class="hljs-comment">// 陷阱3：并行流不是万能药</span><br><span class="hljs-comment">// 数据量小不要用，有状态操作不要用</span><br>list.parallelStream()  <span class="hljs-comment">// 只有数据量大、无状态时才用</span><br>    .filter(...)<br>    .forEach(...);<br></code></pre></td></tr></table></figure>
+<h3 id="性能对比">8.3 性能对比</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 传统循环：最快，但代码冗长</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000000</span>; i++) &#123;<br>    <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;<br>        sum += i;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// Stream：代码优雅，小性能开销</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> IntStream.range(<span class="hljs-number">0</span>, <span class="hljs-number">1000000</span>)<br>    .filter(i -&gt; i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>    .sum();<br><br><span class="hljs-comment">// 并行Stream：数据量大时性能更好（多线程，同时处理多个元素）</span><br><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> IntStream.range(<span class="hljs-number">0</span>, <span class="hljs-number">10000000</span>)<br>    .parallel()<br>    .filter(i -&gt; i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>    .sum();<br></code></pre></td></tr></table></figure>
+<h2 id="九总结">九、总结</h2>
+<p>Java函数式编程的核心三要素：</p>
+<table>
+<thead>
+<tr class="header">
+<th>要素</th>
+<th>作用</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Lambda表达式</strong></td>
+<td>简洁传递行为</td>
+<td>数据快递</td>
+</tr>
+<tr class="even">
+<td><strong>函数式接口</strong></td>
+<td>定义行为类型</td>
+<td>合同范本</td>
+</tr>
+<tr class="odd">
+<td><strong>Stream API</strong></td>
+<td>声明式处理数据</td>
+<td>流水线</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想转变</strong>： - 从<strong>怎么做</strong>（循环、判断、临时变量） - 到<strong>做什么</strong>（过滤、映射、收集）</p>
+<p>函数式编程变成了告诉计算机你想要什么，而不是告诉它每一步怎么做。当然注意，具体怎么做是函数式库(如Stream API)和底层运行时(如JVM)负责把这段声明编译成具体实现，并不是真不用告诉它怎么做，只是不用你告诉。</p>
 <h1 id="参考资料">参考资料</h1>
 <section class="footnotes">
 <div class="footnote-list">
 <ol>
 <li>
-<span id="fn:1" class="footnote-text"><span>作者、其他主要作者.题名[文献类型标识].出版地:出版者,出版年:引用页码[引用日期].获取和访问路径 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+<span id="fn:1" class="footnote-text"><span>Fisherman渔夫.Java-Lambda表达式和“方法引用”的对比和详解[EB/OL].[2026-05-19].<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1532870">https://cloud.tencent.com/developer/article/1532870</a> <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>超级小忍.Java 中的函数式编程详解[EB/OL].[2026-05-20].<a target="_blank" rel="noopener" href="https://blog.csdn.net/2503_92145588/article/details/149463261">https://blog.csdn.net/2503_92145588/article/details/149463261</a> <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
 </li>
 </ol>
 </div>
@@ -604,13 +497,43 @@ AI模型使用
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/" class="category-chain-item">java</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
       
-        <a href="/tags/%E5%BE%85%E5%AE%8C%E6%88%90/" class="print-no-link">#待完成</a>
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="print-no-link">#函数式编程</a>
       
     </div>
   
@@ -623,6 +546,12 @@ AI模型使用
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/article/ab6d3a77.html" title="RabbitMQ：诞生、发展与Spring生态应用集成">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">RabbitMQ：诞生、发展与Spring生态应用集成</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
