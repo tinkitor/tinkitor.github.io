@@ -21,21 +21,22 @@
   <meta name="author" content="Tinkitor">
   <meta name="keywords" content="Tinkitor,,博客,计算机,编程,记录,andoird,java,javascript,js,html,css">
   
-    <meta name="description" content="该文章无摘要">
+    <meta name="description" content="本文主要使用一个具体且相当简单的例子来走完神经网络“学习”的全流程，以此来辅助理解神经网络。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用几何直觉理解一个神经网络为什么能够工作">
 <meta property="og:url" content="https://tinkitor.github.io/article/3b2fefce.html">
 <meta property="og:site_name" content="Tinkitor的博客">
-<meta property="og:description" content="该文章无摘要">
+<meta property="og:description" content="本文主要使用一个具体且相当简单的例子来走完神经网络“学习”的全流程，以此来辅助理解神经网络。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tinkitor.github.io/img/default/post_example.svg">
+<meta property="og:image" content="https://tinkitor.github.io/img/%E7%94%A8%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%89%E7%90%86%E8%A7%A3%E4%B8%80%E4%B8%AA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E5%A4%9F%E5%B7%A5%E4%BD%9C/poster.jpg">
 <meta property="article:published_time" content="2026-05-15T04:13:12.000Z">
-<meta property="article:modified_time" content="2026-05-19T15:02:11.438Z">
+<meta property="article:modified_time" content="2026-08-20T10:58:00.314Z">
 <meta property="article:author" content="Tinkitor">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="待完成">
+<meta property="article:tag" content="神经网络">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tinkitor.github.io/img/default/post_example.svg">
+<meta name="twitter:image" content="https://tinkitor.github.io/img/%E7%94%A8%E5%87%A0%E4%BD%95%E7%9B%B4%E8%A7%89%E7%90%86%E8%A7%A3%E4%B8%80%E4%B8%AA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E5%A4%9F%E5%B7%A5%E4%BD%9C/poster.jpg">
   
   
   
@@ -258,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          920 字
         
       </span>
     
@@ -269,7 +270,7 @@
         
         
         
-          6 分钟
+          5 分钟
         
       </span>
     
@@ -317,382 +318,29 @@
 <div class="note note-success">
             <p>博主原创文章，转载请说明出处，但是不说我也管不了你🏳️</p>
           </div>
-<div class="note note-warning">
-            <p>转载或微调文章，源地址：[在此填入源地址]</p>
-          </div>
-<!-- 分类说明，发布时请删除该内容 -->
-<table style="text-align:center;">
-<tr>
-<th>
-一级分类
-</th>
-<th>
-二级分类
-</th>
-<th>
-说明
-</th>
-</tr>
-<!-- 编程语言 -->
-<tr>
-<td rowspan="4">
-编程语言
-</td>
-<td>
-Java
-</td>
-<td>
-Java语言基础、JVM、并发编程、工程实践等相关文章
-</td>
-</tr>
-<tr>
-<td>
-C/C++
-</td>
-<td>
-C/C++语言基础、底层开发、性能优化等相关文章
-</td>
-</tr>
-<tr>
-<td>
-Python
-</td>
-<td>
-Python语言基础、数据处理、AI开发、自动化等相关文章
-</td>
-</tr>
-<tr>
-<td>
-其他语言
-</td>
-<td>
-未单独分类的其他编程语言相关文章
-</td>
-</tr>
-<!-- 软件开发 -->
-<tr>
-<td rowspan="6">
-软件开发
-</td>
-<td>
-后端开发
-</td>
-<td>
-后端开发相关内容，例如 Spring、SpringBoot、SSM、微服务等
-</td>
-</tr>
-<tr>
-<td>
-前端开发
-</td>
-<td>
-Web前端、前端框架、脚手架、UI开发等相关文章
-</td>
-</tr>
-<tr>
-<td>
-数据库
-</td>
-<td>
-MySQL、Redis、数据库设计与优化等相关文章
-</td>
-</tr>
-<tr>
-<td>
-工程化
-</td>
-<td>
-项目结构设计、构建工具、CI/CD、Git等工程实践相关文章
-</td>
-</tr>
-<tr>
-<td>
-自动化
-</td>
-<td>
-利用脚本或工具提升效率的自动化实践，例如爬虫、自动签到等
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-未分类的软件开发相关文章
-</td>
-</tr>
-<!-- 计算机基础 -->
-<tr>
-<td rowspan="4">
-计算机基础
-</td>
-<td>
-数据结构与算法
-</td>
-<td>
-数据结构、算法设计与分析等相关文章
-</td>
-</tr>
-<tr>
-<td>
-操作系统
-</td>
-<td>
-操作系统原理、Linux、进程线程、内存管理等相关文章
-</td>
-</tr>
-<tr>
-<td>
-计算机组成原理
-</td>
-<td>
-CPU、存储、指令系统、体系结构等相关文章
-</td>
-</tr>
-<tr>
-<td>
-计算机网络
-</td>
-<td>
-网络协议、TCP/IP、HTTP、网络通信等相关文章
-</td>
-</tr>
-<!-- 数学基础 -->
-<tr>
-<td rowspan="5">
-数学基础
-</td>
-<td>
-高等数学
-</td>
-<td>
-极限、微积分、微分方程等相关文章
-</td>
-</tr>
-<tr>
-<td>
-线性代数
-</td>
-<td>
-矩阵、向量空间、特征值分解等相关文章
-</td>
-</tr>
-<tr>
-<td>
-概率统计
-</td>
-<td>
-概率论、统计学、随机变量、贝叶斯等相关文章
-</td>
-</tr>
-<tr>
-<td>
-离散数学
-</td>
-<td>
-图论、逻辑、组合数学等相关文章
-</td>
-</tr>
-<tr>
-<td>
-矩阵分析
-</td>
-<td>
-高级矩阵理论、矩阵微积分等相关文章
-</td>
-</tr>
-<!-- 人工智能 -->
-<tr>
-<td rowspan="8">
-人工智能
-</td>
-<td>
-机器学习
-</td>
-<td>
-传统机器学习算法、模型训练与理论相关文章
-</td>
-</tr>
-<tr>
-<td>
-深度学习
-</td>
-<td>
-CNN、RNN、Transformer等深度学习相关文章
-</td>
-</tr>
-<tr>
-<td>
-计算机视觉
-</td>
-<td>
-图像分类、目标检测、图像生成等相关文章
-</td>
-</tr>
-<tr>
-<td>
-自然语言处理
-</td>
-<td>
-文本处理、语言模型、NLP任务相关文章
-</td>
-</tr>
-<tr>
-<td>
-大模型
-</td>
-<td>
-LLM、Agent、多模态模型等相关文章
-</td>
-</tr>
-<tr>
-<td>
-AI工程化
-</td>
-<td>
-模型部署、推理加速、CUDA、TensorRT、ONNX等相关文章
-</td>
-</tr>
-<tr>
-<td>
-模型评估
-</td>
-<td>
-Accuracy、ROC、PR、F1、Calibration等模型评估相关文章
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-未分类的人工智能相关文章
-</td>
-</tr>
-<!-- 工具与环境 -->
-<tr>
-<td rowspan="5">
-工具与环境
-</td>
-<td>
-Linux / WSL
-</td>
-<td>
-Linux系统、WSL2、Shell等相关文章
-</td>
-</tr>
-<tr>
-<td>
-Docker
-</td>
-<td>
-容器化部署与Docker相关文章
-</td>
-</tr>
-<tr>
-<td>
-开发工具
-</td>
-<td>
-VSCode、IDEA、Git等开发工具相关文章
-</td>
-</tr>
-<tr>
-<td>
-环境配置
-</td>
-<td>
-CUDA、Conda、Python环境等相关文章
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-未分类的工具与环境相关文章
-</td>
-</tr>
-<!-- 项目与源码 -->
-<tr>
-<td rowspan="3">
-项目与源码
-</td>
-<td>
-项目实践
-</td>
-<td>
-完整项目开发与实战相关文章
-</td>
-</tr>
-<tr>
-<td>
-源码阅读
-</td>
-<td>
-框架、模型、工具源码分析相关文章
-</td>
-</tr>
-<tr>
-<td>
-论文复现
-</td>
-<td>
-论文实现、实验复现与分析相关文章
-</td>
-</tr>
-<!-- 其他 -->
-<tr>
-<td rowspan="4">
-其他
-</td>
-<td>
-英语
-</td>
-<td>
-英语学习、技术英语相关文章
-</td>
-</tr>
-<tr>
-<td>
-文学
-</td>
-<td>
-文学阅读与写作相关文章
-</td>
-</tr>
-<tr>
-<td>
-音乐
-</td>
-<td>
-音乐相关内容
-</td>
-</tr>
-<tr>
-<td>
-其他
-</td>
-<td>
-个人思考、技术感悟与随笔
-</td>
-</tr>
-</table>
 <h1 id="前言">前言</h1>
+<p>本文主要使用一个具体且相当简单的例子来走完神经网络“学习”的全流程，尝试从几何的角度去理解神经网络的学习原理，让读者明白为什么神经网络能够从数据中“学习”，从而产生“预测”的能力。注意：为方便理解，本文所说的神经网络，仅仅指采用全连接的简单神经网络。</p>
+<p>本文适用对象：学习了一点点神经网络基础但又搞不懂神经网络到底在学什么、为什么能学的小白。</p>
 <h1 id="正文">正文</h1>
-<h2 id="正文标题1">正文标题1</h2>
-<h3 id="正文副标题1">正文副标题1</h3>
-<p>有次一个刚入行的妹子让我讲笑话给她听。</p>
-<p>我：你想听 TCP 的笑话么？ 妹子：嗯，我想听一个 TCP 的笑话。 我：好的，我会给你讲一个TCP 的笑话。 妹子：好的，我会听一个TCP 的笑话。 我：你准备好听一个TCP 的笑话么？ 妹子：嗯，我准备好听一个TCP 的笑话 我：Ok，那我要发 TCP 笑话了。大概有 10 秒，20 个字。 妹子：嗯，我准备收你那个 10 秒时长，20 个字的笑话了。 我：抱歉，你的连接超时了。你好，你想听 TCP 的笑话么</p>
+<h2 id="一任务说明">一、任务说明</h2>
+<p>现有50个二维坐标点(x,y)，这些数据都是在正弦函数<span class="math inline">\(sin(x)\)</span>上采集得到，<span class="math inline">\(x \in (-\pi,\pi)\)</span>。数据如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs text">points = [<br>    (-2.9387, -0.1904), (-2.1149, -0.8613), (2.2374, 0.7765),<br>    (1.5036, 0.9975),   (0.8117, 0.7254),   (-1.9971, -0.9143),<br>    (-0.4003, -0.3897), (2.3581, 0.7015),   (-0.4407, -0.4266),<br>    (1.4565, 0.9938),   (1.7046, 0.9917),   (-2.3746, -0.6914),<br>    (1.5916, 0.9996),   (-2.1603, -0.8312), (1.3996, 0.9854),<br>    (2.9108, 0.2255),   (-1.4498, -0.9928), (-1.3430, -0.9747),<br>    (0.5369, 0.5116),   (-2.5502, -0.5627), (1.9054, 0.9475),<br>    (-0.8295, -0.7372), (2.7323, 0.3958),   (-0.5322, -0.5082),<br>    (-1.1837, -0.9274), (0.0109, 0.0109),   (-2.9849, -0.1506),<br>    (-2.8750, -0.2633), (-0.4690, -0.4514), (-1.3698, -0.9798),<br>    (-1.1053, -0.8910), (-0.4345, -0.4212), (-1.3458, -0.9753),<br>    (0.1208, 0.1206),   (0.7980, 0.7149),   (2.5615, 0.5533),<br>    (0.7905, 0.7089),   (-0.7474, -0.6792), (0.8592, 0.7578),<br>    (-2.7209, -0.4100), (-2.4953, -0.5997), (-1.4385, -0.9911),<br>    (-1.1319, -0.9058), (2.9192, 0.2160),   (0.5550, 0.5268),<br>    (-1.8323, -0.9649), (-0.8612, -0.7596), (-0.3084, -0.3035),<br>    (-1.5868, -0.9996), (-0.5196, -0.4970)<br>]<br></code></pre></td></tr></table></figure>
+<p>现在需要设计一个神经网络通过这组数据来学习这个函数<span class="math inline">\(sin(x),x \in (-\pi,\pi)\)</span>。</p>
+<h2 id="二网络设计与运行">二、网络设计与运行</h2>
+<h3 id="网络设计含代码">2.1 网络设计（含代码）</h3>
+<h3 id="学习过程">2.2 学习过程</h3>
 <h1 id="附录">附录</h1>
-<h3 id="附录1">附录1</h3>
-<h3 id="附录2">附录2</h3>
+<h3 id="神经网络的前世今生">神经网络的前世今生</h3>
+<p>1943年，心理学家McCulloch和数学家Pitts为探寻神经元的底层原理，将阈值函数作为计算神经元的核心特征，用逻辑演算构建神经计算架构，提出了“神经网络”概念与M-P模型，标志着人工神经网络（Artificial Neural Networks，ANN）的萌芽。1949年，Hebb在《行为的组织》一书中提出了Hebb突触与Hebb学习规则，假设突触权重的变化会控制神经元间的相互激励方式，为后续学习算法奠定了理论基础。20世纪60年代末，Rosenblatt在M-P模型基础上开创了感知器，这是首个具备学习能力并被物理实现的人工神经网络。1969年，Minsky和Papert出版《感知器：计算几何导论》（<em>Perceptrons: an introduction to computational geometry</em>），指出单层感知器只能学习线性可分模式，无法处理如XOR等线性不可分问题。1984年，Hopfield神经网络（Hopfield Neural Network，HNN）被首次引入，对其动力学行为的理解在信息处理与工程研究中起到了至关重要的作用。此后，反向传播网络（Backpropagation Neural Network，BPNN）被提出，用以解决多层神经网络面临的问题<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="张驰，郭媛，黎明. 人工神经网络模型发展及应用综述[J]. 计算机工程与应用, 2021, 57(11): 57-69.[https://doi.org/10.3778/j.issn.1002-8331.2102-0256](https://doi.org/10.3778/j.issn.1002-8331.2102-0256)">[1]</span></a></sup>，此后能够代表现代神经网络的基于反向传播的全连接神经网络（<em>Fully Connected Neural Networks，FCNN</em>）才终于问世。</p>
 <h1 id="参考资料">参考资料</h1>
 <section class="footnotes">
 <div class="footnote-list">
 <ol>
 <li>
-<span id="fn:1" class="footnote-text"><span>作者、其他主要作者.题名[文献类型标识].出版地:出版者,出版年:引用页码[引用日期].获取和访问路径 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+<span id="fn:1" class="footnote-text"><span>张驰，郭媛，黎明. 人工神经网络模型发展及应用综述[J]. 计算机工程与应用, 2021, 57(11): 57-69.<a target="_blank" rel="noopener" href="https://doi.org/10.3778/j.issn.1002-8331.2102-0256">https://doi.org/10.3778/j.issn.1002-8331.2102-0256</a> <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>作者、其他主要作者.题名[文献类型标识].出版地:出版者,出版年:引用页码[引用日期].获取和访问路径 <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
 </li>
 </ol>
 </div>
@@ -705,6 +353,34 @@ CUDA、Conda、Python环境等相关文章
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="category-chain-item">深度学习</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
@@ -712,6 +388,8 @@ CUDA、Conda、Python环境等相关文章
         <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
       
         <a href="/tags/%E5%BE%85%E5%AE%8C%E6%88%90/" class="print-no-link">#待完成</a>
+      
+        <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="print-no-link">#神经网络</a>
       
     </div>
   
@@ -826,6 +504,12 @@ CUDA、Conda、Python环境等相关文章
   
 
 
+  
+  
+
+
+
+
 
 
 
@@ -870,7 +554,7 @@ CUDA、Conda、Python环境等相关文章
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://tinkitor/about" target="_blank" rel="nofollow noopener"><span>TINKITOR</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="/about/" target="_blank" rel="nofollow noopener"><span>TINKITOR</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
     </div>
   
   
@@ -1027,6 +711,49 @@ CUDA、Conda、Python环境等相关文章
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CNN 卷积过程可视化</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+<aside id="panel">
+  <h1>卷积可视化 <span class="sub">2D 卷积过程</span></h1>
+
+  <section class="group">
+    <h3>输入尺寸</h3>
+    <div class="row">
+      <label>行 m <input type="number" id="inM" min="1" max="12" value="5" /></label>
+      <label>列 n <input type="number" id="inN" min="1" max="12" value="5" /></label>
+    </div>
+  </section>
+
+  <section class="group">
+    <h3>卷积核尺寸</h3>
+    <div class="row">
+      <label>行 s <input type="number" id="kerS" min="1" max="7" value="3" /></label>
+      <label>列 t <input type="number" id="kerT" min="1" max="7" value="3" /></label>
+    </div>
+    <div class="row">
+      <label>步长 stride <input type="number" id="stride" min="1" max="3" value="1" /></label>
+    </div>
+  </section>
+
+  <section class="group">
+    <h3>填充方式</h3>
+    <div class="row radios">
+      <label><input type="radio" name="pad" value="valid" checked /> valid</label>
+      <label><input type="radio" name="pad" value="same" /> same</label>
+      <label><input type="radio" name="pad" value="full" /> full</label>
+      <label><input type="radio" name="pad" value="custom" /> 自定义</label>
+    </div>
+    <div class="row" id="customPadRow" style="display:none">
+      <label>行填充 ph <input type="number" id="padPH" min="0" max="4" value="1" /></label>
+      <label>列填充 pw <input type="number" id="padPW" min="0" max="4" value="1" /></label>
+    </div>
+    <div class="outsize">输出尺寸：<b id="outSize">–</b></div>
+  </section>
+
+  <section class="group">
+    <h3>控制</h3>
+    <div class="btns">
+      <button id="btnPlay">▶ 播放</button>
+      <button id="btnPrev">⏮ 上一步</button>
+      <button id="btnNext">下一步 ⏭</button>
+      <button id="btnReset">⟲ 重置</button>
+    </div>
+    <div class="btns">
+      <button id="btnRandom">🎲 随机数值</button>
+      <button id="btnClear">清零</button>
+    </div>
+    <div class="row">
+      <label class="wide">速度 <input type="range" id="speed" min="1" max="100" value="50" /></label>
+    </div>
+    <div class="progress">进度：<b id="progress">0 / 0</b></div>
+    <div class="status" id="status">点击「播放」开始</div>
+    <div class="formula-head">计算过程（自动滚动）</div>
+    <div class="formula" id="formula"></div>
+  </section>
+
+  <div id="error" class="error"></div>
+  <div class="legend">
+    <span><i class="c1"></i>输入</span>
+    <span><i class="c2"></i>卷积核</span>
+    <span><i class="c3"></i>输出</span>
+    <span><i class="c4"></i>填充(padding)</span>
+  </div>
+  <p class="hint">🖱 点击格子可修改数值</p>
+</aside>
+
+<main id="stage">
+  <div id="scene-container"></div>
+  <div id="gifBar">
+    <label>动画速度
+      <select id="gifSpeed" title="导出时动画的播放速度">
+        <option value="50">慢</option>
+        <option value="100" selected>标准</option>
+        <option value="150">快</option>
+      </select>
+    </label>
+    <label>画质
+      <select id="gifQuality" title="GIF 宽度上限">
+        <option value="400">低</option>
+        <option value="540" selected>中</option>
+        <option value="680">高</option>
+      </select>
+    </label>
+    <label>帧率
+      <select id="gifFps" title="GIF 每帧时长（越小越流畅）">
+        <option value="150">慢</option>
+        <option value="90" selected>标准</option>
+        <option value="60">快</option>
+      </select>
+    </label>
+    <button id="btnGif" title="将整个动画导出为 GIF">⬇ 导出 GIF</button>
+  </div>
+</main>
+</div>
+
+<div id="editor" hidden>
+  <div id="editorBox">
+    <label>修改目标 <select id="editorTarget"></select></label>
+    <label>数值 <input type="number" id="editorInput" step="0.1" /></label>
+    <div class="ebtn">
+      <button id="editorOk">确定</button>
+      <button id="editorCancel">取消</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { GIFEncoder, quantize, applyPalette } from './lib/gifenc.js';
+  window.__gifenc = { GIFEncoder, quantize, applyPalette };
+</script>
+<script src="main.js"></script>
+</body>
+</html>

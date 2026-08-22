@@ -1,0 +1,10 @@
+{
+  "id": "convVisulization",
+  "name": "卷积过程可视化",
+  "description": "3D 交互式展示 2D 卷积运算全过程，支持调整输入尺寸、卷积核、步长与填充方式，可逐步播放并编辑格内数值。",
+  "category": "AI",
+  "tags": ["CNN", "深度学习", "3D 可视化"],
+  "icon": "🧠",
+  "entry": "index.html",
+  "color": "#4f8cff"
+}
